@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
 using namespace sf;
-
+// modified
 int size = 56;
 Vector2f offset(28,28);
 

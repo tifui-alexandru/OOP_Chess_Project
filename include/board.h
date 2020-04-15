@@ -6,12 +6,11 @@
 
 class Board {
 private:
-    Piece *board[BOARD_SIZE][BOARD_SIZE];
+    Piece *board[BOARD_SIZE][BOARD_SIZE]{}; //! Set to nullptr
 public:
     //! Set the initial state of the board.
-    Board() {
-    }
-
+    Board();
+    // std::vector<Square> get_valid_moves(Square )
 };
 
 #endif //BOARD_H

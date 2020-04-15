@@ -30,43 +30,43 @@ protected:
 
 public:
     Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp);
-  //  virtual std::vector <Square> get_possible_moves() = 0; -----eroare
+    virtual std::vector <Square> get_possible_moves() = 0;
 };
 
 class King : virtual public Piece {
 public:
     King(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves();
+    std::vector <Square> get_possible_moves() override;
 };
 
 class Queen : virtual public Piece {
 public:
     Queen(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves();
+    std::vector <Square> get_possible_moves() override;
 };
 
 class Rook : virtual public Piece {
 public:
     Rook(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves();
+    std::vector <Square> get_possible_moves() override;
 };
 
 class Knight : virtual public Piece {
 public:
-    Knight(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves();
+    Knight(const PieceColour &col, const Square &pos) ;
+    std::vector <Square> get_possible_moves() override;
 };
 
 class Bishop : virtual public Piece {
 public:
     Bishop(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves();
+    std::vector <Square> get_possible_moves() override;
 };
 
 class Pawn : virtual public Piece {
 public:
     Pawn(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves();
+    std::vector <Square> get_possible_moves() override;
 };
 
 #endif

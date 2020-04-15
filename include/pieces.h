@@ -31,6 +31,10 @@ protected:
 public:
     Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp);
     virtual std::vector <Square> get_possible_moves() = 0;
+    
+    inline PieceColour get_colour() const {return colour;}
+    inline PieceType get_type() const {return type;}
+    inline int get_value() const {return value;}
 };
 
 class King : virtual public Piece {

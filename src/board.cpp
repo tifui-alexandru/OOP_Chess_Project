@@ -18,3 +18,7 @@ Board::Board() {
             board[row + offset][col] = new Pawn(colour, {row + offset, col});
     }
 }
+
+Move::Move(const std::pair <Square, Square> &mv, Board *board) : mv(mv), current_board(board) {
+
+}

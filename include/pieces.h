@@ -16,6 +16,10 @@ enum PieceColour {
     WHITE, BLACK
 };
 
+class Piece;
+
+typedef std::vector<std::vector<Piece*> > BoardType;
+
 class Piece {
 protected:
     Square position; // 0 indexed
@@ -30,8 +34,8 @@ protected:
 
 public:
     Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp);
-    virtual std::vector <Square> get_possible_moves() = 0;
-    
+    virtual std::vector <Square> get_possible_moves(BoardType &board) = 0;
+
     inline PieceColour get_colour() const {return colour;}
     inline PieceType get_type() const {return type;}
     inline int get_value() const {return value;}
@@ -40,37 +44,37 @@ public:
 class King : virtual public Piece {
 public:
     King(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves() override;
+    std::vector <Square> get_possible_moves(BoardType &board) override;
 };
 
 class Queen : virtual public Piece {
 public:
     Queen(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves() override;
+    std::vector <Square> get_possible_moves(BoardType &board) override;
 };
 
 class Rook : virtual public Piece {
 public:
     Rook(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves() override;
+    std::vector <Square> get_possible_moves(BoardType &board) override;
 };
 
 class Knight : virtual public Piece {
 public:
     Knight(const PieceColour &col, const Square &pos) ;
-    std::vector <Square> get_possible_moves() override;
+    std::vector <Square> get_possible_moves(BoardType &board) override;
 };
 
 class Bishop : virtual public Piece {
 public:
     Bishop(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves() override;
+    std::vector <Square> get_possible_moves(BoardType &board) override;
 };
 
 class Pawn : virtual public Piece {
 public:
     Pawn(const PieceColour &col, const Square &pos);
-    std::vector <Square> get_possible_moves() override;
+    std::vector <Square> get_possible_moves(BoardType &board) override;
 };
 
 #endif

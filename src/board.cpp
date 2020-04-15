@@ -2,6 +2,9 @@
 #include "../include/board.h"
 
 Board::Board() {
+    board.resize(BOARD_SIZE);
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        board[i].resize(BOARD_SIZE, nullptr);
     for (auto colour : {WHITE, BLACK}) {
         int row = 0, offset = 1;
         if (colour == BLACK) row =  7, offset = -1;
@@ -16,6 +19,20 @@ Board::Board() {
 
         for (int col = 0; col < 8; ++col)
             board[row + offset][col] = new Pawn(colour, {row + offset, col});
+    }
+}
+
+Piece* Board::get_piece(Square pos) {
+    return board[pos.x][pos.y];
+}
+
+std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
+    if (board[pos.x][pos.y] == nullptr or board[pos.x][pos.y]->get_colour() != colour) return {};
+    auto positions = board[pos.x][pos.y]->get_possible_moves();
+    std::vector<Square> valid_positions;
+    for (auto p : positions) {
+        if (board[p.x][p.y]->get_colour() == colour) continue;
+
     }
 }
 

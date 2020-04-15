@@ -1,1 +1,7 @@
 main.o
+include/pieces.h
+include/king.h
+include/piece.h
+src/pieces.cpp
+src/piece.cpp
+src/king.cpp

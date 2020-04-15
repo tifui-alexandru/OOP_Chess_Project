@@ -8,7 +8,7 @@ CSTD = c++17
 flags_all = -std=$(CSTD) -g -O0 -Wall -Wextra -fsanitize=address,undefined,signed-integer-overflow
 flags_fast = -std=$(CSTD) -O2
 
-INC_PARAMS = -Iinclude/
+INC_PARAMS = -Iinclude/*.h
 SCR_PARAMS = src/*.cpp *.cpp
 
 LIB_PARAMS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio

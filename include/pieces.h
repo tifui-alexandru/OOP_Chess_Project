@@ -30,6 +30,7 @@ protected:
 
 public:
     Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp);
+  //  virtual std::vector <Square> get_possible_moves() = 0; -----eroare
 };
 
 class King : virtual public Piece {
@@ -42,30 +43,30 @@ class Queen : virtual public Piece {
 public:
     Queen(const PieceColour &col, const Square &pos);
     std::vector <Square> get_possible_moves();
-}
+};
 
 class Rook : virtual public Piece {
 public:
     Rook(const PieceColour &col, const Square &pos);
     std::vector <Square> get_possible_moves();
-}
+};
 
 class Knight : virtual public Piece {
 public:
     Knight(const PieceColour &col, const Square &pos);
     std::vector <Square> get_possible_moves();
-}
+};
 
 class Bishop : virtual public Piece {
 public:
     Bishop(const PieceColour &col, const Square &pos);
     std::vector <Square> get_possible_moves();
-}
+};
 
 class Pawn : virtual public Piece {
 public:
     Pawn(const PieceColour &col, const Square &pos);
     std::vector <Square> get_possible_moves();
-}
+};
 
 #endif

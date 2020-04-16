@@ -27,6 +27,10 @@ struct Square {
     Square operator * (const Square &other) const {
         return {x * other.x, y + other.y};
     }
+
+    bool operator == (const Square &other) const {
+        return x == other.x && y == other.y;
+    }
 };
 
 #endif //UTILS_H

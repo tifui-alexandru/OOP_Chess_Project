@@ -17,7 +17,7 @@ Board::Board() {
         board[row][3] = new Queen(colour, {row, 3});
         board[row][4] = new King(colour, {row, 4});
 
-        for (int col = 0; col < BOARD_SIZE; ++col)
+        for (int col = 0; col < 8; ++col)
             board[row + offset][col] = new Pawn(colour, {row + offset, col});
     }
 }
@@ -26,15 +26,41 @@ Piece* Board::get_piece(Square pos) {
     return board[pos.x][pos.y];
 }
 
-// std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
-//     if (board[pos.x][pos.y] == nullptr or board[pos.x][pos.y]->get_colour() != colour) return {};
-//     auto positions = board[pos.x][pos.y]->get_possible_moves();
-//     std::vector<Square> valid_positions;
-//     for (auto p : positions) {
-//         if (board[p.x][p.y]->get_colour() == colour) continue;
+Square Board::get_king() {
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j)
+            if(board[i][j]->get_type() == KING) return {i, j};
+    return {-1,-1};
+}
 
-//     }
-// }
+/// verify if a cell is attacked by the opponent
+bool Board::cell_is_attacked(Square pos, PieceColour colour) {
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            if (board[i][j] == nullptr or board[i][j]->get_colour() == colour) continue;
+            auto positions = board[i][j]->get_possible_moves(board);
+            for (auto p : positions)
+                if (p == pos) return true;
+        }
+    return false;
+}
+
+
+/// trebuie sa mai facem rocada
+std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
+    if (board[pos.x][pos.y] == nullptr or board[pos.x][pos.y]->get_colour() != colour) return {};
+    auto positions = board[pos.x][pos.y]->get_possible_moves(board);
+    std::vector<Square> valid_positions;
+    for (auto p : positions) {
+        auto aux = board[p.x][p.y];
+        board[p.x][p.y] = board[pos.x][pos.y];
+        board[pos.x][pos.y] = nullptr;
+        if (!cell_is_attacked(get_king(), colour)) valid_positions.push_back(p);
+        board[pos.x][pos.y] = board[p.x][p.y];
+        board[p.x][p.y] = aux;
+    }
+    return valid_positions;
+}
 
 Move::Move(const std::pair <Square, Square> &mv, Board *board) : mv(mv), current_board(board) {
 

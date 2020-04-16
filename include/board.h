@@ -12,6 +12,8 @@ public:
     Board();
     std::vector<Square> get_valid_moves(Square pos, PieceColour colour);
     Piece* get_piece(Square pos);
+    Square get_king();
+    bool cell_is_attacked(Square pos, PieceColour colour);
 };
 
 class Move {

@@ -17,7 +17,7 @@ Board::Board() {
         board[row][3] = new Queen(colour, {row, 3});
         board[row][4] = new King(colour, {row, 4});
 
-        for (int col = 0; col < 8; ++col)
+        for (int col = 0; col < BOARD_SIZE; ++col)
             board[row + offset][col] = new Pawn(colour, {row + offset, col});
     }
 }
@@ -26,15 +26,15 @@ Piece* Board::get_piece(Square pos) {
     return board[pos.x][pos.y];
 }
 
-std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
-    if (board[pos.x][pos.y] == nullptr or board[pos.x][pos.y]->get_colour() != colour) return {};
-    auto positions = board[pos.x][pos.y]->get_possible_moves();
-    std::vector<Square> valid_positions;
-    for (auto p : positions) {
-        if (board[p.x][p.y]->get_colour() == colour) continue;
+// std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
+//     if (board[pos.x][pos.y] == nullptr or board[pos.x][pos.y]->get_colour() != colour) return {};
+//     auto positions = board[pos.x][pos.y]->get_possible_moves();
+//     std::vector<Square> valid_positions;
+//     for (auto p : positions) {
+//         if (board[p.x][p.y]->get_colour() == colour) continue;
 
-    }
-}
+//     }
+// }
 
 Move::Move(const std::pair <Square, Square> &mv, Board *board) : mv(mv), current_board(board) {
 

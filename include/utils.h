@@ -16,8 +16,8 @@ struct Square {
         return std::make_pair(y + 1, static_cast<char>(x + 'a'));
     }
 
-    inline bool valid() const {
-        return x >= 0 and y >= 0 and x < 8 and y < 8;
+    inline bool inside_board() const {
+        return x >= 0 and y >= 0 and x < BOARD_SIZE and y < BOARD_SIZE;
     }
 
     Square operator + (const Square &other) const {

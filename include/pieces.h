@@ -31,6 +31,7 @@ protected:
     // knight -> 3 pawns
     // rook -> 5 pawns
     // queen -> 9 pawns
+    int no_moves;
 
 public:
     Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp);
@@ -39,6 +40,7 @@ public:
     inline PieceColour get_colour() const {return colour;}
     inline PieceType get_type() const {return type;}
     inline int get_value() const {return value;}
+    inline bool moved() const{return static_cast<bool>(no_moves);}
 };
 
 class King : virtual public Piece {

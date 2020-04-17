@@ -5,7 +5,7 @@
 // N S E W NE NW SE SW
 static const Square directions[8] = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}, {1, -1}, {1, 1}, {-1, -1}, {-1, 1}};
 
-Piece::Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp) : colour(col), position(pos), value(val), type(tp) {}
+Piece::Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp) : colour(col), position(pos), value(val), type(tp), no_moves(0) {}
 
 King::King(const PieceColour &col, const Square &pos) : Piece(col, pos, 0, KING) {}
 Queen::Queen(const PieceColour &col, const Square &pos) : Piece(col, pos, 9, QUEEN) {}

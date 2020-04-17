@@ -26,10 +26,10 @@ Piece* Board::get_piece(Square pos) {
     return board[pos.x][pos.y];
 }
 
-Square Board::get_king() {
+Square Board::get_king(const PieceColour &colour) {
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j)
-            if(board[i][j]->get_type() == KING) return {i, j};
+            if(board[i][j]->get_type() == KING and board[i][j]->get_colour() == colour) return {i, j};
     return {-1,-1};
 }
 
@@ -45,8 +45,25 @@ bool Board::cell_is_attacked(Square pos, PieceColour colour) {
     return false;
 }
 
+bool Board::castle(const PieceColour &colour, const CastleType &tp) {
+    int row = (colour == WHITE ? 0 : 7);
+    int king_col = 4;
+    int rook_col = (tp == QUEENSIDE ? 0 : 7);
 
-/// trebuie sa mai facem rocada
+    if (board[row][king_col] == nullptr or board[row][rook_col] == nullptr) return false;
+    if (board[row][king_col]->get_type() != KING or board[row][rook_col]->get_type() != ROOK) return false;
+    if (board[row][king_col]->moved() or board[row][rook_col]->moved()) return false;
+
+    int add = (rook_col - king_col) / std::abs(rook_col - king_col);
+    for (int col = king_col + add; col != rook_col; col += add) {
+        if (board[row][col] != nullptr) return false;
+        if (cell_is_attacked(Square(row, col), colour)) return false;
+    }
+
+    return true;
+}
+
+// returns the valid moves for the piece from a given square
 std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
     if (board[pos.x][pos.y] == nullptr or board[pos.x][pos.y]->get_colour() != colour) return {};
     auto positions = board[pos.x][pos.y]->get_possible_moves(board);
@@ -55,13 +72,19 @@ std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
         auto aux = board[p.x][p.y];
         board[p.x][p.y] = board[pos.x][pos.y];
         board[pos.x][pos.y] = nullptr;
-        if (!cell_is_attacked(get_king(), colour)) valid_positions.push_back(p);
+        if (!cell_is_attacked(get_king(colour), colour)) valid_positions.push_back(p);
         board[pos.x][pos.y] = board[p.x][p.y];
         board[p.x][p.y] = aux;
     }
+
+    if (board[pos.x][pos.y]->get_type() == KING) {
+        if (castle(colour, QUEENSIDE)) valid_positions.push_back(pos + Square(0, -2));
+        if (castle(colour, KINGSIDE)) valid_positions.push_back(pos + Square(0, 2));
+    }
+
     return valid_positions;
 }
 
 Move::Move(const std::pair <Square, Square> &mv, Board *board) : mv(mv), current_board(board) {
-
+    
 }

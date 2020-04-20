@@ -40,6 +40,10 @@ public:
     inline PieceColour get_colour() const {return colour;}
     inline PieceType get_type() const {return type;}
     inline int get_value() const {return value;}
+    
+    inline void set_position(const Square &pos) {position = pos;}
+    inline void inc_no_moves() {++no_moves;}
+
     inline bool moved() const{return static_cast<bool>(no_moves);}
 };
 

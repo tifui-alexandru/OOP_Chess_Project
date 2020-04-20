@@ -22,11 +22,25 @@ Board::Board() {
     }
 }
 
-Piece* Board::get_piece(Square pos) {
+Board::Board(const Board *obj) {
+    board.resize(BOARD_SIZE);
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        board[i].resize(BOARD_SIZE, nullptr);
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j)
+            if (auto piece = obj->get_piece({i, j})) board[i][j] = piece->Clone();
+}
+
+void Board::change_position(Piece* newPiece, Square pos) {
+    board[pos.x][pos.y] = newPiece;
+    if(newPiece) newPiece->set_position(pos);
+}
+
+Piece* Board::get_piece(Square pos) const {
     return board[pos.x][pos.y];
 }
 
-Square Board::get_king(const PieceColour &colour) {
+Square Board::get_king(const PieceColour &colour) const {
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j)
             if(board[i][j]->get_type() == KING and board[i][j]->get_colour() == colour) return {i, j};
@@ -34,7 +48,7 @@ Square Board::get_king(const PieceColour &colour) {
 }
 
 /// verify if a cell is attacked by the opponent
-bool Board::cell_is_attacked(Square pos, PieceColour colour) {
+bool Board::cell_is_attacked(Square pos, PieceColour colour) const {
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j) {
             if (board[i][j] == nullptr or board[i][j]->get_colour() == colour) continue;
@@ -45,7 +59,7 @@ bool Board::cell_is_attacked(Square pos, PieceColour colour) {
     return false;
 }
 
-bool Board::castle(const PieceColour &colour, const CastleType &tp) {
+bool Board::castle(const PieceColour &colour, const CastleType &tp) const {
     int row = (colour == WHITE ? 0 : 7);
     int king_col = 4;
     int rook_col = (tp == QUEENSIDE ? 0 : 7);

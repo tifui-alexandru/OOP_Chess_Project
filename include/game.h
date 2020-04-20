@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "board.h"
+#include "move.h"
 #include <vector>
 
 class Game {
@@ -9,10 +10,8 @@ private:
     struct Player {
         std::vector<Piece*> capturedPieces; ///Pieces captured by this player
         int pawnValue;
-        PieceColour Colour;
-        Player() {
-            pawnValue = 39;
-        }
+        PieceColour colour;
+        Player(PieceColour colour) : colour(colour), pawnValue(39) {}
     };
     Player *playerToMove, *playerToWait;
     std::vector<Board*> gameBoards;
@@ -20,7 +19,7 @@ private:
 public:
     Game();
     Board* get_board(int time = -1);
-    void make_move(Square from, Square to);
+    GameStatus make_move(Square from, Square to);
 };
 
 #endif

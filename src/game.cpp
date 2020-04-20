@@ -1,11 +1,10 @@
 #include "../include/utils.h"
 #include "../include/game.h"
 #include <vector>
-#include <algorithm>
 
 Game::Game() {
-    playerToMove->Colour = WHITE;
-    playerToWait->Colour = BLACK;
+    playerToMove = new Player(WHITE);
+    playerToWait = new Player(BLACK);
     gameBoards.push_back(new Board);
 }
 
@@ -15,7 +14,7 @@ Board* Game::get_board(int time) {
     return gameBoards[time];
 }
 
-void Game::make_move(Square from, Square to) {
+GameStatus Game::make_move(Square from, Square to) {
     auto currBoard = new Board(gameBoards.back());
     if(auto toPiece = currBoard->get_piece(to)) {
         playerToMove->capturedPieces.push_back(toPiece);
@@ -25,6 +24,8 @@ void Game::make_move(Square from, Square to) {
     fromPiece->inc_no_moves();
     currBoard->change_position(fromPiece, to);
     currBoard->change_position(nullptr, from);
+    gameMoves.push_back(new Move(from, to, gameBoards.back(), currBoard, playerToMove->colour));
     gameBoards.push_back(currBoard);
     std::swap(playerToMove, playerToWait);
+    return currBoard->get_status();
 }

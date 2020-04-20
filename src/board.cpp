@@ -98,3 +98,7 @@ std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
 
     return valid_positions;
 }
+
+GameStatus Board::get_status() {
+    return UNFINISHED;
+}

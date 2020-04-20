@@ -4,6 +4,18 @@
 #include "pieces.h"
 #include "utils.h"
 
+enum GameStatus {
+    UNFINISHED,
+    CHECKMATE,
+    RESIGNATION,
+    TIMEOUT,
+    STALEMATE,
+    INSUFFICIENT_MATERIAL,
+    MOVE50RULE,
+    REPETITION,
+    AGREEMENT
+};
+
 class Board {
 private:
     BoardType board;
@@ -21,6 +33,7 @@ public:
     bool cell_is_attacked(Square pos, PieceColour colour) const;
     bool castle(const PieceColour &colour, const CastleType &tp) const;
     void change_position(Piece* newPiece, Square pos);
+    GameStatus get_status();
 };
 
 #endif //BOARD_H

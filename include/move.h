@@ -1,6 +1,7 @@
 #ifndef MOVE_H
 #define MOVE
 #include "board.h"
+#include "utils.h"
 
 class Move {
 private:
@@ -8,7 +9,11 @@ private:
     Square from, to;
     Board *curr_board, *next_board;
     PieceColour col;
-    Move(const Square &from, const Square &to, const Board *curr_bord, const Board *next_board, const PieceColour &col);
+
+public:
+    Move(const Square &from, const Square &to, Board *curr_bord, Board *next_board, const PieceColour &col);
+    std::string toChessNotation();
+    
 };
 
 #endif 

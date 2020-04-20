@@ -12,8 +12,8 @@ struct Square {
 
     Square(const int &xx, const int &yy) : x(xx), y(yy) {}
 
-    inline std::pair <char, int> chess_notation_pos() const {
-        return std::make_pair(y + 1, static_cast<char>(x + 'a'));
+    inline std::string chess_notation_pos() const {
+        return std::to_string(y + 1) + static_cast<char>(x + 'a');
     }
 
     inline bool inside_board() const {

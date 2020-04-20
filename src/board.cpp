@@ -63,7 +63,7 @@ bool Board::castle(const PieceColour &colour, const CastleType &tp) {
     return true;
 }
 
-// returns the valid moves for the piece from a given square
+/// returns the valid moves for the piece from a given square
 std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
     if (board[pos.x][pos.y] == nullptr or board[pos.x][pos.y]->get_colour() != colour) return {};
     auto positions = board[pos.x][pos.y]->get_possible_moves(board);

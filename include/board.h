@@ -23,13 +23,4 @@ public:
     void change_position(Piece* newPiece, Square pos);
 };
 
-class Move {
-private:
-    Piece *from_piece, *to_piece;
-    Square from, to;
-    Board *curr_board, *next_board;
-    PieceColour col;
-    Move(const std::pair <Square, Square> &mv, Board *board);
-};
-
 #endif //BOARD_H

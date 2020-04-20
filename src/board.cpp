@@ -98,7 +98,3 @@ std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
 
     return valid_positions;
 }
-
-Move::Move(const std::pair <Square, Square> &mv, Board *board) : mv(mv), current_board(board) {
-    
-}

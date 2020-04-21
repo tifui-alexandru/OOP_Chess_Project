@@ -6,6 +6,15 @@ Move::Move(const Square &from, const Square &to, Board *curr_bord, Board *next_b
     to_piece = curr_board->get_piece(to);
 }
 
+const std::unordered_map <PieceType, std::string> Move::AlgebraicPiece = {
+    {KING, "K"},
+    {QUEEN, "Q"},
+    {ROOK, "R"},
+    {BISHOP, "B"},
+    {KNIGHT, "K"},
+    {PAWN, ""}
+};
+
 // pawn promotion ignoed for now
 std::string Move::toAlgebraicNotation() {
     std::string ans;
@@ -21,7 +30,7 @@ std::string Move::toAlgebraicNotation() {
         std::string from_notation, to_notation;
         to_notation = to.chess_notation_pos();
         if (to_piece) to_notation = "x" + to_notation; // capture
-        from_notation = AlgebraicPiece[from_piece->get_type()];
+        from_notation = AlgebraicPiece.at(from_piece->get_type());
 
         // handle en passant
         if (from_piece->get_type() == PAWN and from.y != to.y and to_piece == nullptr)
@@ -62,7 +71,7 @@ std::string Move::toAlgebraicNotation() {
 
     PieceColour other_colour = (col == WHITE ? BLACK : WHITE);
     if (next_board->cell_is_attacked(next_board->get_king(other_colour), other_colour)) {
-        if (next_board->get_status() == CHECKMATE) ans += "#";
+        if (next_board->get_status(col, other_colour) == CHECKMATE) ans += "#";
         else ans += "+";
     }
 

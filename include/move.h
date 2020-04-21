@@ -9,7 +9,7 @@ private:
     Square from, to;
     Board *curr_board, *next_board;
     PieceColour col;
-    static const std::unordered_map <PieceType, std::string> AlgebraicPiece;
+    static const std::unordered_map <int, std::string> AlgebraicPiece;
 
 public:
     Move(const Square &from, const Square &to, Board *curr_bord, Board *next_board, const PieceColour &col);

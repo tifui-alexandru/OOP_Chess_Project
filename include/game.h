@@ -11,7 +11,7 @@ private:
         std::vector<Piece*> capturedPieces; ///Pieces captured by this player
         int pawnValue;
         PieceColour colour;
-        Player(PieceColour colour) : colour(colour), pawnValue(39) {}
+        explicit Player(PieceColour colour) : colour(colour), pawnValue(39) {}
     };
     Player *playerToMove, *playerToWait;
     int nrMovesFor50Rule;
@@ -22,6 +22,7 @@ public:
     Game();
     Board* get_board(int time = -1);
     GameStatus make_move(Square from, Square to);
+    void promote(Square pos, PieceType piece);
 };
 
 #endif

@@ -6,7 +6,7 @@ Move::Move(const Square &from, const Square &to, Board *curr_bord, Board *next_b
     to_piece = curr_board->get_piece(to);
 }
 
-const std::unordered_map <PieceType, std::string> Move::AlgebraicPiece = {
+const std::unordered_map <int, std::string> Move::AlgebraicPiece = {
     {KING, "K"},
     {QUEEN, "Q"},
     {ROOK, "R"},

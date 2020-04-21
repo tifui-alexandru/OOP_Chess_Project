@@ -10,9 +10,17 @@ Game::Game() {
 }
 
 Board* Game::get_board(int time) {
-    assert(time >= -1 && time < gameBoards.size());
+    assert(time >= -1 && time < (int)gameBoards.size());
     if(time == -1) return gameBoards.back();
     return gameBoards[time];
+}
+
+void Game::promote(Square pos, PieceType piece) {
+    auto oldPiece = gameBoards.back()->get_piece(pos);
+    if (piece == QUEEN) gameBoards.back()->change_position(new Queen(oldPiece->get_colour(), pos), pos);
+    else if (piece == ROOK) gameBoards.back()->change_position(new Rook(oldPiece->get_colour(), pos), pos);
+    else if (piece == KNIGHT) gameBoards.back()->change_position(new Knight(oldPiece->get_colour(), pos), pos);
+    else if (piece == BISHOP) gameBoards.back()->change_position(new Bishop(oldPiece->get_colour(), pos), pos);
 }
 
 bool Game::repetition() {

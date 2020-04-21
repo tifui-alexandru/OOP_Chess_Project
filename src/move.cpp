@@ -38,7 +38,7 @@ std::string Move::toAlgebraicNotation() {
                 if (i == from.x and j == from.y) continue;
 
                 Piece* other_from = curr_board->get_piece({i, j});
-                if (other_from == nullptr or other_from->get_type() != from_piece->get_type) continue;
+                if (other_from == nullptr or other_from->get_type() != from_piece->get_type()) continue;
 
                 std::vector <Square> temp = curr_board->get_valid_moves({i, j}, col);
                 bool found = false;

@@ -35,8 +35,8 @@ public:
     bool cell_is_attacked(Square pos, PieceColour colour) const;
     bool castle(const PieceColour &colour, const CastleType &tp) const;
     void change_position(Piece* newPiece, Square pos);
-    
-    GameStatus get_status();
+    bool insufficient_material(const PieceColour &colour);
+    GameStatus get_status(const PieceColour &colourToMove, const PieceColour &colourToWait);
 };
 
 #endif //BOARD_H

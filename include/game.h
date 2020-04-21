@@ -14,8 +14,10 @@ private:
         Player(PieceColour colour) : colour(colour), pawnValue(39) {}
     };
     Player *playerToMove, *playerToWait;
+    int nrMovesFor50Rule;
     std::vector<Board*> gameBoards;
     std::vector<Move*> gameMoves;
+    bool repetition();
 public:
     Game();
     Board* get_board(int time = -1);

@@ -99,6 +99,27 @@ std::vector<Square> Board::get_valid_moves(Square pos, PieceColour colour) {
     return valid_positions;
 }
 
-GameStatus Board::get_status() {
+bool Board::insufficient_material(const PieceColour &colour) {
+    int cnt = 0, cntKnight = 0;
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            if (board[i][j] == nullptr or board[i][j]->get_colour() != colour or board[i][j]->get_type() == KING) continue;
+            if (board[i][j]->get_type() == BISHOP) cnt++;
+            if (board[i][j]->get_type() == KNIGHT) cnt++, cntKnight++;
+            else return false;
+        }
+    if (cnt == 2 && cntKnight == 2) return true;
+    return cnt <= 1;
+}
+
+GameStatus Board::get_status(const PieceColour &colourToMove, const PieceColour &colourToWait) {
+    bool possibleMoves = false;
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j)
+                if (!get_valid_moves({i, j}, colourToMove).empty()) possibleMoves = true;
+    bool check = cell_is_attacked(get_king(colourToMove), colourToMove);
+    if (!possibleMoves && check) return CHECKMATE;
+    if (!possibleMoves) return STALEMATE;
+    if (insufficient_material(colourToMove) && insufficient_material(colourToWait)) return INSUFFICIENT_MATERIAL;
     return UNFINISHED;
 }

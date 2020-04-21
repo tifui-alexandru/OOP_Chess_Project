@@ -4,16 +4,8 @@
 Move::Move(const Square &from, const Square &to, Board *curr_bord, Board *next_board, const PieceColour &col) : from(from), to(to), curr_board(curr_board), next_board(next_board), col(col) {
     from_piece = curr_board->get_piece(from);
     to_piece = curr_board->get_piece(to);
-
-    AlgebraicPiece[KING] = "K";
-    AlgebraicPiece[QUEEN] = "Q";
-    AlgebraicPiece[ROOK] = "R";
-    AlgebraicPiece[BISHOP] = "B";
-    AlgebraicPiece[KNIGHT] = "K";
-    AlgebraicPiece[PAWN] = "";
 }
 
-// en passant ignored for now
 // pawn promotion ignoed for now
 std::string Move::toAlgebraicNotation() {
     std::string ans;
@@ -31,6 +23,10 @@ std::string Move::toAlgebraicNotation() {
         if (to_piece) to_notation = "x" + to_notation; // capture
         from_notation = AlgebraicPiece[from_piece->get_type()];
 
+        // handle en passant
+        if (from_piece->get_type() == PAWN and from.y != to.y and to_piece == nullptr)
+            to_notation = "x" + to_notation + "e.p.";
+
         // solve ambiguity
         bool same_row = false, same_col = false, ambig = false;
         for (int i = 0; i < BOARD_SIZE; ++i)
@@ -38,7 +34,7 @@ std::string Move::toAlgebraicNotation() {
                 if (i == from.x and j == from.y) continue;
 
                 Piece* other_from = curr_board->get_piece({i, j});
-                if (other_from == nullptr or other_from->get_type() != from_piece->get_type) continue;
+                if (other_from == nullptr or other_from->get_type() != from_piece->get_type()) continue;
 
                 std::vector <Square> temp = curr_board->get_valid_moves({i, j}, col);
                 bool found = false;
@@ -66,7 +62,7 @@ std::string Move::toAlgebraicNotation() {
 
     PieceColour other_colour = (col == WHITE ? BLACK : WHITE);
     if (next_board->cell_is_attacked(next_board->get_king(other_colour), other_colour)) {
-        if (next_board->checkmate()) ans += "#";
+        if (next_board->get_status() == CHECKMATE) ans += "#";
         else ans += "+";
     }
 

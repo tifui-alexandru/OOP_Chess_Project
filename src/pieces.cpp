@@ -12,7 +12,7 @@ Queen::Queen(const PieceColour &col, const Square &pos) : Piece(col, pos, 9, QUE
 Rook::Rook(const PieceColour &col, const Square &pos) : Piece(col, pos, 5, ROOK) {}
 Knight::Knight(const PieceColour &col, const Square &pos) : Piece(col, pos, 3, KNIGHT) {}
 Bishop::Bishop(const PieceColour &col, const Square &pos) : Piece(col, pos, 3, BISHOP) {}
-Pawn::Pawn(const PieceColour &col, const Square &pos) : Piece(col, pos, 1, PAWN) {}
+Pawn::Pawn(const PieceColour &col, const Square &pos) : Piece(col, pos, 1, PAWN), can_be_captured_en_passant(false) {}
 
 // returns true if it is ok to move
 // stop is true if the search should stop in that particular direction and false otherwise
@@ -96,5 +96,25 @@ std::vector <Square> Pawn::get_possible_moves(const BoardType &board) {
             else if (board[temp.x][temp.y]->get_colour() != colour and add) ans.emplace_back(temp);
         }
     }
+
+    // 2 squares start
+    if (!moved()) {
+        Square temp = position + Square(2 * adv, 0);
+        bool stop; // ignored
+        if (valid_move(colour, temp, board, stop)) ans.emplace_back(temp);
+    }
+
+    // en passant
+    for (int add = -1; add <= 1; ++add) {
+        if (add == 0) continue;
+        Square temp = position + Square(0, add);
+        if (temp.inside_board()) {
+            if (board[temp.x][temp.y] == nullptr) continue;
+            if (board[temp.x][temp.y]->get_type() == PAWN and board[temp.x][temp.y]->get_colour() != colour)
+                if (dynamic_cast<Pawn*>(board[temp.x][temp.y])->get_en_passant())
+                    ans.emplace_back(position + Square(adv, add));
+        }
+    }
+
     return ans;
 }

@@ -100,13 +100,19 @@ public:
 };
 
 class Pawn : virtual public Piece {
+private:
+    bool can_be_captured_en_passant;
+
 public:
     Pawn(const PieceColour &col, const Square &pos);
-    Pawn(const Pawn &obj) : Piece(obj.colour, obj.position, obj.value, obj.type, obj.no_moves) {}
+    Pawn(const Pawn &obj) : Piece(obj.colour, obj.position, obj.value, obj.type, obj.no_moves), can_be_captured_en_passant(0) {}
     Piece* Clone() override {
         return new Pawn(*this);
     }
     std::vector <Square> get_possible_moves(const BoardType &board) override;
+    
+    inline bool get_en_passant() const {return can_be_captured_en_passant;}
+    inline void set_en_passant(const bool &vl) {can_be_captured_en_passant = vl;}
 };
 
 #endif

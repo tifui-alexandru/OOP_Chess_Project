@@ -68,7 +68,7 @@ std::string Move::toAlgebraicNotation() {
         if (from_piece->get_type() == PAWN) {
             int back_rank = (from_piece->get_colour() == WHITE ? 6 : 1);
             if (to.x == back_rank) 
-                to_notation += "=" + AlgebraicPiece.at(next_board->get_piece(to)->get_type);
+                to_notation += "=" + AlgebraicPiece.at(next_board->get_piece(to)->get_type());
         }
 
         ans = from_notation + to_notation;

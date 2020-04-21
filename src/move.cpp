@@ -15,7 +15,6 @@ const std::unordered_map <int, std::string> Move::AlgebraicPiece = {
     {PAWN, ""}
 };
 
-// pawn promotion ignoed for now
 std::string Move::toAlgebraicNotation() {
     std::string ans;
 
@@ -64,6 +63,12 @@ std::string Move::toAlgebraicNotation() {
                 else
                     from_notation += char('a' + from.y) + std::to_string(from.x + 1);
             }
+        }
+
+        if (from_piece->get_type() == PAWN) {
+            int back_rank = (from_piece->get_colour() == WHITE ? 6 : 1);
+            if (to.x == back_rank) 
+                to_notation += "=" + AlgebraicPiece.at(next_board->get_piece(to)->get_type);
         }
 
         ans = from_notation + to_notation;

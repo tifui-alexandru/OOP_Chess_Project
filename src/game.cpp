@@ -44,7 +44,7 @@ bool Game::repetition() {
 GameStatus Game::make_move(Square from, Square to) {
     auto currBoard = new Board(gameBoards.back());
     nrMovesFor50Rule++;
-    if(auto toPiece = currBoard->get_piece(to)) {
+    if (auto toPiece = currBoard->get_piece(to)) {
         playerToMove->capturedPieces.push_back(toPiece);
         playerToWait->pawnValue -= toPiece->get_value();
         nrMovesFor50Rule = 0;

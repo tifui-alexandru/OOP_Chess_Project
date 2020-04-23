@@ -3,7 +3,7 @@
 
 using namespace sf;
 
-#include "include\MainMenu.h"
+#include "../include/MainMenu.h"
 
 menuGame::menuGame()
 {
@@ -11,19 +11,19 @@ menuGame::menuGame()
 
     playButton = false;
 
-    tusu1.loadFromFile("images/menu_img.jpg");
+    tusu1.loadFromFile("../images/menu_img.jpg");
     susu1.setTexture(tusu1);
 
-    tusu2.loadFromFile("images/play1.png");
+    tusu2.loadFromFile("../images/play1.png");
     susu2.setTexture(tusu2);
 
-    tusu3.loadFromFile("images/play2.png");
+    tusu3.loadFromFile("../images/play2.png");
     susu3.setTexture(tusu3);
 
-    tusu4.loadFromFile("images/about1.png");
+    tusu4.loadFromFile("../images/about1.png");
     susu4.setTexture(tusu4);
 
-    tusu5.loadFromFile("images/about2.png");
+    tusu5.loadFromFile("../images/about2.png");
     susu5.setTexture(tusu5);
 
     size = tusu1.getSize();

@@ -1,11 +1,11 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <time.h>
-#include "Connector.hpp"
+//#include "../Connector.hpp"
 
 using namespace sf;
 
-#include "include/game1v1.h"
+#include "../include/game1v1.h"
 
 Game1v1::Game1v1()
 {
@@ -29,7 +29,7 @@ Game1v1::Game1v1()
 
 Game1v1::~Game1v1()
 {
-    CloseConnection();
+    //CloseConnection();
 }
 
 std::string Game1v1::toChessNote(Vector2f p)
@@ -102,7 +102,7 @@ void Game1v1::releaseMove()
 {
     newPos = oldPos;
 
-    std::cout << "NEW:  " << newPos.x/size << ' ' << newPos.y/size << '\n';
+    //std::cout << "NEW:  " << newPos.x/size << ' ' << newPos.y/size << '\n';
 
     str = toChessNote(oldPos) + toChessNote(newPos);
 
@@ -115,12 +115,12 @@ void Game1v1::playGame1v1()
 {
     RenderWindow window(VideoMode(504, 504), "Chess Game1v1", Style::Titlebar | sf::Style::Close);
 
-    ConnectToEngine("stockfish.exe"); //vs computer
+    //ConnectToEngine("stockfish.exe"); //vs computer
 
-    t1.loadFromFile("images/figures.png"); //pieces
-    t2.loadFromFile("images/board.png"); //background
-    t3.loadFromFile("images/erase.png"); //next move effects
-    t4.loadFromFile("images/next2.png");
+    t1.loadFromFile("../images/figures.png"); //pieces
+    t2.loadFromFile("../images/board.png"); //background
+    t3.loadFromFile("../images/erase.png"); //next move effects
+    t4.loadFromFile("../images/next2.png");
 
     for(int i = 0; i < 32; ++i) f[i].setTexture(t1); //initialize the pieces
     for(int i = 0; i < 32; ++i) f2[i].setTexture(t3); //initialize the effects
@@ -179,7 +179,7 @@ void Game1v1::playGame1v1()
                                 usux = oldPos.x / size;
                                 usuy = oldPos.y / size;
 
-                                std::cout << "OLD:  " << usux << ' ' << usuy << '\n';
+                                //std::cout << "OLD:  " << usux << ' ' << usuy << '\n';
                                 //get the matrix position
                             }
                 }
@@ -202,7 +202,7 @@ void Game1v1::playGame1v1()
                             continue;
                         }
 
-                        std::cout << "NEW:  " << newPos.x / size << ' ' << newPos.y / size << '\n';
+                        //std::cout << "NEW:  " << newPos.x / size << ' ' << newPos.y / size << '\n';
 
                         str = toChessNote(oldPos) + toChessNote(newPos);
 
@@ -218,42 +218,42 @@ void Game1v1::playGame1v1()
         }
 
         //comp move
-        if(Keyboard::isKeyPressed(Keyboard::Space))
-        {
-            str = getNextMove(position);
-
-            oldPos = toCoord(str[0], str[1]);
-            newPos = toCoord(str[2], str[3]);
-
-            for(int i = 0; i < 32; ++i)
-                if(f[i].getPosition() == oldPos) n = i;
-
-            //animation//
-            for(int k = 0; k < 50; ++k)
-            {
-                Vector2f p = newPos - oldPos;
-
-                f[n].move(p.x / 50, p.y / 50);
-
-                window.draw(sBoard);
-
-                for(int i = 0; i < 32; ++i) f[i].move(offset);
-
-                for(int i = 0; i < 32; ++i) window.draw(f[i]);
-
-                window.draw(f[n]);
-
-                for(int i = 0; i < 32; ++i) f[i].move(-offset);
-
-                window.display();
-            }
-
-            move(str);
-            position += str + " ";
-
-            f[n].setPosition(newPos);
-            f2[n].setPosition(newPos);
-        }
+//        if(Keyboard::isKeyPressed(Keyboard::Space))
+//        {
+//            str = getNextMove(position);
+//
+//            oldPos = toCoord(str[0], str[1]);
+//            newPos = toCoord(str[2], str[3]);
+//
+//            for(int i = 0; i < 32; ++i)
+//                if(f[i].getPosition() == oldPos) n = i;
+//
+//            //animation//
+//            for(int k = 0; k < 50; ++k)
+//            {
+//                Vector2f p = newPos - oldPos;
+//
+//                f[n].move(p.x / 50, p.y / 50);
+//
+//                window.draw(sBoard);
+//
+//                for(int i = 0; i < 32; ++i) f[i].move(offset);
+//
+//                for(int i = 0; i < 32; ++i) window.draw(f[i]);
+//
+//                window.draw(f[n]);
+//
+//                for(int i = 0; i < 32; ++i) f[i].move(-offset);
+//
+//                window.display();
+//            }
+//
+//            move(str);
+//            position += str + " ";
+//
+//            f[n].setPosition(newPos);
+//            f2[n].setPosition(newPos);
+//        }
 
         if(isMove) f2[n].setPosition(pos.x - dx, pos.y - dy);
 

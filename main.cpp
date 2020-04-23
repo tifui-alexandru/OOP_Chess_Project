@@ -10,8 +10,9 @@ int main()
 {
     menuGame t1;
     menuMode t2;
-    t2.menuRun();
-//     Game1v1 t3;
+    //t2.menuRun();
+    Game1v1 t3;
+    t3.playGame1v1();
 //     do{
 //        t1.menuRun();
 //        if(t1.playButton == true) t2.menuRun();

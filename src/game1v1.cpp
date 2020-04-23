@@ -1,6 +1,5 @@
-#include <iostream>
+#include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
-#include <time.h>
 //#include "../Connector.hpp"
 
 using namespace sf;
@@ -9,6 +8,8 @@ using namespace sf;
 
 Game1v1::Game1v1()
 {
+    std::memset(goodMove, 0, sizeof(goodMove));
+
     terminate = false;
 
     usux = 0;

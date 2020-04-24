@@ -2,17 +2,10 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
-<<<<<<< HEAD
-#include "include/MainMenu.h"
-#include "include/GameMenu.h"
-#include "include/game1v1.h"
-#include "include/about.h"
-=======
 #include "src/MainMenu.cpp"
 #include "src/GameMenu.cpp"
 #include "src/game1v1.cpp"
 //#include "src/about.cpp"
->>>>>>> d8fae874538a54026c529e9042598bb9fd8df295
 
 int main()
 {

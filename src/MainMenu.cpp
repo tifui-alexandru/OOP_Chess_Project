@@ -9,7 +9,7 @@ menuGame::menuGame()
 {
     terminate = false;
 
-    playButton = false;
+    menuModeGo = false;
 
     tusu1.loadFromFile("../images/menu_img.jpg");
     susu1.setTexture(tusu1);
@@ -81,7 +81,7 @@ void menuGame::menuRun()
             {
                 if(event.key.code == Mouse::Left)
                 {
-                    playButton = true;
+                    menuModeGo = true;
                     window.close();
                 }
             }

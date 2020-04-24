@@ -146,7 +146,7 @@ void Game1v1::playGame1v1()
         {
             if(e.type == Event::Closed) //closes the window
             {
-                terminate = false;
+                terminate = true;
                 window.close();
             }
 

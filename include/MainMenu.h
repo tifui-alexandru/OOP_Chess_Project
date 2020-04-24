@@ -7,7 +7,7 @@ class menuGame
 public:
     bool terminate;
 
-    bool playButton;
+    bool menuModeGo;
 
     Texture tusu1, tusu2, tusu3, tusu4, tusu5;
     Sprite susu1, susu2, susu3, susu4, susu5;

@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 //#include "../Connector.hpp"
 
 using namespace sf;

@@ -5,7 +5,7 @@ using namespace sf;
 #include "src/MainMenu.cpp"
 #include "src/GameMenu.cpp"
 #include "src/game1v1.cpp"
-#include "src/about.cpp"
+//#include "src/about.cpp"
 
 int main()
 {

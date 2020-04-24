@@ -12,25 +12,25 @@ menuMode::menuMode()
 
     menuGameGo = false;
 
-    tusu1.loadFromFile("../images/menu_modes.jpg");
+    tusu1.loadFromFile("images/menu_modes.jpg");
     susu1.setTexture(tusu1);
 
-    tusu2.loadFromFile("../images/game1v1.png");
+    tusu2.loadFromFile("images/game1v1.png");
     susu2.setTexture(tusu2);
 
-    tusu3.loadFromFile("../images/fight.png");
+    tusu3.loadFromFile("images/fight.png");
     susu3.setTexture(tusu3);
 
-    tusu4.loadFromFile("../images/gamecomp.png");
+    tusu4.loadFromFile("images/gamecomp.png");
     susu4.setTexture(tusu4);
 
-    tusu5.loadFromFile("../images/fight.png");
+    tusu5.loadFromFile("images/fight.png");
     susu5.setTexture(tusu5);
 
-    tusu6.loadFromFile("../images/back1.png");
+    tusu6.loadFromFile("images/back1.png");
     susu6.setTexture(tusu6);
 
-    tusu7.loadFromFile("../images/back2.png");
+    tusu7.loadFromFile("images/back2.png");
     susu7.setTexture(tusu7);
 
     size = tusu1.getSize();

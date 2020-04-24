@@ -11,19 +11,19 @@ using namespace sf;
 //
 //    menuGameGo = false;
 //
-//    tusu1.loadFromFile("../images/about.jpg");
+//    tusu1.loadFromFile("images/about.jpg");
 //    susu1.setTexture(tusu1);
 //
-//    tusu2.loadFromFile("../images/ab_b1.png");
+//    tusu2.loadFromFile("images/ab_b1.png");
 //    susu2.setTexture(tusu2);
 //
-//    tusu3.loadFromFile("../images/ab_b2.png");
+//    tusu3.loadFromFile("images/ab_b2.png");
 //    susu3.setTexture(tusu3);
 //
-//    tusu4.loadFromFile("../images/ab_f1.png");
+//    tusu4.loadFromFile("images/ab_f1.png");
 //    susu4.setTexture(tusu4);
 //
-//    tusu5.loadFromFile("../images/ab_f2.png");
+//    tusu5.loadFromFile("images/ab_f2.png");
 //    susu5.setTexture(tusu5);
 //
 //    size = tusu1.getSize();

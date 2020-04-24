@@ -119,10 +119,10 @@ void Game1v1::playGame1v1()
 
     //ConnectToEngine("stockfish.exe"); //vs computer
 
-    t1.loadFromFile("../images/figures.png"); //pieces
-    t2.loadFromFile("../images/board.png"); //background
-    t3.loadFromFile("../images/erase.png"); //next move effects
-    t4.loadFromFile("../images/next2.png");
+    t1.loadFromFile("images/figures.png"); //pieces
+    t2.loadFromFile("images/board.png"); //background
+    t3.loadFromFile("images/erase.png"); //next move effects
+    t4.loadFromFile("images/next2.png");
 
     for(int i = 0; i < 32; ++i) f[i].setTexture(t1); //initialize the pieces
     for(int i = 0; i < 32; ++i) f2[i].setTexture(t3); //initialize the effects

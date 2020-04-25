@@ -108,3 +108,26 @@ Square GameFront::getSquare(sf::Vector2i posCursor) {
     return Square(y, x).reverse();
 }
 
+EventType GameFront::checkClick() {
+    sf::Event event;
+
+    while (window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            window.close();
+        }
+
+        // add new events here
+        // ex: back button, get hint button
+
+        sf::Vector2i mousePos = sf::Mouse::getPosition(window); 
+        if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.key.code == sf::Mouse::Left) 
+                if (boardBox.isInside(mousePos.x, mousePos.y)) return BOARD_CLICK;
+        }
+    }
+    return NOTHING;
+}
+
+void GameFront::squareClicked() {
+    
+}

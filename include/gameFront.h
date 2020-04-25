@@ -17,7 +17,11 @@ protected:
     sf::Sprite emptyBoardSprite, highlightSprite;
     bool validMove[BOARD_SIZE][BOARD_SIZE];
     bool isMoving;
-    Square clickedSquare;
+    Square clickedSquare, secondClickedSquare;
+
+    void printBoard();
+    sf::Sprite getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving);
+    Square getSquare(sf::Vector2i posCursor);
 public:
     GameFront();
 };

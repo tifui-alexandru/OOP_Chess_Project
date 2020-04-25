@@ -42,9 +42,8 @@ struct Square {
 };
 
 class ButtonBox {
-private:
-    std::pair <int, int> topLeft, bottomRight;
 public:
+    std::pair <int, int> topLeft, bottomRight;
     ButtonBox(const int &x1 = 0, const int &y1 = 0, const int &x2 = 0, const int &y2 = 0) {
         topLeft = std::make_pair(x1, y1);
         bottomRight = std::make_pair(x2, y2);

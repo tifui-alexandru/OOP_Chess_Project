@@ -61,3 +61,48 @@ GameFront::GameFront() {
     isMoving = false;
 }
 
+sf::Sprite GameFront::getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving) {
+    int id = 6 * (int)colour + (int)piece;
+    if (moving) return movingPieceSprites[id];
+    return pieceSprites[id];
+}
+
+
+void GameFront::printBoard() {
+    Board* board = game->get_board();
+    window.draw(emptyBoardSprite);
+
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            auto piece = board->get_piece({i, j});
+            if (piece == nullptr or (isMoving && Square(i, j) == clickedSquare)) continue;
+            sf::Sprite copy = getPieceSprite(piece->get_type(), piece->get_colour(), false);
+            Square temp = Square(boardBox.topLeft.first, boardBox.topLeft.second) + Square(squareSize, squareSize) * Square(i, j).reverse();
+            copy.setPosition((float)temp.y, (float)temp.x);
+            window.draw(copy);
+        }
+
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j)
+            if (validMove[i][j]) {
+                sf::Sprite copy = highlightSprite;
+                Square temp = Square(boardBox.topLeft.first, boardBox.topLeft.second) + Square(squareSize, squareSize) * Square(i, j).reverse();
+                copy.setPosition((float)temp.y, (float)temp.x);
+                window.draw(copy);
+            }
+
+    if (isMoving) {
+        auto piece = board->get_piece(clickedSquare);
+        sf::Sprite copy = getPieceSprite(piece->get_type(), piece->get_colour(), true);
+        auto pos = sf::Mouse::getPosition(window);
+        copy.setPosition(pos.x, pos.y);
+        window.draw(copy);
+    }
+}
+
+Square GameFront::getSquare(sf::Vector2i posCursor) {
+
+    return Square();
+}
+
+

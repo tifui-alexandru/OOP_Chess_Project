@@ -16,7 +16,7 @@ public:
     int size = 56;
     bool isMove;
     //Square clickedSquare;
-    RenderWindow window;
+    //RenderWindow window;
     int board[8][8] =
     { {-1, -2, -3, -4, -5, -3, -2, -1},
       { -6, -6, -6, -6, -6, -6, -6, -6},
@@ -45,7 +45,7 @@ public:
 
     Texture t1, t2, t3, t4;
 
-    float dx, dy;
+    int dx, dy;
 
 public:
     Game1v1();

@@ -156,10 +156,10 @@ void Game1v1::playGame1v1()
 
     //ConnectToEngine("stockfish.exe"); //vs computer
 
-    t1.loadFromFile("../images/figures.png"); //pieces
+    t1.loadFromFile("../images/pieces.png"); //pieces
     t2.loadFromFile("../images/board.png"); //background
-    t3.loadFromFile("../images/erase.png"); //next move effects
-    t4.loadFromFile("../images/next2.png");
+    t3.loadFromFile("../images/movingPieces.png"); //next move effects
+    t4.loadFromFile("../images/highlight.png");
 
     for(int i = 0; i < 32; ++i) f[i].setTexture(t1); //initialize the pieces
     for(int i = 0; i < 32; ++i) f2[i].setTexture(t3); //initialize the effects
@@ -202,11 +202,10 @@ void Game1v1::playGame1v1()
                 {
                     if(e.key.code == Mouse::Left)
                     {
-                                isMove = true;
                                 // AICI FUNCTIE CARE IMI DA IN goodMove TOATE POZITIILE VALIDE
                                 dy = pos.x / size; //pozitiile la primul click
                                 dx = pos.y / size;
-
+                                if (currGame.get_board()->get_piece({dx, dy})) isMove = true;
                                 //dx dy casuta pe care am apasat-o
 
                                 //std::cout << "OLD:  " << usux << ' ' << usuy << '\n';
@@ -336,10 +335,9 @@ void Game1v1::playGame1v1()
             auto piece = board->get_piece(clickedSquare);
             Sprite copyMove = f2[getPieceCode(piece->get_type(), piece->get_colour())];
 
-            Square tempMove = Square(28, 28) + Square(56, 56) * Square(dx, dy);
+            copyMove.setPosition(pos.x, pos.y);
 
-            copyMove.setPosition(tempMove.x, tempMove.y);
-
+            window.draw(copyMove);
             // cursor
         }
 

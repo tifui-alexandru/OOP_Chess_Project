@@ -13,7 +13,7 @@ enum PieceType {
 };
 
 enum PieceColour {
-    WHITE, BLACK
+    BLACK, WHITE
 };
 
 class Piece;

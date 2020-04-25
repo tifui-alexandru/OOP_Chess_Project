@@ -6,6 +6,7 @@
 using namespace sf;
 
 #include "../include/game1v1.h"
+#include "../include/game.h"
 
 Game1v1::Game1v1()
 {
@@ -115,6 +116,8 @@ void Game1v1::releaseMove()
 
 void Game1v1::playGame1v1()
 {
+    Game currGame;
+
     RenderWindow window(VideoMode(504, 504), "Chess Game1v1", Style::Titlebar | sf::Style::Close);
 
     //ConnectToEngine("stockfish.exe"); //vs computer
@@ -152,13 +155,13 @@ void Game1v1::playGame1v1()
             }
 
             //move back//
-            if(e.type == Event::KeyPressed)
-                if(e.key.code == Keyboard::BackSpace)
-                {
-                    if(position.length() > 6)
-                        position.erase(position.length() - 6, 5);
-                    loadPosition();
-                }
+//            if(e.type == Event::KeyPressed)
+//                if(e.key.code == Keyboard::BackSpace)
+//                {
+//                    if(position.length() > 6)
+//                        position.erase(position.length() - 6, 5);
+//                    loadPosition();
+//                }
 
             //drag and drop//
             if(e.type == Event::MouseButtonPressed)
@@ -272,15 +275,15 @@ void Game1v1::playGame1v1()
 
         if(isMove == false)
         {
-            for(int i = 0; i < 32; ++i) window.draw(f[i]);
+            //for(int i = 0; i < 32; ++i) window.draw(f[i]); *****
         }
 
         else
         {
             for(int i = 0; i < 32; ++i)
             {
-                if(n == i) continue;
-                else window.draw(f[i]);
+                //if(n == i) continue;  *****
+                //else window.draw(f[i]); *****
             }
             for(int i = 0; i < 8; ++i)
             {
@@ -288,17 +291,19 @@ void Game1v1::playGame1v1()
                 {
                     if(goodMove[i][j])
                     {
-                        f3[0].setPosition(28 + j * 56, 28 + i * 56);
-                        window.draw(f3[0]);
+                        //f3[0].setPosition(28 + j * 56, 28 + i * 56);
+                        //window.draw(f3[0]); *****
                     }
                 }
             }
-            window.draw(f2[n]);
+            //window.draw(f2[n]); *****
         }
 
         //window.draw(f[n]);
 
         //window.draw(f3[0]);
+
+        window.draw(f3[28]);
 
         for(int i = 0; i < 32; ++i)
         {
@@ -310,3 +315,19 @@ void Game1v1::playGame1v1()
         window.display();
     }
 }
+// in f2 daca sunt apasate
+//f[0] - tura galbena
+//f[1] - cal galben
+//f[2] - nebun galben
+//f[3] - regina galbena
+//f[4] - rege galben
+//f[8] - pion galben
+
+//f[16] - pion alb
+//f[24] - tura alba
+//f[25] - cal alb
+//f[26] - nebun alb
+//f[27] - regina alba
+//f[28] - rege alb
+
+//f3[0] - casuta

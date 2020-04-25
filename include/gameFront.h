@@ -8,6 +8,10 @@ enum EventType {
     BOARD_CLICK,
     GO_BACK,
     GET_HINT,
+    RESIGN,
+    OFFER_DRAW,
+    ACCEPT_DRAW,
+    REFUSE_DRAW,
     NOTHING
 };
 

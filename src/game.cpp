@@ -78,3 +78,7 @@ GameStatus Game::make_move(Square from, Square to) {
     if (repetition()) return REPETITION;
     return currBoard->get_status(playerToMove->colour, playerToWait->colour);
 }
+
+GameStatus Game::get_status() {
+    return get_board()->get_status(playerToMove->colour, playerToWait->colour);
+}

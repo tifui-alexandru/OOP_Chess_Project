@@ -10,8 +10,12 @@ void Game1vs1::play() {
 
         EventType event = checkClick();
         if (event == BOARD_CLICK) {
-
+            squareClicked();
         }
+
+        printBoard(); // print cu butoane si chestii
+
+        if (game->)
 
         window.display();
     }

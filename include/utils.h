@@ -10,7 +10,7 @@ struct Square {
     // y -> column
     int x, y;
 
-    Square(const int &xx, const int &yy) : x(xx), y(yy) {}
+    Square(const int &xx = 0, const int &yy = 0) : x(xx), y(yy) {}
 
     inline std::string chess_notation_pos() const {
         return std::to_string(y + 1) + static_cast<char>(x + 'a');
@@ -30,6 +30,10 @@ struct Square {
 
     bool operator == (const Square &other) const {
         return x == other.x && y == other.y;
+    }
+
+    inline Square reverse() const {
+        return {7 - x, y};
     }
 };
 

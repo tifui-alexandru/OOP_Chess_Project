@@ -11,6 +11,10 @@ Game1v1::Game1v1()
 {
     std::memset(goodMove, 0, sizeof(goodMove));
 
+    clickedSquare = Square(0 ,0);
+
+    window.create(VideoMode(504, 504), "Chess Game1v1", Style::Titlebar | sf::Style::Close);
+
     terminate = false;
 
     usux = 0;
@@ -113,6 +117,21 @@ void Game1v1::releaseMove()
     f[n].setPosition(newPos);
 }
 
+void Game1v1::initialise() {
+    t1.loadFromFile("../images/figures.png"); //pieces
+    t2.loadFromFile("../images/board.png"); //background
+    t3.loadFromFile("../images/erase.png"); //next move effects
+    t4.loadFromFile("../images/next2.png");
+
+    for(int i = 0; i < 32; ++i) f[i].setTexture(t1); //initialize the pieces
+    for(int i = 0; i < 32; ++i) f2[i].setTexture(t3); //initialize the effects
+    for(int i = 0; i < 32; ++i) f3[i].setTexture(t4); //initialize the effects
+
+    Sprite sBoard(t2); //initialize the background
+
+    loadPosition(); //initialize all the positions
+}
+
 void Game1v1::printBoard(Board* board) {
     // print the empty board
     for (int i = 0; i < BOARD_SIZE; ++i)
@@ -134,29 +153,14 @@ void Game1v1::printBoard(Board* board) {
 
 void Game1v1::playGame1v1()
 {
-    Game currGame;
-
-    RenderWindow window(VideoMode(504, 504), "Chess Game1v1", Style::Titlebar | sf::Style::Close);
+    Game currGame; //a new game begins
 
     //ConnectToEngine("stockfish.exe"); //vs computer
-
-    t1.loadFromFile("../images/figures.png"); //pieces
-    t2.loadFromFile("../images/board.png"); //background
-    t3.loadFromFile("../images/erase.png"); //next move effects
-    t4.loadFromFile("../images/next2.png");
-
-    for(int i = 0; i < 32; ++i) f[i].setTexture(t1); //initialize the pieces
-    for(int i = 0; i < 32; ++i) f2[i].setTexture(t3); //initialize the effects
-    for(int i = 0; i < 32; ++i) f3[i].setTexture(t4); //initialize the effects
-
-    Sprite sBoard(t2); //initialize the background
-
-    loadPosition(); //initialize all the positions
+    initialise();
 
     dx = 0;
     dy = 0;
 
-    goodMove[1][2] = 1;
 
     while (window.isOpen())
     {

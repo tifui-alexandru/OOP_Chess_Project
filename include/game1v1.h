@@ -13,10 +13,10 @@ public:
     bool terminate;
 
     bool goodMove[8][8];
-
     int size = 56;
     bool isMove;
     Square clickedSquare;
+    RenderWindow window;
     int board[8][8] =
     { {-1, -2, -3, -4, -5, -3, -2, -1},
       { -6, -6, -6, -6, -6, -6, -6, -6},
@@ -33,7 +33,7 @@ public:
 
     std::string position;
 
-    bool wrongMove[8][8], isMove;
+    bool wrongMove[8][8];
 
     Vector2f oldPos, newPos;
 
@@ -59,6 +59,8 @@ public:
     void move(std::string);
 
     void loadPosition();
+
+    void initialise();
 
     void releaseMove();
 

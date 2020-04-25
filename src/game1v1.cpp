@@ -1,12 +1,10 @@
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include "game.h"
+#include "../include/game1v1.h"
 //#include "../Connector.hpp"
 
 using namespace sf;
-
-#include "../include/game1v1.h"
 
 Game1v1::Game1v1()
 {

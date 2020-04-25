@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <time.h>
-#include "../include/game.h"
+#include "game.h"
 //#include "Connector.hpp"
 
 using namespace sf;

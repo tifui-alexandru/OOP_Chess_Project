@@ -204,14 +204,14 @@ void Game1v1::playGame1v1()
                     {
                                 isMove = true;
                                 // AICI FUNCTIE CARE IMI DA IN goodMove TOATE POZITIILE VALIDE
-                                dx = pos.x / size; //pozitiile la primul click
-                                dy = pos.y / size;
+                                dy = pos.x / size; //pozitiile la primul click
+                                dx = pos.y / size;
 
                                 //dx dy casuta pe care am apasat-o
 
                                 //std::cout << "OLD:  " << usux << ' ' << usuy << '\n';
                                 //get the matrix position
-                            }
+                    }
                 }
                 else if(isMove == true)
                 {

@@ -284,6 +284,7 @@ void Game1v1::playGame1v1()
 
         // draw //
         window.clear();
+        // stop tifui
         window.draw(sBoard);
 
         for(int i = 0; i < 32; ++i)
@@ -348,6 +349,6 @@ void Game1v1::playGame1v1()
             f3[i].move(-offset);
         }
 
-        window.display();
+        window.display(); // asta faci tifui
     }
 }

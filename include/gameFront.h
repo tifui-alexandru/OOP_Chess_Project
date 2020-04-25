@@ -17,7 +17,7 @@ protected:
     sf::Sprite emptyBoardSprite, highlightSprite;
     bool validMove[BOARD_SIZE][BOARD_SIZE];
     bool isMoving;
-    Square clickedSquare;
+    Square clickedSquare, secondClickSquare;
 public:
     GameFront();
 };

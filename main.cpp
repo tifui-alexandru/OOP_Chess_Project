@@ -5,7 +5,7 @@ using namespace sf;
 #include "include/MainMenu.h"
 #include "include/GameMenu.h"
 #include "include/game1v1.h"
-//#include "src/about.cpp"
+#include "include/about.h"
 
 int main()
 {
@@ -15,10 +15,12 @@ int main()
     menuGame t1;
     menuMode t2;
     Game1v1 t3;
+    menuAbout t4;
 
     bool menuGameGo = true;
     bool menuModeGo = false;
     bool Game1v1Go = false;
+    bool menuAboutGo = false;
 
     do{
         if(menuGameGo == true)
@@ -30,6 +32,12 @@ int main()
             {
                 t1.menuModeGo = false;
                 menuModeGo = true;
+            }
+
+            if(t1.menuAboutGo == true)
+            {
+                t1.menuAboutGo = false;
+                menuAboutGo = true;
             }
         }
 
@@ -57,8 +65,20 @@ int main()
             Game1v1Go = false;
         }
 
+        if(menuAboutGo == true)
+        {
+            t4.menuRun();
+            menuAboutGo = false;
 
-     }while(t1.terminate == false && t2.terminate == false && t3.terminate == false);
+            if(t4.menuGameGo == true)
+            {
+                t4.menuGameGo = false;
+                menuGameGo = true;
+            }
+        }
+
+
+     }while(t1.terminate == false && t2.terminate == false && t3.terminate == false && t4.terminate == false);
 
     return 0;
 }

@@ -101,7 +101,10 @@ void GameFront::printBoard() {
 }
 
 Square GameFront::getSquare(sf::Vector2i posCursor) {
-
-    return Square();
+    int x = posCursor.x - boardBox.topLeft.first;
+    int y = posCursor.y - boardBox.topLeft.second;
+    x /= squareSize;
+    y /= squareSize;
+    return Square(y, x).reverse();
 }
 

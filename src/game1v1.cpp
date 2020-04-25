@@ -307,12 +307,14 @@ void Game1v1::playGame1v1()
 
                 Square temp = Square(28, 28) + Square(56, 56) * Square(i, j).reverse();
 
-                copy.setPosition(temp.x, temp.y);
+                copy.setPosition(temp.y, temp.x);
 
                 window.draw(copy);
 
                 // piece->get_type(), piece->get_colour()
             }
+
+
         for (int i = 0; i < BOARD_SIZE; ++i)
            for (int j = 0; j < BOARD_SIZE; ++j)
                 if (goodMove[i][j]) {
@@ -320,10 +322,15 @@ void Game1v1::playGame1v1()
 
                     Square tempBlue = Square(28, 28) + Square(56, 56) * Square(i, j).reverse();
 
-                    copyBlue.setPosition(tempBlue.x, tempBlue.y);
+                    copyBlue.setPosition(tempBlue.y, tempBlue.x);
 
                     window.draw(copyBlue);
                 }
+
+//        Sprite usu = f[1];
+//
+//                usu.setPosition(28 + 56 * 0, 28 + 56 * 1);
+//                window.draw(usu);
 
         if (isMove) {
             auto piece = board->get_piece(clickedSquare);

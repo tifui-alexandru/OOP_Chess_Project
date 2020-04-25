@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <time.h>
+#include "../include/game.h"
 //#include "Connector.hpp"
 
 using namespace sf;
@@ -11,10 +12,11 @@ class Game1v1
 public:
     bool terminate;
 
-    int goodMove[8][8];
+    bool goodMove[8][8];
 
     int size = 56;
-
+    bool isMove;
+    Square clickedSquare;
     int board[8][8] =
     { {-1, -2, -3, -4, -5, -3, -2, -1},
       { -6, -6, -6, -6, -6, -6, -6, -6},
@@ -59,6 +61,8 @@ public:
     void loadPosition();
 
     void releaseMove();
+
+    void printBoard(Board* board);
 
     void playGame1v1();
 

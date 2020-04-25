@@ -6,7 +6,6 @@
 using namespace sf;
 
 #include "../include/game1v1.h"
-#include "../include/game.h"
 
 Game1v1::Game1v1()
 {
@@ -112,6 +111,25 @@ void Game1v1::releaseMove()
     move(str);
 
     f[n].setPosition(newPos);
+}
+
+void Game1v1::printBoard(Board* board) {
+    // print the empty board
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            auto piece = board->get_piece({i, j});
+            if (piece == nullptr or (isMove && Square(i, j) == clickedSquare)) continue;
+            // piece->get_type(), piece->get_colour()
+        }
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j)
+            if (goodMove[i][j]) {
+                //AICI SE POATE MUTA !!
+            }
+    if (isMove) {
+        // cursor
+        auto piece = board->get_piece(clickedSquare);
+    }
 }
 
 void Game1v1::playGame1v1()

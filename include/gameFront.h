@@ -4,6 +4,13 @@
 #include <SFML/Graphics.hpp>
 #include "game.h"
 
+enum EventType {
+    BOARD_CLICK,
+    GO_BACK,
+    GET_HINT,
+    NOTHING
+};
+
 class GameFront {
 protected:
     static const int squareSize = 56;
@@ -17,9 +24,39 @@ protected:
     sf::Sprite emptyBoardSprite, highlightSprite;
     bool validMove[BOARD_SIZE][BOARD_SIZE];
     bool isMoving;
-    Square clickedSquare, secondClickSquare;
+    Square clickedSquare, secondClickedSquare;
+
+    void printBoard();
+    sf::Sprite getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving);
+    Square getSquare(sf::Vector2i posCursor);
 public:
     GameFront();
+    EventType checkClick();
+    void squareClicked();
 };
 
 #endif //GAMEFRONT_H
+
+// EventType GameFront::checkClick() {
+//     sf::Event event;
+
+//     while (window.pollEvent(event)) {
+//         if (event.type == sf::Event::Closed) {
+//             window.close();
+//         }
+
+//         // add new events here
+//         // ex: back button, get hint button
+
+//         sf::Vector2i mousePos = sf::Mouse::getPosition(window); 
+//         if (event.type == sf::Event::MouseButtonPressed) {
+//             if (event.key.code == sf::Mouse::Left) 
+//                 if (boardBox.isInside(mousePos.x, mousePos.y)) return BOARD_CLICK;
+//         }
+//     }
+//     return NOTHING;
+// }
+
+// void GameFront::squareClicked() {
+    
+// }

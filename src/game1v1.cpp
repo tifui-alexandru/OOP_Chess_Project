@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+#include "game.h"
 //#include "../Connector.hpp"
 
 using namespace sf;
@@ -111,6 +112,42 @@ void Game1v1::releaseMove()
     move(str);
 
     f[n].setPosition(newPos);
+}
+
+int getPieceCode(const PieceType &tp, const PieceColour &col) {
+    // in f2 daca sunt apasate
+    //f[0] - tura galbena
+    //f[1] - cal galben
+    //f[2] - nebun galben
+    //f[3] - regina galbena
+    //f[4] - rege galben
+    //f[8] - pion galben
+
+    //f[16] - pion alb
+    //f[24] - tura alba
+    //f[25] - cal alb
+    //f[26] - nebun alb
+    //f[27] - regina alba
+    //f[28] - rege alb
+
+    //f3[0] - casuta
+
+    if (col == WHITE) {
+        if (tp == KING) return 28;
+        if (tp == QUEEN) return 27;
+        if (tp == ROOK) return 24;
+        if (tp == BISHOP) return 26;
+        if (tp == KNIGHT) return 25;
+        if (tp == PAWN) return 16;
+    }
+    else {
+        if (tp == KING) return 4;
+        if (tp == QUEEN) return 3;
+        if (tp == ROOK) return 0;
+        if (tp == BISHOP) return 2;
+        if (tp == KNIGHT) return 1;
+        if (tp == PAWN) return 8;
+    }
 }
 
 void Game1v1::playGame1v1()
@@ -311,20 +348,3 @@ void Game1v1::playGame1v1()
         window.display();
     }
 }
-
-// in f2 daca sunt apasate
-//f[0] - tura galbena
-//f[1] - cal galben
-//f[2] - nebun galben
-//f[3] - regina galbena
-//f[4] - rege galben
-//f[8] - pion galben
-
-//f[16] - pion alb
-//f[24] - tura alba
-//f[25] - cal alb
-//f[26] - nebun alb
-//f[27] - regina alba
-//f[28] - rege alb
-
-//f3[0] - casuta

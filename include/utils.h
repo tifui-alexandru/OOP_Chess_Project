@@ -25,7 +25,7 @@ struct Square {
     }
 
     Square operator * (const Square &other) const {
-        return {x * other.x, y + other.y};
+        return {x * other.x, y * other.y};
     }
 
     bool operator == (const Square &other) const {
@@ -34,6 +34,20 @@ struct Square {
 
     inline Square reverse() const {
         return {7 - x, y};
+    }
+};
+
+class ButtonBox {
+private:
+    std::pair <int, int> topLeft, bottomRight;
+public:
+    ButtonBox(const int &x1 = 0, const int &y1 = 0, const int &x2 = 0, const int &y2 = 0) {
+        topLeft = std::make_pair(x1, y1);
+        bottomRight = std::make_pair(x2, y2);
+    }
+
+    inline bool isInside(const int &x, const int &y) const {
+        return (topLeft.first <=x and x <= bottomRight.first and topLeft.second <= y and y <= bottomRight.second);
     }
 };
 

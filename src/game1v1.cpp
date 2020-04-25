@@ -308,7 +308,7 @@ void Game1v1::playGame1v1()
                 Square temp = Square(28, 28) + Square(56, 56) * Square(i, j).reverse();
 
                 copy.setPosition(temp.y, temp.x);
-
+                
                 window.draw(copy);
 
                 // piece->get_type(), piece->get_colour()

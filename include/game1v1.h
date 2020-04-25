@@ -15,7 +15,7 @@ public:
     bool goodMove[8][8];
     int size = 56;
     bool isMove;
-    Square clickedSquare;
+    //Square clickedSquare;
     RenderWindow window;
     int board[8][8] =
     { {-1, -2, -3, -4, -5, -3, -2, -1},
@@ -64,7 +64,7 @@ public:
 
     void releaseMove();
 
-    void printBoard(Board* board);
+    //void printBoard(Board* board);
 
     void playGame1v1();
 

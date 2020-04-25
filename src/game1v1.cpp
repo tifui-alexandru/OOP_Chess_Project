@@ -11,10 +11,6 @@ Game1v1::Game1v1()
 {
     std::memset(goodMove, 0, sizeof(goodMove));
 
-    clickedSquare = Square(0 ,0);
-
-    window.create(VideoMode(504, 504), "Chess Game1v1", Style::Titlebar | sf::Style::Close);
-
     terminate = false;
 
     usux = 0;
@@ -48,9 +44,9 @@ std::string Game1v1::toChessNote(Vector2f p)
 
 Vector2f Game1v1::toCoord(char a, char b) //normal coordinates
 {
-   int x = int(a) - 97;
-   int y = 7 - int(b) + 49;
-   return Vector2f(x * size, y * size);
+    int x = int(a) - 97;
+    int y = 7 - int(b) + 49;
+    return Vector2f(x * size, y * size);
 }
 
 void Game1v1::move(std::string str)
@@ -106,18 +102,25 @@ void Game1v1::loadPosition()
 
 void Game1v1::releaseMove()
 {
-    newPos = oldPos;
+    //newPos = oldPos;
 
     //std::cout << "NEW:  " << newPos.x/size << ' ' << newPos.y/size << '\n';
 
-    str = toChessNote(oldPos) + toChessNote(newPos);
+    //str = toChessNote(oldPos) + toChessNote(newPos);
 
     move(str);
 
     f[n].setPosition(newPos);
 }
 
-void Game1v1::initialise() {
+void Game1v1::playGame1v1()
+{
+    Game currGame;
+
+    RenderWindow window(VideoMode(504, 504), "Chess Game1v1", Style::Titlebar | sf::Style::Close);
+
+    //ConnectToEngine("stockfish.exe"); //vs computer
+
     t1.loadFromFile("../images/figures.png"); //pieces
     t2.loadFromFile("../images/board.png"); //background
     t3.loadFromFile("../images/erase.png"); //next move effects
@@ -130,37 +133,9 @@ void Game1v1::initialise() {
     Sprite sBoard(t2); //initialize the background
 
     loadPosition(); //initialize all the positions
-}
-
-void Game1v1::printBoard(Board* board) {
-    // print the empty board
-    for (int i = 0; i < BOARD_SIZE; ++i)
-        for (int j = 0; j < BOARD_SIZE; ++j) {
-            auto piece = board->get_piece({i, j});
-            if (piece == nullptr or (isMove && Square(i, j) == clickedSquare)) continue;
-            // piece->get_type(), piece->get_colour()
-        }
-    for (int i = 0; i < BOARD_SIZE; ++i)
-        for (int j = 0; j < BOARD_SIZE; ++j)
-            if (goodMove[i][j]) {
-                //AICI SE POATE MUTA !!
-            }
-    if (isMove) {
-        // cursor
-        auto piece = board->get_piece(clickedSquare);
-    }
-}
-
-void Game1v1::playGame1v1()
-{
-    Game currGame; //a new game begins
-
-    //ConnectToEngine("stockfish.exe"); //vs computer
-    initialise();
 
     dx = 0;
     dy = 0;
-
 
     while (window.isOpen())
     {
@@ -191,20 +166,13 @@ void Game1v1::playGame1v1()
                 if(isMove == false)
                 {
                     if(e.key.code == Mouse::Left)
-                        for(int i = 0; i < 32; ++i)
-                            if(f[i].getGlobalBounds().contains(pos.x, pos.y))
-                            {
+                    {
                                 isMove = true;
-
                                 // AICI FUNCTIE CARE IMI DA IN goodMove TOATE POZITIILE VALIDE
+                                dx = pos.x / size; //pozitiile la primul click
+                                dy = pos.y / size;
 
-                                n = i;
-                                dx = pos.x - f[i].getPosition().x;
-                                dy = pos.y - f[i].getPosition().y;
-                                oldPos = f[i].getPosition();
-
-                                usux = oldPos.x / size;
-                                usuy = oldPos.y / size;
+                                //dx dy casuta pe care am apasat-o
 
                                 //std::cout << "OLD:  " << usux << ' ' << usuy << '\n';
                                 //get the matrix position
@@ -216,29 +184,25 @@ void Game1v1::playGame1v1()
                     {
                         isMove = false;
 
-                        Vector2f p = f2[n].getPosition() + Vector2f(size / 2, size / 2);
+                        usux = pos.x / size; //pozitiile la click-ul 2
+                        usuy = pos.y / size;
 
-                        newPos = Vector2f( size * int(p.x / size), size * int(p.y / size) );
-
-                        usux = newPos.x / size;
-                        usuy = newPos.y / size;
-
-                        if(wrongMove[usux][usuy] == true)
-                        {
-                            releaseMove();
-                            continue;
-                        }
+//                        if(goodMove[usux][usuy] == false)
+//                        {
+//                            releaseMove();
+//                            continue;
+//                        }
 
                         //std::cout << "NEW:  " << newPos.x / size << ' ' << newPos.y / size << '\n';
 
-                        str = toChessNote(oldPos) + toChessNote(newPos);
-
-                        move(str);
-
-                        if(oldPos != newPos) position += str + " ";
-
-                        f[n].setPosition(newPos);
-                        f2[n].setPosition(newPos);
+//                        str = toChessNote(oldPos) + toChessNote(newPos);
+//
+//                        move(str);
+//
+//                        if(oldPos != newPos) position += str + " ";
+//
+//                        f[n].setPosition(newPos);
+//                        f2[n].setPosition(newPos);
                     }
                 }
             }
@@ -282,7 +246,7 @@ void Game1v1::playGame1v1()
 //            f2[n].setPosition(newPos);
 //        }
 
-        if(isMove) f2[n].setPosition(pos.x - dx, pos.y - dy);
+        //if(isMove) f2[n].setPosition(pos.x - dx, pos.y - dy);
 
         // draw //
         window.clear();
@@ -295,37 +259,47 @@ void Game1v1::playGame1v1()
             f3[i].move(offset);
         }
 
-        if(isMove == false)
-        {
-            //for(int i = 0; i < 32; ++i) window.draw(f[i]); *****
-        }
+        //drawboard
 
-        else
-        {
-            for(int i = 0; i < 32; ++i)
-            {
-                //if(n == i) continue;  *****
-                //else window.draw(f[i]); *****
+        Board* board = currGame.get_board();
+        Square clickedSquare = Square(dx, dy).reverse();
+
+        for (int i = 0; i < BOARD_SIZE; ++i)
+            for (int j = 0; j < BOARD_SIZE; ++j) {
+                auto piece = board->get_piece({i, j});
+                if (piece == nullptr or (isMove && Square(i, j) == clickedSquare)) continue;
+                Sprite copy = f[getPieceCode(piece->get_type(), piece->get_colour())];
+
+                Square temp = Square(28, 28) + Square(56, 56) * Square(i, j).reverse();
+
+                copy.setPosition(temp.x, temp.y);
+
+                window.draw(copy);
+
+                // piece->get_type(), piece->get_colour()
             }
-            for(int i = 0; i < 8; ++i)
-            {
-                for(int j = 0; j < 8; ++j)
-                {
-                    if(goodMove[i][j])
-                    {
-                        //f3[0].setPosition(28 + j * 56, 28 + i * 56);
-                        //window.draw(f3[0]); *****
-                    }
+        for (int i = 0; i < BOARD_SIZE; ++i)
+           for (int j = 0; j < BOARD_SIZE; ++j)
+                if (goodMove[i][j]) {
+                    Sprite copyBlue = f3[0];
+
+                    Square tempBlue = Square(28, 28) + Square(56, 56) * Square(i, j).reverse();
+
+                    copyBlue.setPosition(tempBlue.x, tempBlue.y);
+
+                    window.draw(copyBlue);
                 }
-            }
-            //window.draw(f2[n]); *****
+
+        if (isMove) {
+            auto piece = board->get_piece(clickedSquare);
+            Sprite copyMove = f2[getPieceCode(piece->get_type(), piece->get_colour())];
+
+            Square tempMove = Square(28, 28) + Square(56, 56) * Square(dx, dy);
+
+            copyMove.setPosition(tempMove.x, tempMove.y);
+
+            // cursor
         }
-
-        //window.draw(f[n]);
-
-        //window.draw(f3[0]);
-
-        window.draw(f3[28]);
 
         for(int i = 0; i < 32; ++i)
         {
@@ -337,6 +311,7 @@ void Game1v1::playGame1v1()
         window.display();
     }
 }
+
 // in f2 daca sunt apasate
 //f[0] - tura galbena
 //f[1] - cal galben

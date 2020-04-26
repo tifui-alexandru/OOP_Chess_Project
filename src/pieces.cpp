@@ -1,6 +1,6 @@
-#include <bits/stdc++.h>
 #include "../include/pieces.h"
 #include "../include/utils.h"
+#include <vector>
 
 // N S E W NE NW SE SW
 static const Square directions[8] = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}, {1, -1}, {1, 1}, {-1, -1}, {-1, 1}};
@@ -100,8 +100,8 @@ std::vector <Square> Pawn::get_possible_moves(const BoardType &board) {
     // 2 squares start
     if (!moved()) {
         Square temp = position + Square(2 * adv, 0);
-        bool stop; // ignored
-        if (valid_move(colour, temp, board, stop)) ans.emplace_back(temp);
+        Square temp2 = position + Square(1 * adv, 0);
+        if (board[temp2.x][temp2.y] == nullptr and board[temp.x][temp.y] == nullptr) ans.emplace_back(temp);
     }
 
     // en passant

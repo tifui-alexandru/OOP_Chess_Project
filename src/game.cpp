@@ -10,7 +10,7 @@ Game::Game() {
 }
 
 Board* Game::get_board(int time) {
-    assert(time >= -1 && time < (int)gameBoards.size());
+    // assert(time >= -1 && time < (int)gameBoards.size());
     if(time == -1) return gameBoards.back();
     return gameBoards[time];
 }
@@ -57,6 +57,27 @@ GameStatus Game::make_move(Square from, Square to) {
     }
 
     auto fromPiece = currBoard->get_piece(from);
+
+    // if castling move the rook
+    if (fromPiece->get_type() == KING and abs(from.y - to.y) == 2) {
+        int add = (from.y < to.y ? 1 : -1);
+        Square rookSquare = from;
+        rookSquare.y = (add == 1 ? 7 : 0);
+        auto rook = currBoard->get_piece(rookSquare);
+        currBoard->change_position(rook, from + Square(0, add));
+        currBoard->change_position(nullptr, rookSquare);
+    }
+
+    // handle en-passant
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j)
+            if (auto currPiece = currBoard->get_piece({i, j})) {
+                if (currPiece->get_type() == PAWN and currPiece->get_colour() == playerToMove->colour)
+                    dynamic_cast<Pawn*>(currPiece)->set_en_passant(false);
+            }
+    if (fromPiece->get_type() == PAWN and abs(from.x - to.x) == 2)
+        dynamic_cast<Pawn*>(fromPiece)->set_en_passant(true);
+
     if (fromPiece->get_type() == PAWN) nrMovesFor50Rule = 0;
     fromPiece->inc_no_moves();
     currBoard->change_position(fromPiece, to);
@@ -64,15 +85,6 @@ GameStatus Game::make_move(Square from, Square to) {
     gameMoves.push_back(new Move(from, to, gameBoards.back(), currBoard, playerToMove->colour));
     ///std::cerr << gameMoves.back()->toAlgebraicNotation() << "\n";
     gameBoards.push_back(currBoard);
-
-    for (int i = 0; i < BOARD_SIZE; ++i)
-        for (int j = 0; j < BOARD_SIZE; ++j)
-            if (auto currPiece = currBoard->get_piece({i, j})) {
-                if (currPiece->get_type() == PAWN and currPiece->get_colour() == playerToMove->colour)
-                    dynamic_cast<Pawn*>(currPiece)->set_en_passant(false);
-            }
-    if (fromPiece->get_type() == PAWN and to.x == 2 + from.x)
-        dynamic_cast<Pawn*>(fromPiece)->set_en_passant(true);
 
     std::swap(playerToMove, playerToWait);
     if (nrMovesFor50Rule == 50) return MOVE50RULE;

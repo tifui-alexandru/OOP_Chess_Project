@@ -121,7 +121,7 @@ EventType GameFront::checkClick() {
 
         sf::Vector2i mousePos = sf::Mouse::getPosition(window); 
         if (event.type == sf::Event::MouseButtonPressed) {
-            if (event.key.code == sf::Mouse::Left) 
+            if (event.key.code == (int)sf::Mouse::Left) 
                 if (boardBox.isInside(mousePos.x, mousePos.y)) return BOARD_CLICK;
         }
     }

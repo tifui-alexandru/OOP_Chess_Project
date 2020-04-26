@@ -2,6 +2,7 @@
 #define MOVE
 #include "board.h"
 #include "utils.h"
+#include <unordered_map>
 
 class Move {
 private:

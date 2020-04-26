@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
-#include <bits/stdc++.h>
 #include "utils.h"
+#include <vector>
 
 enum PieceType {
     PAWN,

@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <algorithm>
+#include <string>
 
 const int BOARD_SIZE = 8;
 

@@ -70,8 +70,10 @@ bool Board::castle(const PieceColour &colour, const CastleType &tp) const {
     if (board[row][king_col]->get_type() != KING or board[row][rook_col]->get_type() != ROOK) return false;
     if (board[row][king_col]->moved() or board[row][rook_col]->moved()) return false;
 
+    if (cell_is_attacked(Square(row, king_col), colour)) return false; 
+
     int add = (rook_col - king_col) / std::abs(rook_col - king_col);
-    for (int col = king_col + add; col != rook_col; col += add) {
+    for (int step = 0, col = king_col + add; step < 2; col += add, ++step) {
         if (board[row][col] != nullptr) return false;
         if (cell_is_attacked(Square(row, col), colour)) return false;
     }

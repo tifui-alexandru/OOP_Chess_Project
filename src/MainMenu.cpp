@@ -1,4 +1,3 @@
-#include <bits/stdc++.h>
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
@@ -81,7 +80,7 @@ void menuGame::menuRun()
 
             if(event.type == Event::MouseButtonPressed)
             {
-                if(event.key.code == Mouse::Left)
+                if((int)event.key.code ==(int)Mouse::Left)
                 {
                     menuModeGo = true;
                     window.close();
@@ -99,7 +98,7 @@ void menuGame::menuRun()
 
             if(event.type == Event::MouseButtonPressed)
             {
-                if(event.key.code == Mouse::Left)
+                if((int)event.key.code ==(int)Mouse::Left)
                 {
                     menuAboutGo = true;
                     window.close();

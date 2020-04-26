@@ -81,3 +81,7 @@ std::string Move::toAlgebraicNotation() {
 
     return ans;
 }
+
+std::string Move::toLongAlgebraicNotation() {
+    return from.chess_notation_pos() + to.chess_notation_pos();
+}

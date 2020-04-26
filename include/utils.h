@@ -16,10 +16,6 @@ struct Square {
         return std::to_string(y + 1) + static_cast<char>(x + 'a');
     }
 
-    inline Square my_notation_pos(const std::string s) const {
-        return Square(s[1] - 'a', s[0] - '0' - 1);
-    }
-
     inline bool inside_board() const {
         return x >= 0 and y >= 0 and x < BOARD_SIZE and y < BOARD_SIZE;
     }
@@ -40,6 +36,10 @@ struct Square {
         return {7 - x, y};
     }
 };
+
+inline Square my_notation_pos(const std::string s) {
+    return Square(s[1] - 'a', s[0] - '0' - 1);
+}
 
 class ButtonBox {
 public:

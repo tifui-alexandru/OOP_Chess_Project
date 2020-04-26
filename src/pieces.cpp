@@ -93,7 +93,7 @@ std::vector <Square> Pawn::get_possible_moves(const BoardType &board) {
         bool stop;
         if (temp.inside_board()) {
             if (board[temp.x][temp.y] == nullptr and add == 0) ans.emplace_back(temp);
-            else if (board[temp.x][temp.y]->get_colour() != colour and add) ans.emplace_back(temp);
+            else if (board[temp.x][temp.y] != nullptr and board[temp.x][temp.y]->get_colour() != colour and add) ans.emplace_back(temp);
         }
     }
 

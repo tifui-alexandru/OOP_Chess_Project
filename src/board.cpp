@@ -33,7 +33,7 @@ Board::Board(const Board *obj) {
 
 void Board::change_position(Piece* newPiece, Square pos) {
     board[pos.x][pos.y] = newPiece;
-    if(newPiece) newPiece->set_position(pos);
+    if (newPiece) newPiece->set_position(pos);
 }
 
 Piece* Board::get_piece(Square pos) const {
@@ -42,8 +42,10 @@ Piece* Board::get_piece(Square pos) const {
 
 Square Board::get_king(const PieceColour &colour) const {
     for (int i = 0; i < BOARD_SIZE; ++i)
-        for (int j = 0; j < BOARD_SIZE; ++j)
-            if(board[i][j]->get_type() == KING and board[i][j]->get_colour() == colour) return {i, j};
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            if (board[i][j] == nullptr) continue;
+            if (board[i][j]->get_type() == KING and board[i][j]->get_colour() == colour) return {i, j};
+        }
     return {-1,-1};
 }
 

@@ -95,7 +95,7 @@ void GameFront::printBoard() {
         auto piece = board->get_piece(clickedSquare);
         sf::Sprite copy = getPieceSprite(piece->get_type(), piece->get_colour(), true);
         auto pos = sf::Mouse::getPosition(window);
-        copy.setPosition(pos.x, pos.y);
+        copy.setPosition(pos.x - (float)squareSize / 2, pos.y - (float)squareSize / 2);
         window.draw(copy);
     }
 }
@@ -129,5 +129,23 @@ EventType GameFront::checkClick() {
 }
 
 void GameFront::squareClicked() {
-    
+    Square pos = getSquare(sf::Mouse::getPosition(window));
+    if (isMoving) {
+        if (validMove[pos.x][pos.y]) {
+            game->make_move(clickedSquare, pos);
+        }
+        isMoving = false;
+        for (int i = 0; i < BOARD_SIZE; ++i)
+            for (int j = 0; j < BOARD_SIZE; ++j)
+                validMove[i][j] = false;
+    } else {
+        auto piece = game->get_board()->get_piece(pos);
+        if (piece == nullptr or piece->get_colour() != game->getPlayerToMove()) return;
+        auto possibleMoves = game->get_board()->get_valid_moves(pos, game->getPlayerToMove());
+        if (possibleMoves.empty()) return;
+        isMoving = true;
+        clickedSquare = pos;
+        for (auto p : possibleMoves)
+            validMove[p.x][p.y] = true;
+    }
 }

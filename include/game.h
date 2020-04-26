@@ -23,7 +23,8 @@ public:
     Board* get_board(int time = -1);
     GameStatus make_move(Square from, Square to);
     void promote(Square pos, PieceType piece);
-    inline GameStatus get_status();
+    GameStatus get_status();
+    PieceColour getPlayerToMove();
 };
 
 #endif

@@ -15,7 +15,7 @@ void Game1vs1::play() {
 
         printBoard(); // print cu butoane si chestii
 
-        if (game->get_status != UNFINISHED) {
+        if (game->get_status() != UNFINISHED) {
             // end of the game
             // display chestii
         }

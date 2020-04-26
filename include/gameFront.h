@@ -17,7 +17,7 @@ enum EventType {
 
 class GameFront {
 protected:
-    static const int squareSize = 56;
+    const int squareSize = 56;
     const ButtonBox boardBox = {28, 28, 28 + 8 * 56, 28 + 8 * 56};
 
     sf::Texture piecesImg, movingPiecesImg, emptyBoardImg, highlightImg;

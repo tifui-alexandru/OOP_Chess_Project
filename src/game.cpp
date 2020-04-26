@@ -62,6 +62,7 @@ GameStatus Game::make_move(Square from, Square to) {
     currBoard->change_position(fromPiece, to);
     currBoard->change_position(nullptr, from);
     gameMoves.push_back(new Move(from, to, gameBoards.back(), currBoard, playerToMove->colour));
+    ///std::cerr << gameMoves.back()->toAlgebraicNotation() << "\n";
     gameBoards.push_back(currBoard);
 
     for (int i = 0; i < BOARD_SIZE; ++i)
@@ -81,4 +82,8 @@ GameStatus Game::make_move(Square from, Square to) {
 
 GameStatus Game::get_status() {
     return get_board()->get_status(playerToMove->colour, playerToWait->colour);
+}
+
+PieceColour Game::getPlayerToMove() {
+    return playerToMove->colour;
 }

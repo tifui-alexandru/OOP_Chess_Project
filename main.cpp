@@ -4,7 +4,7 @@ using namespace sf;
 
 #include "include/MainMenu.h"
 #include "include/GameMenu.h"
-#include "include/game1v1.h"
+#include "include/game1vs1.h"
 #include "include/about.h"
 
 int main()
@@ -14,14 +14,14 @@ int main()
 
     menuGame t1;
     menuMode t2;
-    Game1v1 t3;
+    Game1vs1 t3;
     menuAbout t4;
 
     bool menuModeGo = false;
     bool Game1v1Go = false;
     bool menuAboutGo = false;
 
-    t3.playGame1v1();
+    t3.play();
 
 //    do{
 //        if(menuGameGo == true)

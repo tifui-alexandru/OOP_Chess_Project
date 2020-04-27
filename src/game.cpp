@@ -1,7 +1,6 @@
 #include "../include/utils.h"
 #include "../include/game.h"
 #include <vector>
-#include <iostream>
 
 Game::Game() {
     playerToMove = new Player(WHITE);

@@ -6,6 +6,7 @@ using namespace sf;
 #include "include/GameMenu.h"
 #include "include/game1vs1.h"
 #include "include/about.h"
+#include "include/game1vsPC.h"
 
 int main()
 {
@@ -21,7 +22,9 @@ int main()
     bool Game1v1Go = false;
     bool menuAboutGo = false;
 
-    t3.play();
+    // t3.play();
+    Game1vsPC t5;
+    t5.play();
 
 //    do{
 //        if(menuGameGo == true)

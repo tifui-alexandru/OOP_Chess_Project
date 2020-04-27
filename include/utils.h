@@ -13,7 +13,7 @@ struct Square {
     Square(const int &xx = 0, const int &yy = 0) : x(xx), y(yy) {}
 
     inline std::string chess_notation_pos() const {
-        return std::to_string(y + 1) + static_cast<char>(x + 'a');
+        return static_cast<char>(y + 'a') + std::to_string(x + 1);
     }
 
     inline bool inside_board() const {

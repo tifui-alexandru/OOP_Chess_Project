@@ -30,6 +30,13 @@ std::string Move::toAlgebraicNotation() {
         if (to_piece) to_notation = "x" + to_notation; // capture
         from_notation = AlgebraicPiece.at(from_piece->get_type());
 
+        // pawn case
+        if (from_piece->get_type() == PAWN) {
+            from_notation = static_cast<char>(from.y + 'a');
+            if (to_piece) to_notation = "x" + to.chess_notation_pos();
+            else to_notation = static_cast<char>(to.x + 1 + '0');
+        }
+
         // handle en passant
         if (from_piece->get_type() == PAWN and from.y != to.y and to_piece == nullptr)
             to_notation = "x" + to_notation + "e.p.";
@@ -39,17 +46,17 @@ std::string Move::toAlgebraicNotation() {
         for (int i = 0; i < BOARD_SIZE; ++i)
             for (int j = 0; j < BOARD_SIZE; ++j) {
                 if (i == from.x and j == from.y) continue;
+                if (from_piece->get_type() == PAWN) continue;
 
                 Piece* other_from = curr_board->get_piece({i, j});
                 if (other_from == nullptr or other_from->get_type() != from_piece->get_type()) continue;
 
                 std::vector <Square> temp = curr_board->get_valid_moves({i, j}, col);
-                bool found = false;
                 for (auto& it : temp) {
-                    ambig = true;
                     if (it == to) {
                         if (i == from.x) same_row = true;
                         if (j == from.y) same_col = true;
+                        ambig = true;
                     }
                 }
             }

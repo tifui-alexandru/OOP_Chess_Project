@@ -84,11 +84,6 @@ GameStatus Game::make_move(Square from, Square to) {
     currBoard->change_position(fromPiece, to);
     currBoard->change_position(nullptr, from);
     gameMoves.push_back(new Move(from, to, gameBoards.back(), currBoard, playerToMove->colour));
-
-
-    std::cout << gameMoves.back()->toAlgebraicNotation() << "\n";
-
-
     gameBoards.push_back(currBoard);
 
     std::swap(playerToMove, playerToWait);

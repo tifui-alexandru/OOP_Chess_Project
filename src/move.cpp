@@ -18,8 +18,8 @@ std::string Move::toAlgebraicNotation() {
     std::string ans;
 
     // solve castle first
-    if (from_piece->get_type() == KING and from.x == to.x and abs(from.x - to.x) == 2) {
-        if (from.x < to.x) ans = "O-O";
+    if (from_piece->get_type() == KING and from.x == to.x and abs(from.y - to.y) == 2) {
+        if (from.y < to.y) ans = "O-O";
         else ans = "O-O-O";
     }
 
@@ -38,8 +38,11 @@ std::string Move::toAlgebraicNotation() {
         }
 
         // handle en passant
-        if (from_piece->get_type() == PAWN and from.y != to.y and to_piece == nullptr)
-            to_notation = "x" + to_notation + "e.p.";
+        if (from_piece->get_type() == PAWN and from.y != to.y and to_piece == nullptr) {
+            int add = (from_piece->get_colour() == WHITE ? -1 : 1);
+            Square temp_piece = to + Square(add, 0);
+            to_notation = "x" + temp_piece.chess_notation_pos() + " e.p.";
+        }
 
         // solve ambiguity
         bool same_row = false, same_col = false, ambig = false;
@@ -82,7 +85,7 @@ std::string Move::toAlgebraicNotation() {
 
     PieceColour other_colour = (col == WHITE ? BLACK : WHITE);
     if (next_board->cell_is_attacked(next_board->get_king(other_colour), other_colour)) {
-        if (next_board->get_status(col, other_colour) == CHECKMATE) ans += "#";
+        if (next_board->get_status(other_colour, col) == CHECKMATE) ans += "#";
         else ans += "+";
     }
 

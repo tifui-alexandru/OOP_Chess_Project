@@ -58,8 +58,6 @@ void Game1vsPC::play() {
             if (event == BOARD_CLICK) {
                 squareClicked();
             }
-
-            printBoard(); // print cu butoane si chestii
         }
         else {
             std::pair <Square, Square> computerMove = getStockfishMove(currBoardPosition);
@@ -74,6 +72,8 @@ void Game1vsPC::play() {
             
             currBoardPosition += mv->toLongAlgebraicNotation() + " ";
             playerMoving = (playerMoving == WHITE ? BLACK : WHITE);
+
+            printBoard(); // print cu butoane si chestii
         }
 
         if (game->get_status() != UNFINISHED) {

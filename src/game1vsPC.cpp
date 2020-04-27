@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <array>
 #include <assert.h>
-#include <chessEngine.h>
+#include "../include/chessEngine.h"
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) {
     GameFront();

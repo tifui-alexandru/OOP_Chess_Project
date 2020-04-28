@@ -3,16 +3,13 @@
 #include <string>
 #include <cstdlib>
 
-Game1vsPC::Game1vsPC(const PieceColour &humanCol) {
-    GameFront();
-    humanPlayer = humanCol;
-}
+Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC"), humanPlayer(humanCol) {}
 
 void Game1vsPC::play() {
     int noCurrMoves = 0;
     PieceColour playerMoving = WHITE;
     std::string currBoardPosition;
-
+    ConnectToEngine("../stockfish.exe");
     while(window.isOpen()) {
         window.clear();
 
@@ -48,4 +45,5 @@ void Game1vsPC::play() {
 
         window.display();
     }
+    CloseConnection();
 }

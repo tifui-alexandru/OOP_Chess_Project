@@ -1,7 +1,3 @@
-#include <SFML/Graphics.hpp>
-
-using namespace sf;
-
 #include "../include/about.h"
 
 menuAbout::menuAbout()

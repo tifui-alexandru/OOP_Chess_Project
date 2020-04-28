@@ -1,7 +1,7 @@
 #include "../include/gameFront.h"
 
-GameFront::GameFront() {
-    window.create(sf::VideoMode(504, 504), "Chess Game1v1", sf::Style::Titlebar | sf::Style::Close);
+GameFront::GameFront(const std::string& gameModeName) {
+    window.create(sf::VideoMode(504, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
     game = new Game();
 
     piecesImg.loadFromFile("../images/pieces.png");
@@ -133,6 +133,7 @@ void GameFront::squareClicked() {
     if (isMoving) {
         if (validMove[pos.x][pos.y]) {
             game->make_move(clickedSquare, pos);
+
         }
         isMoving = false;
         for (int i = 0; i < BOARD_SIZE; ++i)

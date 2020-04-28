@@ -1,7 +1,7 @@
 #include "../include/game1vsPC.h"
 #include "../include/chessEngine.h"
 #include <string>
-#include <iostream>
+#include <cstdlib>
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) {
     GameFront();

@@ -1,7 +1,7 @@
 #ifndef CHESS_PROMOTE_H
 #define CHESS_PROMOTE_H
 
-#include "../include/gameFront.h"
+#include "gameFront.h"
 using namespace sf;
 
 class promote

@@ -11,7 +11,7 @@ promote::promote() {
     size = promoteT.getSize();
 }
 
-showEnd::~promote(){}
+promote::~promote(){}
 
 void promote::promoteRun()
 {

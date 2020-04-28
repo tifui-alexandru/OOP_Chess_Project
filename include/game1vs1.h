@@ -6,6 +6,7 @@ class Game1vs1 : virtual public GameFront {
 public:
     Game1vs1();
     void play();
+    void showEnd(int);
 };
 
 #endif // !GAME1VS1_H

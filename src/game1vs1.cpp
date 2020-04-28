@@ -25,7 +25,7 @@ void Game1vs1::play() {
 
         }
 
-        if (game->get_status() != UNFINISHED) {
+        if (auto status = game->get_status() != UNFINISHED) {
             // end of the game
             // display chestii
         }

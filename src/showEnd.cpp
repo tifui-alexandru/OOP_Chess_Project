@@ -57,7 +57,7 @@ void showEnd::showRun()
 
         window.draw(endS);
 
-        //press and end
+        //oriunde apesi, ti se inchise fereastra
         if (event.type == Event::MouseButtonPressed) {
             if (event.key.code == (int) Mouse::Left) {
                 window.close();

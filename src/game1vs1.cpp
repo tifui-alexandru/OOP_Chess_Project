@@ -1,8 +1,6 @@
 #include "../include/game1vs1.h"
 
-Game1vs1::Game1vs1() {
-    GameFront();
-}
+Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1") {}
 
 void Game1vs1::play() {
     int noCurrMoves = 0;

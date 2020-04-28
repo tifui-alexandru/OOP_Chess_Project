@@ -6,3 +6,4 @@ build/script.py
 build/stockfish
 include/chessEngine.h
 build/CHESS.out
+stockfish.exe

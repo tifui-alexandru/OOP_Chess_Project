@@ -33,10 +33,10 @@ protected:
     void printBoard();
     sf::Sprite getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving);
     Square getSquare(sf::Vector2i posCursor);
-public:
-    GameFront();
     EventType checkClick();
     void squareClicked();
+public:
+    GameFront(const std::string& gameModeName);
 };
 
 #endif //GAMEFRONT_H

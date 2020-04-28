@@ -1,7 +1,6 @@
 #ifndef CHESS_SHOWEND_H
 #define CHESS_SHOWEND_H
 
-#include <SFML/Graphics.hpp>
 #include "../include/gameFront.h"
 using namespace sf;
 

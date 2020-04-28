@@ -38,7 +38,7 @@ struct Square {
 };
 
 inline Square my_notation_pos(const std::string s) {
-    return Square(s[1] - 'a', s[0] - '0' - 1);
+    return Square(s[1] - '0' - 1, s[0] - 'a');
 }
 
 class ButtonBox {

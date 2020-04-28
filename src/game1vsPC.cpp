@@ -1,9 +1,7 @@
 #include "../include/game1vsPC.h"
+#include "../include/chessEngine.h"
 #include <string>
-#include <cstdlib>
-#include <array>
-#include <assert.h>
-#include <chessEngine.h>
+#include <iostream>
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) {
     GameFront();
@@ -38,8 +36,10 @@ void Game1vsPC::play() {
             currBoardPosition += mv->toLongAlgebraicNotation() + " ";
             playerMoving = (playerMoving == WHITE ? BLACK : WHITE);
 
-            printBoard(); // print cu butoane si chestii
+            ++noCurrMoves;
         }
+
+        printBoard(); // print cu butoane si chestii
 
         if (game->get_status() != UNFINISHED) {
             // end of the game

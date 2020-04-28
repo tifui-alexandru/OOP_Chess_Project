@@ -15,7 +15,6 @@ int main()
 
     menuGame t1;
     menuMode t2;
-    Game1vs1 t3;
     menuAbout t4;
 
     bool menuModeGo = false;

@@ -1,6 +1,7 @@
 #include "../include/utils.h"
 #include "../include/game.h"
 #include <vector>
+#include <iostream>
 
 Game::Game() {
     playerToMove = new Player(WHITE);
@@ -55,9 +56,7 @@ GameStatus Game::make_move(Square from, Square to) {
         playerToWait->pawnValue -= 1;
         currBoard->change_position(nullptr, from + Square(0, to.y - from.y));
     }
-
     auto fromPiece = currBoard->get_piece(from);
-
     // if castling move the rook
     if (fromPiece->get_type() == KING and abs(from.y - to.y) == 2) {
         int add = (from.y < to.y ? 1 : -1);

@@ -53,9 +53,9 @@ void Promote::promoteRun()
                 {
                     chosenType = KNIGHT; 
                 }
-                else if(pos.x > 226 / 2 && pos.x <= 3 * 226 / 2)
+                else if(pos.x > 226 / 2 && pos.x <= 3 * 226 / 4)
                 {
-                    chosenType = BISHOP; 
+                    chosenType = BISHOP;
                 }
                 else
                 {

@@ -6,8 +6,10 @@ using namespace sf;
 
 int main()
 {
-    startGame t;
-    t.runStart();
+//    startGame t;
+//    t.runStart();
+    Game1vsPC t1;
+    t1.play();
 
 //    sf::RenderWindow window( sf::VideoMode( 400, 600 ), "Awesome Game" );
 //

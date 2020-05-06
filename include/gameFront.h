@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "game.h"
+#include "promote.h"
 
 enum EventType {
     BOARD_CLICK,

@@ -131,14 +131,22 @@ EventType GameFront::checkClick() {
 void GameFront::squareClicked() {
     Square pos = getSquare(sf::Mouse::getPosition(window));
     if (isMoving) {
+        bool promotion = false;
         if (validMove[pos.x][pos.y]) {
             game->make_move(clickedSquare, pos);
-
+            if ((pos.x == 7 or pos.x == 0) && game->get_board()->get_piece(pos)->get_type() == PAWN) promotion = true;
         }
         isMoving = false;
         for (int i = 0; i < BOARD_SIZE; ++i)
             for (int j = 0; j < BOARD_SIZE; ++j)
                 validMove[i][j] = false;
+        if (promotion) {
+            printBoard();
+            window.display();
+            window.clear();
+            Promote promoteWindow;
+            game->promote(pos, promoteWindow.getPiece());
+        }
     } else {
         auto piece = game->get_board()->get_piece(pos);
         if (piece == nullptr or piece->get_colour() != game->getPlayerToMove()) return;

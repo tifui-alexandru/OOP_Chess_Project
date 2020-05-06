@@ -1,7 +1,8 @@
 #ifndef CHESS_PROMOTE_H
 #define CHESS_PROMOTE_H
 
-#include "gameFront.h"
+#include <SFML/Graphics.hpp>
+#include "pieces.h"
 using namespace sf;
 
 class Promote

@@ -3,11 +3,19 @@
 using namespace sf;
 
 #include "include/startGame.h"
+#include "include/promote.h"
+
 
 int main()
 {
-    startGame t;
-    t.runStart();
+    Promote t;
+
+    PieceType A = t.getPiece();
+
+    std::cout << A;
+
+    //startGame t;
+    //t.runStart();
 
 //    sf::RenderWindow window( sf::VideoMode( 400, 600 ), "Awesome Game" );
 //

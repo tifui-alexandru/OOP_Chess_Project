@@ -4,23 +4,23 @@
 #include "gameFront.h"
 using namespace sf;
 
-class promote
+class Promote
 {
-public:
     Texture promoteT;
     Sprite promoteS;
 
     Vector2u size;
 
-    int chosenType;
-
-public:
-
-    promote();
-
-    ~promote();
+    PieceType chosenType;
 
     void promoteRun();
+public:
+
+    Promote();
+
+    ~Promote();
+
+    PieceType getPiece();
 };
 
 #endif //CHESS_PROMOTE_H

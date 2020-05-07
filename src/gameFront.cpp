@@ -4,10 +4,6 @@ GameFront::GameFront(const std::string& gameModeName) {
     window.create(sf::VideoMode(674, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
     game = new Game();
 
-    buttonsMenuImg.loadFromFile("../images/buttons_menu.png");
-    buttonsMenuSprite.setTexture(buttonsMenuImg);
-    buttonsMenuSprite.setPosition(504, 0);
-
     piecesImg.loadFromFile("../images/pieces.png");
     movingPiecesImg.loadFromFile("../images/movingPieces.png");
     emptyBoardImg.loadFromFile("../images/board.png");
@@ -76,7 +72,6 @@ sf::Sprite GameFront::getPieceSprite(const PieceType &piece, const PieceColour &
 void GameFront::printBoard() {
     Board* board = game->get_board();
     window.draw(emptyBoardSprite);
-    window.draw(buttonsMenuSprite);
 
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j) {

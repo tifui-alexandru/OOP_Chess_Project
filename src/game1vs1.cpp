@@ -2,6 +2,10 @@
 
 Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 {
+    buttonsMenuImg.loadFromFile("../images/buttons_menu.png");
+    buttonsMenuSprite.setTexture(buttonsMenuImg);
+    buttonsMenuSprite.setPosition(504, 0);
+
     atMoveBlackImg.loadFromFile("../images/black_at_move.png");
     atMoveBlackSprite.setTexture(atMoveBlackImg);
 
@@ -38,8 +42,8 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     ant = 0;
 
-    atMove = 1; //white at move; 2 -> black
-    antMove = 1; //cine e anterior
+    atMove = WHITE;
+    antMove = WHITE;
 
     if(!font.loadFromFile("../images/sans.ttf")){}
 
@@ -73,7 +77,7 @@ void Game1vs1::printTime()
     sf::Time elapsed = clock.getElapsedTime();
     float secondsElapsed = elapsed.asSeconds();
 
-    if(atMove == 1)
+    if(atMove == WHITE)
     {
         addWhite += (secondsElapsed - ant);
         secondsLeftWhite = minutesWhite - addWhite;
@@ -81,7 +85,7 @@ void Game1vs1::printTime()
         //if (secondsLeftWhite < 0) //alb pierde ca nu mai are timp
     }
 
-    if(atMove == 2)
+    if(atMove == BLACK)
     {
         addBlack += (secondsElapsed - ant);
         secondsLeftBlack = minutesBlack - addBlack;
@@ -133,7 +137,10 @@ void Game1vs1::play()
 
     while(window.isOpen())
     {
+        atMove = game->getPlayerToMove();
         window.clear();
+
+        window.draw(buttonsMenuSprite);
 
         Vector2i posNow = Mouse::getPosition(window);
         sf::Event eventNow;
@@ -143,43 +150,40 @@ void Game1vs1::play()
             squareClicked();
         }
 
-        printBoard(); // print cu butoane si chestii
-
         printTime();
 
-        if(atMove == 1) window.draw(atMoveWhiteSprite); //alb la mutare
+        if(atMove == WHITE) window.draw(atMoveWhiteSprite); //alb la mutare
         else window.draw(atMoveBlackSprite); //negru la mutare
 
+        if(!isMoving) {
+            if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 310 && posNow.y <= 310 + 66) {
+                window.draw(proposeDrawNowSprite);
 
-        if(posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 310 && posNow.y <= 310 + 66)
-        {
-            window.draw(proposeDrawNowSprite);
-
-            if(eventNow.type == Event::MouseButtonPressed)
-            {
-                if(eventNow.key.code == (int)Mouse::Left)
-                {
-                    //Game1v1Go = true;
-                    //window.close();
+                if (eventNow.type == Event::MouseButtonPressed) {
+                    if (eventNow.key.code == (int) Mouse::Left) {
+                        //Game1v1Go = true;
+                        //window.close();
+                    }
                 }
-            }
+            } else
+                window.draw(proposeDrawSprite);
         }
         else
             window.draw(proposeDrawSprite);
 
 
-        if(posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 400 && posNow.y <= 400 + 66)
-        {
-            window.draw(resignNowSprite);
+        if(!isMoving) {
+            if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 400 && posNow.y <= 400 + 66) {
+                window.draw(resignNowSprite);
 
-            if(eventNow.type == Event::MouseButtonPressed)
-            {
-                if(eventNow.key.code == (int)Mouse::Left)
-                {
-                    //Game1v1Go = true;
-                    //window.close();
+                if (eventNow.type == Event::MouseButtonPressed) {
+                    if (eventNow.key.code == (int) Mouse::Left) {
+                        //Game1v1Go = true;
+                        //window.close();
+                    }
                 }
-            }
+            } else
+                window.draw(resignSprite);
         }
         else
             window.draw(resignSprite);
@@ -198,6 +202,8 @@ void Game1vs1::play()
             // end of the game
             // display chestii
         }
+
+        printBoard(); // print cu butoane si chestii
 
         window.display();
     }

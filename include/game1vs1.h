@@ -5,9 +5,9 @@
 class Game1vs1 : virtual public GameFront {
 
     sf::Texture atMoveBlackImg, atMoveWhiteImg, proposeDrawImg, proposeDrawNowImg;
-    sf::Texture acceptDrawImg, resignImg, resignNowImg;
+    sf::Texture acceptDrawImg, resignImg, resignNowImg, buttonsMenuImg;
     sf::Sprite atMoveBlackSprite, atMoveWhiteSprite, proposeDrawSprite, proposeDrawNowSprite;
-    sf::Sprite acceptDrawSprite, resignSprite, resignNowSprite;
+    sf::Sprite acceptDrawSprite, resignSprite, resignNowSprite, buttonsMenuSprite;
     sf::Clock clock;
 
     float minutesWhite;
@@ -21,8 +21,8 @@ class Game1vs1 : virtual public GameFront {
 
     float ant;
 
-    int atMove;
-    int antMove;
+    PieceColour atMove;
+    PieceColour antMove;
 
     sf::Text textWhite;
     sf::Text textBlack;

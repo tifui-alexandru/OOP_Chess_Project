@@ -1,14 +1,14 @@
 #include "../include/gameFront.h"
 
 GameFront::GameFront(const std::string& gameModeName) {
-    window.create(sf::VideoMode(704, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
+    window.create(sf::VideoMode(674, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
     game = new Game();
 
     piecesImg.loadFromFile("../images/pieces.png");
     movingPiecesImg.loadFromFile("../images/movingPieces.png");
     emptyBoardImg.loadFromFile("../images/board.png");
     highlightImg.loadFromFile("../images/highlight.png");
-    kingSah.loadFromFile("..images/sah.png");
+    kingSah.loadFromFile("../images/sah.png");
 
     emptyBoardSprite.setTexture(emptyBoardImg);
     highlightSprite.setTexture(highlightImg);

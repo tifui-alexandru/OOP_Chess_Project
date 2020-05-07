@@ -2,20 +2,21 @@
 
 Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 {
-    atMoveBlackImg.loadFromFile("..images/black_at_move.png");
+    atMoveBlackImg.loadFromFile("../images/black_at_move.png");
     atMoveBlackSprite.setTexture(atMoveBlackImg);
 
-    atMoveWhiteImg.loadFromFile("..images/white_at_move.png");
+    atMoveWhiteImg.loadFromFile("../images/white_at_move.png");
     atMoveWhiteSprite.setTexture(atMoveWhiteImg);
 
-    proposeDrawImg.loadFromFile("..images/propose_draw_button.png");
+    proposeDrawImg.loadFromFile("../images/propose_draw_button.png");
     proposeDrawSprite.setTexture(proposeDrawImg);
 
-    acceptDrawImg.loadFromFile("..images/accept_draw_button.png");
+    acceptDrawImg.loadFromFile("../images/accept_draw_button.png");
     acceptDrawSprite.setTexture(acceptDrawImg);
 
-    resignImg.loadFromFile("..images/resign_button.png");
+    resignImg.loadFromFile("../images/resign_button.png");
     resignSprite.setTexture(resignImg);
+    resignSprite.setPosition(520, 200);
 }
 
 void Game1vs1::play() {

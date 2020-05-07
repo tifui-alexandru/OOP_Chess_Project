@@ -1,7 +1,7 @@
 #include "../include/showEnd.h"
 
 
-showEnd::showEnd(GameStatus status) {
+showEnd::showEnd(/*GameStatus status*/int status) {
 
     //aici cand fac egal
 
@@ -31,7 +31,7 @@ showEnd::~showEnd(){}
 
 void showEnd::showRun()
 {
-    RenderWindow window(sf::VideoMode(296, 124), "MENU", sf::Style::Titlebar | sf::Style::Close);
+    RenderWindow window(sf::VideoMode(296, 124), "THE END", sf::Style::Titlebar | sf::Style::Close);
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable

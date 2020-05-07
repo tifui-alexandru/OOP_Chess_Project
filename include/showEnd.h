@@ -13,8 +13,8 @@ public:
     Vector2u size;
 
 public:
-
-    showEnd(GameStatus);
+    showEnd(int);
+    //showEnd(GameStatus);
 
     ~showEnd();
 

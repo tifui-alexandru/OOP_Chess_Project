@@ -1,7 +1,7 @@
 #include "../include/gameFront.h"
 
 GameFront::GameFront(const std::string& gameModeName) {
-    window.create(sf::VideoMode(504, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
+    window.create(sf::VideoMode(704, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
     game = new Game();
 
     piecesImg.loadFromFile("../images/pieces.png");

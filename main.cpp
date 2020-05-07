@@ -3,7 +3,6 @@
 using namespace sf;
 
 #include "include/startGame.h"
-
 int main()
 {
     startGame t;

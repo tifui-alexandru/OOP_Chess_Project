@@ -53,11 +53,15 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
     textBlack.setStyle(sf::Text::Bold);
 
     textBlack.setPosition(520, 10);
+
+
+    atMoveWhiteSprite.setPosition(529, 150);
+    atMoveBlackSprite.setPosition(529, 150);
 }
 
 void Game1vs1::printTime()
 {
-    sf::Time elapsed = clock.getElapsedTime( );
+    sf::Time elapsed = clock.getElapsedTime();
     float secondsElapsed = elapsed.asSeconds();
 
     if(atMove == 1)
@@ -130,6 +134,9 @@ void Game1vs1::play()
         printBoard(); // print cu butoane si chestii
 
         printTime();
+
+        if(atMove == 1) window.draw(atMoveWhiteSprite); //alb la mutare
+        else window.draw(atMoveBlackSprite); //negru la mutare
 
         // new move has been made
         if (noCurrMoves != game->get_no_moves()) {

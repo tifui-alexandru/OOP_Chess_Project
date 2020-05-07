@@ -8,6 +8,8 @@ public:
 
     bool Game1v1Go;
 
+    bool Game1vPcGo;
+
     bool menuGameGo;
 
     Texture tusu1, tusu2, tusu3, tusu4, tusu5, tusu6, tusu7;

@@ -2,7 +2,7 @@
 
 void startGame::runStart()
 {
-        menuGame t1;
+    menuGame t1;
     menuMode t2;
     menuAbout t4;
 
@@ -11,7 +11,7 @@ void startGame::runStart()
     bool menuGameGo = true;
     bool menuAboutGo = false;
     bool Game1v1Go = false;
-
+    bool Game1vPcGo = false;
 
     do{
         if(menuGameGo == true)
@@ -43,6 +43,12 @@ void startGame::runStart()
                 Game1v1Go = true;
             }
 
+            if(t2.Game1vPcGo == true)
+            {
+                t2.Game1vPcGo = false;
+                Game1vPcGo = true;
+            }
+
             if(t2.menuGameGo == true)
             {
                 t2.menuGameGo = false;
@@ -55,6 +61,13 @@ void startGame::runStart()
             Game1vs1 t3;
             t3.play();
             Game1v1Go = false;
+        }
+
+        if(Game1vPcGo == true)
+        {
+            Game1vsPC t5;
+            t5.play();
+            Game1vPcGo = false;
         }
 
         if(menuAboutGo == true)

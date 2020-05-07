@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include "game.h"
 #include "promote.h"
-
 #include "showEnd.h"
 
 enum EventType {

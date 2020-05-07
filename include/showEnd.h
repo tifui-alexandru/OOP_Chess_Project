@@ -4,14 +4,13 @@
 
 class showEnd
 {
-public:
     sf::Texture endT;
     sf::Sprite endS;
 
     sf::Vector2u size;
 
 public:
-    showEnd(int);
+    showEnd(int status);
     //showEnd(GameStatus);
 
     ~showEnd();

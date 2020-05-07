@@ -9,6 +9,8 @@ menuMode::menuMode()
 
     Game1v1Go = false;
 
+    Game1vPcGo = false;
+
     menuGameGo = false;
 
     tusu1.loadFromFile("../images/menu_modes.jpg");
@@ -101,7 +103,18 @@ void menuMode::menuRun()
 
         //change the about button
         if(pos.x >= 227.5 + 90 && pos.x<= 227.5 + 265 + 90 && pos.y >= 400 && pos.y <= 400 + 121)
+        {
             window.draw(susu5);
+
+            if(event.type == Event::MouseButtonPressed)
+            {
+                if(event.key.code == (int)Mouse::Left)
+                {
+                    Game1vPcGo = true;
+                    window.close();
+                }
+            }
+        }
 
         else
             window.draw(susu4);

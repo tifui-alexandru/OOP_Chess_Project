@@ -1,21 +1,20 @@
 #include "../include/promote.h"
 
-promote::promote() {
-
-
+Promote::Promote() 
+{
     promoteT.loadFromFile("../images/choose_piece.png");
     promoteS.setTexture(promoteT);
 
-    chosenType = 0;
+    chosenType = PAWN;
 
     size = promoteT.getSize();
 }
 
-showEnd::~promote(){}
+Promote::~Promote(){}
 
-void promote::promoteRun()
+void Promote::promoteRun()
 {
-    RenderWindow window(sf::VideoMode(226, 70), "MENU", sf::Style::Titlebar | sf::Style::Close);
+    RenderWindow window(sf::VideoMode(226, 70), "Promotion", sf::Style::Titlebar | sf::Style::Close);
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable
@@ -48,19 +47,19 @@ void promote::promoteRun()
             if (event.key.code == (int) Mouse::Left) {
                 if(pos.x >= 0 && pos.x <= 226 / 4)
                 {
-                    chosenType = 1; //tura
+                    chosenType = ROOK; 
                 }
                 else if(pos.x > 226 / 4 && pos.x <= 226 / 2)
                 {
-                    chosenType = 2; //cal
+                    chosenType = KNIGHT; 
                 }
-                else if(pos.x > 226 / 2 && pos.x <= 3 * 226 / 2)
+                else if(pos.x > 226 / 2 && pos.x <= 3 * 226 / 4)
                 {
-                    chosenType = 3; //nebun
+                    chosenType = BISHOP;
                 }
                 else
                 {
-                    chosenType = 4; //regina
+                    chosenType = QUEEN; 
                 }
                 window.close();
             }
@@ -69,4 +68,11 @@ void promote::promoteRun()
         window.display();
 
     }
+}
+
+PieceType Promote::getPiece() 
+{
+    promoteRun(); 
+    
+    return chosenType; 
 }

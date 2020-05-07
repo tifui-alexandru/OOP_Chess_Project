@@ -1,13 +1,18 @@
 #include "../include/gameFront.h"
 
 GameFront::GameFront(const std::string& gameModeName) {
-    window.create(sf::VideoMode(504, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
+    window.create(sf::VideoMode(674, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
     game = new Game();
+
+    buttonsMenuImg.loadFromFile("../images/buttons_menu.png");
+    buttonsMenuSprite.setTexture(buttonsMenuImg);
+    buttonsMenuSprite.setPosition(504, 0);
 
     piecesImg.loadFromFile("../images/pieces.png");
     movingPiecesImg.loadFromFile("../images/movingPieces.png");
     emptyBoardImg.loadFromFile("../images/board.png");
     highlightImg.loadFromFile("../images/highlight.png");
+    kingSah.loadFromFile("../images/sah.png");
 
     emptyBoardSprite.setTexture(emptyBoardImg);
     highlightSprite.setTexture(highlightImg);
@@ -71,6 +76,7 @@ sf::Sprite GameFront::getPieceSprite(const PieceType &piece, const PieceColour &
 void GameFront::printBoard() {
     Board* board = game->get_board();
     window.draw(emptyBoardSprite);
+    window.draw(buttonsMenuSprite);
 
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j) {
@@ -131,14 +137,22 @@ EventType GameFront::checkClick() {
 void GameFront::squareClicked() {
     Square pos = getSquare(sf::Mouse::getPosition(window));
     if (isMoving) {
+        bool promotion = false;
         if (validMove[pos.x][pos.y]) {
             game->make_move(clickedSquare, pos);
-
+            if ((pos.x == 7 or pos.x == 0) && game->get_board()->get_piece(pos)->get_type() == PAWN) promotion = true;
         }
         isMoving = false;
         for (int i = 0; i < BOARD_SIZE; ++i)
             for (int j = 0; j < BOARD_SIZE; ++j)
                 validMove[i][j] = false;
+        if (promotion) {
+            printBoard();
+            window.display();
+            window.clear();
+            Promote promoteWindow;
+            game->promote(pos, promoteWindow.getPiece());
+        }
     } else {
         auto piece = game->get_board()->get_piece(pos);
         if (piece == nullptr or piece->get_colour() != game->getPlayerToMove()) return;

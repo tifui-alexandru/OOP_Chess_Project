@@ -1,12 +1,142 @@
 #include "../include/game1vs1.h"
 
-Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1") {}
+Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
+{
+    atMoveBlackImg.loadFromFile("../images/black_at_move.png");
+    atMoveBlackSprite.setTexture(atMoveBlackImg);
 
-void Game1vs1::play() {
+    atMoveWhiteImg.loadFromFile("../images/white_at_move.png");
+    atMoveWhiteSprite.setTexture(atMoveWhiteImg);
+
+    proposeDrawImg.loadFromFile("../images/propose_draw_button.png");
+    proposeDrawSprite.setTexture(proposeDrawImg);
+    proposeDrawSprite.setPosition(526, 310);
+
+    proposeDrawNowImg.loadFromFile("../images/propose_draw_buttonNow.png");
+    proposeDrawNowSprite.setTexture(proposeDrawNowImg);
+    proposeDrawNowSprite.setPosition(526, 310);
+
+    acceptDrawImg.loadFromFile("../images/accept_draw_button.png");
+    acceptDrawSprite.setTexture(acceptDrawImg);
+
+    resignImg.loadFromFile("../images/resign_button.png");
+    resignSprite.setTexture(resignImg);
+    resignSprite.setPosition(526, 400);
+
+    resignNowImg.loadFromFile("../images/resign_buttonNowStrong.png");
+    resignNowSprite.setTexture(resignNowImg);
+    resignNowSprite.setPosition(526, 400);
+
+    minutesWhite = 30 * 60;
+    minutesBlack = 30 * 60;
+
+    addWhite = 0;
+    addBlack = 0;
+
+    secondsLeftWhite = 30 * 60;
+    secondsLeftBlack = 30 * 60;
+
+    ant = 0;
+
+    atMove = 1; //white at move; 2 -> black
+    antMove = 1; //cine e anterior
+
+    if(!font.loadFromFile("../images/sans.ttf")){}
+
+    textWhite.setFont(font);
+    textBlack.setFont(font);
+
+    textWhite.setCharacterSize(50);
+
+    textWhite.setFillColor(sf::Color::Red);
+
+    textWhite.setStyle(sf::Text::Bold);
+
+    textWhite.setPosition(520, 70);
+
+
+    textBlack.setCharacterSize(50);
+
+    textBlack.setFillColor(sf::Color::Blue);
+
+    textBlack.setStyle(sf::Text::Bold);
+
+    textBlack.setPosition(520, 10);
+
+
+    atMoveWhiteSprite.setPosition(529, 150);
+    atMoveBlackSprite.setPosition(529, 150);
+}
+
+void Game1vs1::printTime()
+{
+    sf::Time elapsed = clock.getElapsedTime();
+    float secondsElapsed = elapsed.asSeconds();
+
+    if(atMove == 1)
+    {
+        addWhite += (secondsElapsed - ant);
+        secondsLeftWhite = minutesWhite - addWhite;
+
+        //if (secondsLeftWhite < 0) //alb pierde ca nu mai are timp
+    }
+
+    if(atMove == 2)
+    {
+        addBlack += (secondsElapsed - ant);
+        secondsLeftBlack = minutesBlack - addBlack;
+        //if (secondsElapsed < 0) break; //alb pierde ca nu mai are timp
+    }
+
+    int showWhite2 = (int)secondsLeftWhite % 60;
+    int showBlack2 = (int)secondsLeftBlack % 60;
+
+    int showWhite1 = (int)secondsLeftWhite / 60;
+    int showBlack1 = (int)secondsLeftBlack / 60;
+
+    std::string usuWhite = "";
+    std::string usuBlack = "";
+
+    if(showWhite1 < 10) usuWhite += '0';
+    usuWhite += std::to_string(showWhite1);
+
+    usuWhite += ':';
+
+    if(showWhite2 < 10) usuWhite += '0';
+    usuWhite += std::to_string(showWhite2);
+
+    textWhite.setString(usuWhite);
+
+    //sus white jos black
+
+    if(showBlack1 < 10) usuBlack += '0';
+    usuBlack += std::to_string(showBlack1);
+
+    usuBlack += ':';
+
+    if(showBlack2 < 10) usuBlack += '0';
+    usuBlack += std::to_string(showBlack2);
+
+    textBlack.setString(usuBlack);
+
+
+    window.draw(textBlack);
+
+    window.draw(textWhite);
+
+    ant = secondsElapsed;
+}
+
+void Game1vs1::play()
+{
     int noCurrMoves = 0;
 
-    while(window.isOpen()) {
+    while(window.isOpen())
+    {
         window.clear();
+
+        Vector2i posNow = Mouse::getPosition(window);
+        sf::Event eventNow;
 
         EventType event = checkClick();
         if (event == BOARD_CLICK) {
@@ -15,6 +145,45 @@ void Game1vs1::play() {
 
         printBoard(); // print cu butoane si chestii
 
+        printTime();
+
+        if(atMove == 1) window.draw(atMoveWhiteSprite); //alb la mutare
+        else window.draw(atMoveBlackSprite); //negru la mutare
+
+
+        if(posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 310 && posNow.y <= 310 + 66)
+        {
+            window.draw(proposeDrawNowSprite);
+
+            if(eventNow.type == Event::MouseButtonPressed)
+            {
+                if(eventNow.key.code == (int)Mouse::Left)
+                {
+                    //Game1v1Go = true;
+                    //window.close();
+                }
+            }
+        }
+        else
+            window.draw(proposeDrawSprite);
+
+
+        if(posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 400 && posNow.y <= 400 + 66)
+        {
+            window.draw(resignNowSprite);
+
+            if(eventNow.type == Event::MouseButtonPressed)
+            {
+                if(eventNow.key.code == (int)Mouse::Left)
+                {
+                    //Game1v1Go = true;
+                    //window.close();
+                }
+            }
+        }
+        else
+            window.draw(resignSprite);
+
         // new move has been made
         if (noCurrMoves != game->get_no_moves()) {
             Move* mv = game->get_last_move();
@@ -22,6 +191,8 @@ void Game1vs1::play() {
             // display move in Algrebraic notation -- here
 
         }
+
+        //aici daca am mutare{ clock.reset(); ant = 0; }
 
         if (auto status = game->get_status() != UNFINISHED) {
             // end of the game

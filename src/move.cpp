@@ -75,7 +75,7 @@ std::string Move::toAlgebraicNotation() {
         }
 
         if (from_piece->get_type() == PAWN) {
-            int back_rank = (from_piece->get_colour() == WHITE ? 6 : 1);
+            int back_rank = (from_piece->get_colour() == WHITE ? 7 : 0);
             if (to.x == back_rank) 
                 to_notation += "=" + AlgebraicPiece.at(next_board->get_piece(to)->get_type());
         }
@@ -93,5 +93,16 @@ std::string Move::toAlgebraicNotation() {
 }
 
 std::string Move::toLongAlgebraicNotation() {
-    return from.chess_notation_pos() + to.chess_notation_pos();
+    std::string promotionPiece = "";
+    if (from_piece->get_type() == PAWN) {
+        int back_rank = (from_piece->get_colour() == WHITE ? 7 : 0);
+        if (to.x == back_rank) {
+            auto piece = next_board->get_piece(to)->get_type();
+            if (piece == QUEEN) promotionPiece = "q";
+            else if (piece == ROOK) promotionPiece = "r";
+            else if (piece == BISHOP) promotionPiece = "b";
+            else promotionPiece = "k";
+        }
+    }
+    return from.chess_notation_pos() + to.chess_notation_pos() + promotionPiece;
 }

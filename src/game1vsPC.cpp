@@ -12,7 +12,6 @@ void Game1vsPC::play() {
     ConnectToEngine("../stockfish.exe");
     while(window.isOpen()) {
         window.clear();
-
         if (playerMoving == humanPlayer) {
             EventType event = checkClick();
             if (event == BOARD_CLICK) {
@@ -20,8 +19,10 @@ void Game1vsPC::play() {
             }
         }
         else {
-            std::pair <Square, Square> computerMove = getStockfishMove(currBoardPosition);
+            PieceType newPiece = PAWN;
+            std::pair <Square, Square> computerMove = getStockfishMove(currBoardPosition, newPiece);
             game->make_move(computerMove.first, computerMove.second);
+            if (newPiece != PAWN) game->promote(computerMove.second, newPiece);
         }
 
         // new move has been made

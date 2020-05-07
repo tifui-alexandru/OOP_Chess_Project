@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "game.h"
+#include "promote.h"
 
 enum EventType {
     BOARD_CLICK,
@@ -20,12 +21,12 @@ protected:
     const int squareSize = 56;
     const ButtonBox boardBox = {28, 28, 28 + 8 * 56, 28 + 8 * 56};
 
-    sf::Texture piecesImg, movingPiecesImg, emptyBoardImg, highlightImg;
+    sf::Texture piecesImg, movingPiecesImg, emptyBoardImg, highlightImg, kingSah, buttonsMenuImg;
     sf::RenderWindow window;
     Game* game;
     std::vector<sf::Sprite> pieceSprites;
     std::vector<sf::Sprite> movingPieceSprites;
-    sf::Sprite emptyBoardSprite, highlightSprite;
+    sf::Sprite emptyBoardSprite, highlightSprite, buttonsMenuSprite;
     bool validMove[BOARD_SIZE][BOARD_SIZE];
     bool isMoving;
     Square clickedSquare, secondClickedSquare;

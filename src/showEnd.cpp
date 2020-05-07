@@ -31,7 +31,7 @@ showEnd::~showEnd(){}
 
 void showEnd::showRun()
 {
-    RenderWindow window(sf::VideoMode(296, 124), "THE END", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(296, 124), "THE END", sf::Style::Titlebar | sf::Style::Close);
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable
@@ -48,7 +48,7 @@ void showEnd::showRun()
             }
         }
 
-        Vector2i pos = Mouse::getPosition(window);
+        sf::Vector2i pos = sf::Mouse::getPosition(window);
 
         //get the position every time to know where the mouse is
 
@@ -58,8 +58,8 @@ void showEnd::showRun()
         window.draw(endS);
 
         //oriunde apesi, ti se inchise fereastra
-        if (event.type == Event::MouseButtonPressed) {
-            if (event.key.code == (int) Mouse::Left) {
+        if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.key.code == (int) sf::Mouse::Left) {
                 window.close();
             }
         }

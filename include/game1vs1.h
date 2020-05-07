@@ -4,8 +4,10 @@
 
 class Game1vs1 : virtual public GameFront {
 
-    sf::Texture atMoveBlackImg, atMoveWhiteImg, proposeDrawImg, acceptDrawImg, resignImg;
-    sf::Sprite atMoveBlackSprite, atMoveWhiteSprite, proposeDrawSprite, acceptDrawSprite, resignSprite;
+    sf::Texture atMoveBlackImg, atMoveWhiteImg, proposeDrawImg, proposeDrawNowImg;
+    sf::Texture acceptDrawImg, resignImg, resignNowImg;
+    sf::Sprite atMoveBlackSprite, atMoveWhiteSprite, proposeDrawSprite, proposeDrawNowSprite;
+    sf::Sprite acceptDrawSprite, resignSprite, resignNowSprite;
     sf::Clock clock;
 
     float minutesWhite;

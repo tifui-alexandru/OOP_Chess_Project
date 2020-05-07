@@ -10,13 +10,22 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     proposeDrawImg.loadFromFile("../images/propose_draw_button.png");
     proposeDrawSprite.setTexture(proposeDrawImg);
+    proposeDrawSprite.setPosition(526, 310);
+
+    proposeDrawNowImg.loadFromFile("../images/propose_draw_buttonNow.png");
+    proposeDrawNowSprite.setTexture(proposeDrawNowImg);
+    proposeDrawNowSprite.setPosition(526, 310);
 
     acceptDrawImg.loadFromFile("../images/accept_draw_button.png");
     acceptDrawSprite.setTexture(acceptDrawImg);
 
     resignImg.loadFromFile("../images/resign_button.png");
     resignSprite.setTexture(resignImg);
-    resignSprite.setPosition(520, 200);
+    resignSprite.setPosition(526, 400);
+
+    resignNowImg.loadFromFile("../images/resign_buttonNowStrong.png");
+    resignNowSprite.setTexture(resignNowImg);
+    resignNowSprite.setPosition(526, 400);
 
     minutesWhite = 30 * 60;
     minutesBlack = 30 * 60;
@@ -126,6 +135,9 @@ void Game1vs1::play()
     {
         window.clear();
 
+        Vector2i posNow = Mouse::getPosition(window);
+        sf::Event eventNow;
+
         EventType event = checkClick();
         if (event == BOARD_CLICK) {
             squareClicked();
@@ -137,6 +149,40 @@ void Game1vs1::play()
 
         if(atMove == 1) window.draw(atMoveWhiteSprite); //alb la mutare
         else window.draw(atMoveBlackSprite); //negru la mutare
+
+
+        if(posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 310 && posNow.y <= 310 + 66)
+        {
+            window.draw(proposeDrawNowSprite);
+
+            if(eventNow.type == Event::MouseButtonPressed)
+            {
+                if(eventNow.key.code == (int)Mouse::Left)
+                {
+                    //Game1v1Go = true;
+                    //window.close();
+                }
+            }
+        }
+        else
+            window.draw(proposeDrawSprite);
+
+
+        if(posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 400 && posNow.y <= 400 + 66)
+        {
+            window.draw(resignNowSprite);
+
+            if(eventNow.type == Event::MouseButtonPressed)
+            {
+                if(eventNow.key.code == (int)Mouse::Left)
+                {
+                    //Game1v1Go = true;
+                    //window.close();
+                }
+            }
+        }
+        else
+            window.draw(resignSprite);
 
         // new move has been made
         if (noCurrMoves != game->get_no_moves()) {

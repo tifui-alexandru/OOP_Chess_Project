@@ -14,7 +14,7 @@ Promote::~Promote(){}
 
 void Promote::promoteRun()
 {
-    RenderWindow window(sf::VideoMode(226, 70), "MENU", sf::Style::Titlebar | sf::Style::Close);
+    RenderWindow window(sf::VideoMode(226, 70), "Promotion", sf::Style::Titlebar | sf::Style::Close);
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable

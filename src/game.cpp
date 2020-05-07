@@ -33,7 +33,7 @@ bool Game::repetition() {
             for (int j = 0; j < BOARD_SIZE; ++j) {
                 auto piece1 = currBoard->get_piece({i, j});
                 auto piece2 = board->get_piece({i, j});
-                if ((piece1 == nullptr && piece2 == nullptr) or (piece1 != nullptr && piece2 !=nullptr && piece1->get_type() == piece2->get_type())) continue;
+                if ((piece1 == nullptr && piece2 == nullptr) or (piece1 != nullptr && piece2 != nullptr && piece1->get_type() == piece2->get_type() && piece1->get_colour() == piece2->get_colour())) continue;
                 equal = 0;
                 break;
             }
@@ -91,6 +91,8 @@ GameStatus Game::make_move(Square from, Square to) {
 }
 
 GameStatus Game::get_status() {
+    if (nrMovesFor50Rule == 50) return MOVE50RULE;
+    if (repetition()) return REPETITION;
     return get_board()->get_status(playerToMove->colour, playerToWait->colour);
 }
 

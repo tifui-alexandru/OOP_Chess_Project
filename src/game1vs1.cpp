@@ -218,7 +218,11 @@ void Game1vs1::play()
                 final.showRun();
             }
 
-            //if(status == CHECKMATE)
+            if(status == REPETITION || status == INSUFFICIENT_MATERIAL || status == MOVE50RULE || status == AGREEMENT || status == STALEMATE)
+            {
+                showEnd final(1);
+                final.showRun();
+            }
         }
 
         window.display();

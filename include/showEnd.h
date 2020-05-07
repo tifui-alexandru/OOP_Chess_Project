@@ -1,16 +1,14 @@
 #ifndef CHESS_SHOWEND_H
 #define CHESS_SHOWEND_H
-
-#include "../include/gameFront.h"
-using namespace sf;
+#include <SFML/Graphics.hpp>
 
 class showEnd
 {
 public:
-    Texture endT;
-    Sprite endS;
+    sf::Texture endT;
+    sf::Sprite endS;
 
-    Vector2u size;
+    sf::Vector2u size;
 
 public:
     showEnd(int);

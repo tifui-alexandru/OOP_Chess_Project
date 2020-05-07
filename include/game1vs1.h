@@ -22,7 +22,6 @@ class Game1vs1 : virtual public GameFront {
     float ant;
 
     PieceColour atMove;
-    PieceColour antMove;
 
     sf::Text textWhite;
     sf::Text textBlack;

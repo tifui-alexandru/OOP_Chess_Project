@@ -5,6 +5,8 @@
 #include "game.h"
 #include "promote.h"
 
+#include "showEnd.h"
+
 enum EventType {
     BOARD_CLICK,
     GO_BACK,

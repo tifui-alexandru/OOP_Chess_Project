@@ -43,7 +43,6 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
     ant = 0;
 
     atMove = WHITE;
-    antMove = WHITE;
 
     if(!font.loadFromFile("../images/sans.ttf")){}
 
@@ -199,8 +198,10 @@ void Game1vs1::play()
         //aici daca am mutare{ clock.reset(); ant = 0; }
 
         if (auto status = game->get_status() != UNFINISHED) {
-            // end of the game
-            // display chestii
+
+            showEnd final(1);
+
+            //if(status == CHECKMATE)
         }
 
         printBoard(); // print cu butoane si chestii

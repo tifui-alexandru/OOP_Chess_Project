@@ -1,4 +1,5 @@
 #include "../include/game1vs1.h"
+#include <iostream>
 
 Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 {
@@ -44,7 +45,10 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     atMove = WHITE;
 
-    if(!font.loadFromFile("../images/sans.ttf")){}
+    if(!font.loadFromFile("../images/sans.ttf")){
+        std::cerr << "wtf";
+    }
+    std::cerr << font.getInfo().family;
 
     textWhite.setFont(font);
     textBlack.setFont(font);
@@ -201,11 +205,10 @@ void Game1vs1::play()
         //aici daca am mutare{ clock.reset(); ant = 0; }
 
         printBoard(); // print cu butoane si chestii
-
-        if (auto status = game->get_status() != UNFINISHED && showed == false)
+        auto status = game->get_status();
+        if (status != UNFINISHED && showed == false)
         {
             showed = true;
-
             if(status == CHECKMATE && game->getPlayerToMove() == BLACK)
             {
                 showEnd final(3);

@@ -76,6 +76,8 @@ void Game1vs1::printTime()
     sf::Time elapsed = clock.getElapsedTime();
     float secondsElapsed = elapsed.asSeconds();
 
+    if(auto status = game->get_status() != UNFINISHED) secondsElapsed = ant;
+
     if(atMove == WHITE)
     {
         addWhite += (secondsElapsed - ant);
@@ -133,6 +135,7 @@ void Game1vs1::printTime()
 void Game1vs1::play()
 {
     int noCurrMoves = 0;
+    bool showed = false; //daca am aratat finalul
 
     while(window.isOpen())
     {
@@ -197,14 +200,30 @@ void Game1vs1::play()
 
         //aici daca am mutare{ clock.reset(); ant = 0; }
 
-        if (auto status = game->get_status() != UNFINISHED) {
-
-            showEnd final(1);
-
-            //if(status == CHECKMATE)
-        }
-
         printBoard(); // print cu butoane si chestii
+
+        if (auto status = game->get_status() != UNFINISHED && showed == false)
+        {
+            showed = true;
+
+            if(status == CHECKMATE && game->getPlayerToMove() == BLACK)
+            {
+                showEnd final(3);
+                final.showRun();
+            }
+
+            if(status == CHECKMATE && game->getPlayerToMove() == WHITE)
+            {
+                showEnd final(2);
+                final.showRun();
+            }
+
+            if(status == REPETITION || status == INSUFFICIENT_MATERIAL || status == MOVE50RULE || status == AGREEMENT || status == STALEMATE)
+            {
+                showEnd final(1);
+                final.showRun();
+            }
+        }
 
         window.display();
     }

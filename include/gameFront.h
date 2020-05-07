@@ -21,7 +21,7 @@ protected:
     const int squareSize = 56;
     const ButtonBox boardBox = {28, 28, 28 + 8 * 56, 28 + 8 * 56};
 
-    sf::Texture piecesImg, movingPiecesImg, emptyBoardImg, highlightImg;
+    sf::Texture piecesImg, movingPiecesImg, emptyBoardImg, highlightImg, kingSah;
     sf::RenderWindow window;
     Game* game;
     std::vector<sf::Sprite> pieceSprites;

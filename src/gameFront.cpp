@@ -8,6 +8,7 @@ GameFront::GameFront(const std::string& gameModeName) {
     movingPiecesImg.loadFromFile("../images/movingPieces.png");
     emptyBoardImg.loadFromFile("../images/board.png");
     highlightImg.loadFromFile("../images/highlight.png");
+    kingSah.loadFromFile("..images/sah.png");
 
     emptyBoardSprite.setTexture(emptyBoardImg);
     highlightSprite.setTexture(highlightImg);

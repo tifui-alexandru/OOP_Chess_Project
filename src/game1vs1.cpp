@@ -206,13 +206,13 @@ void Game1vs1::play()
         {
             showed = true;
 
-            if(status == CHECKMATE && game->getPlayerToMove() == WHITE)
+            if(status == CHECKMATE && game->getPlayerToMove() == BLACK)
             {
                 showEnd final(3);
                 final.showRun();
             }
 
-            if(status == CHECKMATE && game->getPlayerToMove() == BLACK)
+            if(status == CHECKMATE && game->getPlayerToMove() == WHITE)
             {
                 showEnd final(2);
                 final.showRun();

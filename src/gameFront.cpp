@@ -1,6 +1,8 @@
 #include "../include/gameFront.h"
 
 GameFront::GameFront(const std::string& gameModeName) {
+
+
     window.create(sf::VideoMode(674, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
     game = new Game();
 
@@ -56,6 +58,13 @@ GameFront::GameFront(const std::string& gameModeName) {
         movingPieceSprites[6 * i + 5].setTextureRect(sf::IntRect(squareSize * 4, squareSize * i, squareSize, squareSize));
     }
 
+    for (int i = 0; i < 2; ++i) {
+
+        chessPieceSprite[i].setTexture(kingSah);
+        chessPieceSprite[i].setTextureRect(sf::IntRect(squareSize * 4, squareSize * i, squareSize, squareSize));
+    }
+
+
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j)
             validMove[i][j] = false;
@@ -77,7 +86,11 @@ void GameFront::printBoard() {
         for (int j = 0; j < BOARD_SIZE; ++j) {
             auto piece = board->get_piece({i, j});
             if (piece == nullptr or (isMoving && Square(i, j) == clickedSquare)) continue;
+
             sf::Sprite copy = getPieceSprite(piece->get_type(), piece->get_colour(), false);
+
+            if (piece->get_type() == KING && board->cell_is_attacked({i, j}, piece->get_colour())) copy = chessPieceSprite[(int)piece->get_colour()];
+
             Square temp = Square(boardBox.topLeft.first, boardBox.topLeft.second) + Square(squareSize, squareSize) * Square(i, j).reverse();
             copy.setPosition((float)temp.y, (float)temp.x);
             window.draw(copy);

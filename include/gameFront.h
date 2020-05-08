@@ -15,7 +15,8 @@ enum EventType {
     OFFER_DRAW,
     ACCEPT_DRAW,
     REFUSE_DRAW,
-    NOTHING
+    NOTHING,
+    MENU_CLICK
 };
 
 class GameFront {

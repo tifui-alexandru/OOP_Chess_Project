@@ -15,8 +15,10 @@ private:
     };
     Player *playerToMove, *playerToWait;
     int nrMovesFor50Rule;
+
     std::vector<Board*> gameBoards;
     std::vector<Move*> gameMoves;
+
     bool repetition();
 public:
     Game();

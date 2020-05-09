@@ -35,11 +35,7 @@ Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC
     buttonsMenuSprite.setTexture(buttonsMenuImg);
     buttonsMenuSprite.setPosition(504, 0);
 
-    if(!font.loadFromFile("../images/sans.ttf")){
-        std::cerr << "wtf";
-    }
-
-    std::cerr << font.getInfo().family;
+    if(!font.loadFromFile("../images/sans.ttf"))
 
     text.setFont(font);
 

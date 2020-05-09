@@ -76,7 +76,7 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     textWhite.setStyle(sf::Text::Bold);
 
-    textWhite.setPosition(510, 70);
+    textWhite.setPosition(520, 70);
 
 
     textBlack.setCharacterSize(50);

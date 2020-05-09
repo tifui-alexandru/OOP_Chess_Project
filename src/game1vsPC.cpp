@@ -6,7 +6,7 @@
 #include <cstring>
 
 EventType Game1vsPC::checkMenuClick(const int& x, const int& y) {
-    
+
 }
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC"), humanPlayer(humanCol)
@@ -35,7 +35,7 @@ Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC
     buttonsMenuSprite.setTexture(buttonsMenuImg);
     buttonsMenuSprite.setPosition(504, 0);
 
-    if(!font.loadFromFile("../images/sans.ttf"))
+    if(!font.loadFromFile("../images/sans.ttf"));
 
     text.setFont(font);
 

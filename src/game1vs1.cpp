@@ -66,9 +66,9 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
     atMove = WHITE;
 
     if(!font.loadFromFile("../images/sans.ttf")){
-        std::cerr << "wtf";
+        // std::cerr << "wtf";
     }
-    std::cerr << font.getInfo().family;
+    // std::cerr << font.getInfo().family;
 
     textWhite.setFont(font);
     textBlack.setFont(font);

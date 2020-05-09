@@ -61,6 +61,7 @@ void startGame::runStart()
             Game1vs1 t3;
             t3.play();
             Game1v1Go = false;
+            menuModeGo = true;
         }
 
         if(Game1vPcGo == true)

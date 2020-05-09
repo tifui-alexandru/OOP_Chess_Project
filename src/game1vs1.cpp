@@ -214,8 +214,14 @@ void Game1vs1::play()
                 {
                     if(game->getPlayerToMove() == WHITE) {
                         if (whiteWantsResign == true && whenWhite == game->get_no_moves()) {
-                            whiteResigned = true;
-                            game->set_resign();
+                            if (posNow.x >= 526 && posNow.x <= 526 + 126/2) {
+                                whiteResigned = true;
+                                game->set_resign();
+                            }
+                            else
+                            {
+                                whiteWantsResign = false;
+                            }
                         }
                         else
                         {
@@ -226,9 +232,15 @@ void Game1vs1::play()
 
                     if(game->getPlayerToMove() == BLACK)
                     {
-                        if(blackWantsResign == true && whenBlack == game->get_no_moves()){
-                            blackResigned = true;
-                            game->set_resign();
+                        if(blackWantsResign == true && whenBlack == game->get_no_moves()) {
+                            if (posNow.x >= 526 && posNow.x <= 526 + 126 / 2) {
+                                blackResigned = true;
+                                game->set_resign();
+                            }
+                            else
+                            {
+                                blackWantsResign = false;
+                            }
                         }
                         else
                         {
@@ -315,6 +327,7 @@ void Game1vs1::play()
                 showEnd final(1);
                 final.showRun();
             }
+            window.close();
         }
 
         window.display();

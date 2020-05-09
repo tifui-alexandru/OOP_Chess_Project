@@ -73,7 +73,9 @@ void Game1vsPC::printTime()
 
 }
 
-void Game1vsPC::play() {
+void Game1vsPC::play()
+{
+    bool hintOn = true;
     int noCurrMoves = 0;
     PieceColour playerMoving = WHITE;
     std::string currBoardPosition;
@@ -130,10 +132,13 @@ void Game1vsPC::play() {
             if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 250 && posNow.y <= 250 + 66) {
                 window.draw(getHintButtonNowSprite);
 
-                /*if (event == MENU_CLICK) {
-                    //Game1v1Go = true;
-                    //window.close();
-                }*/
+                EventType event;
+
+                if (event == MENU_CLICK)
+                {
+                    hintOn = true;
+                }
+
             } else
                 window.draw(getHintButtonSprite);
         }

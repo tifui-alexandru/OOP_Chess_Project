@@ -38,6 +38,12 @@ void menuGame::menuRun()
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable
+    // sf::Text text;
+    // sf::Font font;
+    // font.loadFromFile("../images/sans.ttf");
+    // text.setFont(font);
+    //text.setString("Test");
+    //text.setCharacterSize(24);
     while(window.isOpen())
     {
 
@@ -72,6 +78,7 @@ void menuGame::menuRun()
         //refresh
 
         window.draw(susu1);
+        //window.draw(text);
 
         //change the play button
         if(pos.x >= 207.5 && pos.x<= 207.5 + 265 && pos.y >= 120 && pos.y <= 120 + 121)

@@ -65,10 +65,7 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     atMove = WHITE;
 
-    if(!font.loadFromFile("../images/sans.ttf")){
-        std::cerr << "wtf";
-    }
-    std::cerr << font.getInfo().family;
+    if(!font.loadFromFile("../images/sans.ttf"))
 
     textWhite.setFont(font);
     textBlack.setFont(font);
@@ -79,7 +76,7 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     textWhite.setStyle(sf::Text::Bold);
 
-    textWhite.setPosition(520, 70);
+    textWhite.setPosition(510, 70);
 
 
     textBlack.setCharacterSize(50);
@@ -150,7 +147,6 @@ void Game1vs1::printTime()
 
 
     window.draw(textBlack);
-
     window.draw(textWhite);
 
     ant = secondsElapsed;

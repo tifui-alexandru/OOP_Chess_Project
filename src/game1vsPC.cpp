@@ -5,6 +5,10 @@
 #include <iostream>
 #include <cstring>
 
+EventType checkMenuClick(const int& x, const int& y) {
+    
+}
+
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC"), humanPlayer(humanCol)
 {
     endGameButtonImg.loadFromFile("../images/endGameButton.png");

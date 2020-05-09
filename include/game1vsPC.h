@@ -6,9 +6,6 @@ class Game1vsPC : virtual public GameFront {
 private:
     PieceColour humanPlayer;
 
-    const ButtonBox endGame;
-    const ButtonBox 
-
     sf::Texture buttonsMenuImg, promoteMenuImg, endGameButtonImg, endGameButtonNowImg;
     sf::Texture getHintButtonImg, getHintButtonNowImg;
 
@@ -16,12 +13,11 @@ private:
     sf::Sprite getHintButtonSprite, getHintButtonNowSprite;
 
     void printTime();
-
     sf::Clock clock;
-
     sf::Text text;
-
     sf::Font font;
+
+    EventType checkMenuClick(const int& x, const int& y);
 
 public:
     Game1vsPC(const PieceColour &humanCol = WHITE);

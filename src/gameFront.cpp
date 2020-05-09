@@ -136,7 +136,7 @@ EventType GameFront::checkClick() {
         if (event.type == sf::Event::MouseButtonPressed) {
             if ((int)event.key.code == (int)sf::Mouse::Left) 
                 if (boardBox.isInside(mousePos.x, mousePos.y)) return BOARD_CLICK;
-                else if (menuBox.isInside(mousePos.x, mousePos.y)) return checkMenuClick(mousePos.x, mousePos.y);
+                else if (menuBox.isInside(mousePos.x, mousePos.y)) return MENU_CLICK; //checkMenuClick(mousePos.x, mousePos.y);
         }
     }
     return NOTHING;

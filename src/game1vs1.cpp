@@ -1,6 +1,10 @@
 #include "../include/game1vs1.h"
 #include <iostream>
 
+EventType Game1vs1::checkMenuClick(const int& x, const int& y) {
+
+}
+
 Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 {
     YesNoButtonImg.loadFromFile("../images/YesNoButton.png");

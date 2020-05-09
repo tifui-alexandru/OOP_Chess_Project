@@ -6,7 +6,9 @@
 #include <cstring>
 
 EventType Game1vsPC::checkMenuClick(const int& x, const int& y) {
-
+    if (endButton.isInside(x, y)) return END_GAME;
+    if (hintButton.isInside(x, y)) return GET_HINT;
+    return NOTHING;
 }
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC"), humanPlayer(humanCol)
@@ -75,7 +77,6 @@ void Game1vsPC::printTime()
 
 void Game1vsPC::play()
 {
-    bool hintOn = true;
     int noCurrMoves = 0;
     PieceColour playerMoving = WHITE;
     std::string currBoardPosition;
@@ -85,22 +86,12 @@ void Game1vsPC::play()
         window.clear();
 
         window.draw(promoteMenuSprite);
-
         Vector2i posNow = Mouse::getPosition(window);
+        EventType event = checkClick();
 
         if (playerMoving == humanPlayer) {
-            EventType event = checkClick();
             if (event == BOARD_CLICK) {
                 squareClicked();
-            }
-            else if (event == GET_HINT) {
-                PieceType newPiece = PAWN;
-                std::pair <Square, Square> hint = getStockfishMove(currBoardPosition, newPiece);
-
-                std::memset(validMove, false, sizeof(validMove));
-                validMove[hint.first.x][hint.first.y] = validMove[hint.second.x][hint.second.y] = true;
-
-                // printBoard();
             }
         }
         else {
@@ -115,7 +106,7 @@ void Game1vsPC::play()
         printTime();
 
         if(!isMoving) {
-            if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 350 && posNow.y <= 350 + 92) {
+            if (endButton.isInside(posNow.x, posNow.y)) {
                 window.draw(endGameButtonNowSprite);
 
                 /*if (event == MENU_CLICK) {
@@ -129,16 +120,16 @@ void Game1vsPC::play()
             window.draw(endGameButtonSprite);
 
         if(!isMoving) {
-            if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 250 && posNow.y <= 250 + 66) {
+            if (hintButton.isInside(posNow.x, posNow.y)) {
                 window.draw(getHintButtonNowSprite);
 
-                EventType event;
+                if (event == GET_HINT) {
+                    PieceType newPiece = PAWN;
+                    std::pair <Square, Square> hint = getStockfishMove(currBoardPosition, newPiece);
 
-                if (event == MENU_CLICK)
-                {
-                    hintOn = true;
+                    std::memset(validMove, false, sizeof(validMove));
+                    validMove[hint.first.x][hint.first.y] = validMove[hint.second.x][hint.second.y] = true;
                 }
-
             } else
                 window.draw(getHintButtonSprite);
         }

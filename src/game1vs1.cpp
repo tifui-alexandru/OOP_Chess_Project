@@ -2,7 +2,9 @@
 #include <iostream>
 
 EventType Game1vs1::checkMenuClick(const int& x, const int& y) {
-
+    if (resignButton.isInside(x, y)) return RESIGN;
+    if (drawButton.isInside(x, y)) return DRAW;
+    return NOTHING;
 }
 
 Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
@@ -185,10 +187,10 @@ void Game1vs1::play()
         else window.draw(atMoveBlackSprite); //negru la mutare
 
         if(!isMoving) {
-            if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 310 && posNow.y <= 310 + 66) {
+            if (drawButton.isInside(posNow.x, posNow.y)) {
                 window.draw(proposeDrawNowSprite);
 
-                if (event == MENU_CLICK) {
+                if (event == DRAW) {
                         //Game1v1Go = true;
                         //window.close();
                 }
@@ -205,16 +207,16 @@ void Game1vs1::play()
 
         if(!isMoving)
         {
-            if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 400 && posNow.y <= 400 + 66)
+            if (resignButton.isInside(posNow.x, posNow.y))
             {
 
                 window.draw(resignNowSprite);
 
-                if (event == MENU_CLICK)
+                if (event == RESIGN)
                 {
                     if(game->getPlayerToMove() == WHITE) {
                         if (whiteWantsResign == true && whenWhite == game->get_no_moves()) {
-                            if (posNow.x >= 526 && posNow.x <= 526 + 126/2) {
+                            if (acceptResign.isInside(posNow.x, posNow.y)) {
                                 whiteResigned = true;
                                 game->set_resign();
                             }
@@ -233,7 +235,7 @@ void Game1vs1::play()
                     if(game->getPlayerToMove() == BLACK)
                     {
                         if(blackWantsResign == true && whenBlack == game->get_no_moves()) {
-                            if (posNow.x >= 526 && posNow.x <= 526 + 126 / 2) {
+                            if (acceptResign.isInside(posNow.x, posNow.y)) {
                                 blackResigned = true;
                                 game->set_resign();
                             }
@@ -254,7 +256,7 @@ void Game1vs1::play()
                 if(whiteWantsResign == true && whenWhite == game->get_no_moves())
                 {
                     window.draw(YesNoButtonSprite);
-                    if (posNow.x >= 526 && posNow.x <= 526 + 126/2) window.draw(YesButtonSprite);
+                    if (acceptResign.isInside(posNow.x, posNow.y)) window.draw(YesButtonSprite);
                     else window.draw(NoButtonSprite);
                 }
 
@@ -263,7 +265,7 @@ void Game1vs1::play()
                 if(blackWantsResign == true && whenBlack == game->get_no_moves())
                 {
                     window.draw(YesNoButtonSprite);
-                    if (posNow.x >= 526 && posNow.x <= 526 + 126/2) window.draw(YesButtonSprite);
+                    if (acceptResign.isInside(posNow.x, posNow.y)) window.draw(YesButtonSprite);
                     else window.draw(NoButtonSprite);
                 }
 

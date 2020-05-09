@@ -40,6 +40,14 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
     resignNowSprite.setTexture(resignNowImg);
     resignNowSprite.setPosition(526, 400);
 
+    YesButtonImg.loadFromFile("../images/YesButton.png");
+    YesButtonSprite.setTexture(YesButtonImg);
+    YesButtonSprite.setPosition(526, 400);
+
+    NoButtonImg.loadFromFile("../images/NoButton.png");
+    NoButtonSprite.setTexture(NoButtonImg);
+    NoButtonSprite.setPosition(526, 400);
+
     minutesWhite = 30 * 60;
     minutesBlack = 30 * 60;
 
@@ -150,6 +158,10 @@ void Game1vs1::play()
     bool showed = false; //daca am aratat finalul
     bool whiteWantsResign = false;
     bool blackWantsResign = false;
+    int whenBlack = -1;
+    int whenWhite = -1;
+    bool whiteResigned = false;
+    bool blackResigned = false;
 
     while(window.isOpen())
     {
@@ -191,39 +203,82 @@ void Game1vs1::play()
 
 
 
-        if(!isMoving) {
-            if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 400 && posNow.y <= 400 + 66) {
+        if(!isMoving)
+        {
+            if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 400 && posNow.y <= 400 + 66)
+            {
+
                 window.draw(resignNowSprite);
-                if (event == MENU_CLICK) {
-                    std::cout<<"DA";
 
-                    if(game->getPlayerToMove() == WHITE) whiteWantsResign = true;
+                if (event == MENU_CLICK)
+                {
+                    if(game->getPlayerToMove() == WHITE) {
+                        if (whiteWantsResign == true && whenWhite == game->get_no_moves()) {
+                            whiteResigned = true;
+                            game->set_resign();
+                        }
+                        else
+                        {
+                            whiteWantsResign = true;
+                            whenWhite = game->get_no_moves();
+                        }
+                    }
 
-                    else blackWantsResign = true;
+                    if(game->getPlayerToMove() == BLACK)
+                    {
+                        if(blackWantsResign == true && whenBlack == game->get_no_moves()){
+                            blackResigned = true;
+                            game->set_resign();
+                        }
+                        else
+                        {
+                            blackWantsResign = true;
+                            whenBlack = game->get_no_moves();
+                        }
+                    }
+
                 }
 
-            } else
+                if(whiteWantsResign == true && whenWhite == game->get_no_moves())
+                {
+                    window.draw(YesNoButtonSprite);
+                    if (posNow.x >= 526 && posNow.x <= 526 + 126/2) window.draw(YesButtonSprite);
+                    else window.draw(NoButtonSprite);
+                }
+
+                if(whiteWantsResign == true && whenWhite != game->get_no_moves()) whiteWantsResign = false;
+
+                if(blackWantsResign == true && whenBlack == game->get_no_moves())
+                {
+                    window.draw(YesNoButtonSprite);
+                    if (posNow.x >= 526 && posNow.x <= 526 + 126/2) window.draw(YesButtonSprite);
+                    else window.draw(NoButtonSprite);
+                }
+
+                if(blackWantsResign == true && whenBlack != game->get_no_moves()) blackWantsResign = false;
+
+            }
+            else
+            {
                 window.draw(resignSprite);
+
+                if(whiteWantsResign == true && whenWhite == game->get_no_moves())
+                {
+                    window.draw(YesNoButtonSprite);
+                }
+
+                if(whiteWantsResign == true && whenWhite != game->get_no_moves()) whiteWantsResign = false;
+
+                if(blackWantsResign == true && whenBlack == game->get_no_moves())
+                {
+                    window.draw(YesNoButtonSprite);
+                }
+
+                if(blackWantsResign == true && whenBlack != game->get_no_moves()) blackWantsResign = false;
+            }
         }
         else
             window.draw(resignSprite);
-
-
-        if(whiteWantsResign == true || blackWantsResign == true)
-        {
-            window.draw(YesNoButtonSprite);
-
-            if(whiteWantsResign == true && game->getPlayerToMove() == BLACK)
-            {
-
-            }
-
-            if(blackWantsResign == true && game->getPlayerToMove() == WHITE)
-            {
-
-            }
-        }
-
 
 
         // new move has been made
@@ -237,17 +292,19 @@ void Game1vs1::play()
         //aici daca am mutare{ clock.reset(); ant = 0; }
 
         printBoard(); // print cu butoane si chestii
+
         auto status = game->get_status();
+
         if (status != UNFINISHED && showed == false)
         {
             showed = true;
-            if(status == CHECKMATE && game->getPlayerToMove() == BLACK)
+            if(status == CHECKMATE && game->getPlayerToMove() == BLACK || blackResigned == true)
             {
                 showEnd final(3);
                 final.showRun();
             }
 
-            if(status == CHECKMATE && game->getPlayerToMove() == WHITE)
+            if(status == CHECKMATE && game->getPlayerToMove() == WHITE || whiteResigned == true)
             {
                 showEnd final(2);
                 final.showRun();

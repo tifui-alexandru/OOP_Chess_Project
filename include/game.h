@@ -26,6 +26,11 @@ public:
     GameStatus make_move(Square from, Square to);
     void promote(Square pos, PieceType piece);
     GameStatus get_status();
+
+    bool resign;
+
+    void set_resign();
+
     PieceColour getPlayerToMove();
 
     inline int get_no_moves() const {return (int)gameMoves.size();}

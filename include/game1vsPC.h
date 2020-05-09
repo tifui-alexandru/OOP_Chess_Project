@@ -6,6 +6,9 @@ class Game1vsPC : virtual public GameFront {
 private:
     PieceColour humanPlayer;
 
+    const ButtonBox endGame;
+    const ButtonBox 
+
     sf::Texture buttonsMenuImg, promoteMenuImg, endGameButtonImg, endGameButtonNowImg;
     sf::Texture getHintButtonImg, getHintButtonNowImg;
 

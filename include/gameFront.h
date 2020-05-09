@@ -22,6 +22,7 @@ class GameFront {
 protected:
     const int squareSize = 56;
     const ButtonBox boardBox = {28, 28, 28 + 8 * 56, 28 + 8 * 56};
+    const ButtonBox menuBox = {504, 0, 504 + 170, 504};
 
     sf::Texture piecesImg, movingPiecesImg, emptyBoardImg, highlightImg, kingSah;
     sf::RenderWindow window;
@@ -37,6 +38,7 @@ protected:
     sf::Sprite getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving);
     Square getSquare(sf::Vector2i posCursor);
     EventType checkClick();
+    virtual EventType checkMenuClick(const int& x, const int& y) = 0;
     void squareClicked();
 public:
     GameFront(const std::string& gameModeName);

@@ -17,21 +17,18 @@ class Game1vs1 : virtual public GameFront {
 
     float minutesWhite;
     float minutesBlack;
-
     float addWhite;
     float addBlack;
-
     float secondsLeftWhite;
     float secondsLeftBlack;
-
     float ant;
 
     PieceColour atMove;
-
     sf::Text textWhite;
     sf::Text textBlack;
-
     sf::Font font;
+
+    EventType checkMenuClick(const int& x, const int& y);
 
 public:
     Game1vs1();

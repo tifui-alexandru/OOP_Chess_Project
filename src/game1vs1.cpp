@@ -311,6 +311,9 @@ void Game1vs1::play()
 
         if (status != UNFINISHED && showed == false)
         {
+            window.clear();
+            printBoard();
+            window.display();
             showed = true;
             if(status == CHECKMATE && game->getPlayerToMove() == BLACK || blackResigned == true)
             {

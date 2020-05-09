@@ -315,13 +315,13 @@ void Game1vs1::play()
             printBoard();
             window.display();
             showed = true;
-            if(status == CHECKMATE && game->getPlayerToMove() == BLACK || blackResigned == true)
+            if((status == CHECKMATE && game->getPlayerToMove() == BLACK) || blackResigned == true)
             {
                 showEnd final(3);
                 final.showRun();
             }
 
-            if(status == CHECKMATE && game->getPlayerToMove() == WHITE || whiteResigned == true)
+            if((status == CHECKMATE && game->getPlayerToMove() == WHITE) || whiteResigned == true)
             {
                 showEnd final(2);
                 final.showRun();

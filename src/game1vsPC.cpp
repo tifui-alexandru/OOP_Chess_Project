@@ -77,6 +77,7 @@ void Game1vsPC::printTime()
 
 void Game1vsPC::play()
 {
+    bool showed = false; //daca am aratat finalul
     int noCurrMoves = 0;
     PieceColour playerMoving = WHITE;
     std::string currBoardPosition;
@@ -103,7 +104,7 @@ void Game1vsPC::play()
 
         window.draw(buttonsMenuSprite);
 
-        printTime();
+        //printTime();
 
         if(!isMoving) {
             if (endButton.isInside(posNow.x, posNow.y)) {
@@ -151,9 +152,32 @@ void Game1vsPC::play()
 
         printBoard(); // print cu butoane si chestii
 
-        if (game->get_status() != UNFINISHED) {
-            // end of the game
-            // display chestii
+        auto status = game->get_status();
+
+        if (status != UNFINISHED && showed == false)
+        {
+            window.clear();
+            printBoard();
+            window.display();
+            showed = true;
+            if(status == CHECKMATE && game->getPlayerToMove() == BLACK)
+            {
+                showEnd final(3);
+                final.showRun();
+            }
+
+            if(status == CHECKMATE && game->getPlayerToMove() == WHITE)
+            {
+                showEnd final(2);
+                final.showRun();
+            }
+
+            if(status == REPETITION || status == INSUFFICIENT_MATERIAL || status == MOVE50RULE || status == AGREEMENT || status == STALEMATE)
+            {
+                showEnd final(1);
+                final.showRun();
+            }
+            window.close();
         }
 
         window.display();

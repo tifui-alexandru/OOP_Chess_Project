@@ -4,6 +4,7 @@
 #include <iostream>
 
 Game::Game() {
+    resign = false;
     playerToMove = new Player(WHITE);
     playerToWait = new Player(BLACK);
     nrMovesFor50Rule = 0;
@@ -91,6 +92,7 @@ GameStatus Game::make_move(Square from, Square to) {
 }
 
 GameStatus Game::get_status() {
+    if (resign) return RESIGNATION;
     if (nrMovesFor50Rule == 50) return MOVE50RULE;
     if (repetition()) return REPETITION;
     return get_board()->get_status(playerToMove->colour, playerToWait->colour);
@@ -98,4 +100,9 @@ GameStatus Game::get_status() {
 
 PieceColour Game::getPlayerToMove() {
     return playerToMove->colour;
+}
+
+void Game::set_resign()
+{
+    resign = true;
 }

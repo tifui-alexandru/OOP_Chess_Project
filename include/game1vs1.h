@@ -6,12 +6,12 @@ class Game1vs1 : virtual public GameFront {
 
     sf::Texture atMoveBlackImg, atMoveWhiteImg, proposeDrawImg, proposeDrawNowImg;
     sf::Texture acceptDrawImg, resignImg, resignNowImg, buttonsMenuImg, promoteMenuImg;
-    sf::Texture YesNoButtonImg;
+    sf::Texture YesNoButtonImg, YesButtonImg, NoButtonImg;
 
 
     sf::Sprite atMoveBlackSprite, atMoveWhiteSprite, proposeDrawSprite, proposeDrawNowSprite;
     sf::Sprite acceptDrawSprite, resignSprite, resignNowSprite, buttonsMenuSprite, promoteMenuSprite;
-    sf::Sprite YesNoButtonSprite;
+    sf::Sprite YesNoButtonSprite, YesButtonSprite, NoButtonSprite;
 
     sf::Clock clock;
 

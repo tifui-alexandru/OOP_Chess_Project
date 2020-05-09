@@ -2,6 +2,8 @@
 #include "../include/chessEngine.h"
 #include <string>
 #include <cstdlib>
+#include <iostream>
+#include <cstring>
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC"), humanPlayer(humanCol)
 {
@@ -88,6 +90,15 @@ void Game1vsPC::play() {
             EventType event = checkClick();
             if (event == BOARD_CLICK) {
                 squareClicked();
+            }
+            else if (event == GET_HINT) {
+                PieceType newPiece = PAWN;
+                std::pair <Square, Square> hint = getStockfishMove(currBoardPosition, newPiece);
+
+                std::memset(validMove, false, sizeof(validMove));
+                validMove[hint.first.x][hint.first.y] = validMove[hint.second.x][hint.second.y] = true;
+
+                // printBoard();
             }
         }
         else {

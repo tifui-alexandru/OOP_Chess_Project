@@ -3,6 +3,14 @@
 
 Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 {
+    YesNoButtonImg.loadFromFile("../images/YesNoButton.png");
+    YesNoButtonSprite.setTexture(YesNoButtonImg);
+    YesNoButtonSprite.setPosition(526, 400);
+
+    promoteMenuImg.loadFromFile("../images/promotionMenu.png");
+    promoteMenuSprite.setTexture(promoteMenuImg);
+    promoteMenuSprite.setPosition(504, 0);
+
     buttonsMenuImg.loadFromFile("../images/buttons_menu.png");
     buttonsMenuSprite.setTexture(buttonsMenuImg);
     buttonsMenuSprite.setPosition(504, 0);
@@ -140,21 +148,24 @@ void Game1vs1::play()
 {
     int noCurrMoves = 0;
     bool showed = false; //daca am aratat finalul
+    bool whiteWantsResign = false;
+    bool blackWantsResign = false;
 
     while(window.isOpen())
     {
         atMove = game->getPlayerToMove();
         window.clear();
 
-        window.draw(buttonsMenuSprite);
+        window.draw(promoteMenuSprite);
 
         Vector2i posNow = Mouse::getPosition(window);
-        sf::Event eventNow;
 
         EventType event = checkClick();
         if (event == BOARD_CLICK) {
             squareClicked();
         }
+
+        window.draw(buttonsMenuSprite);
 
         printTime();
 
@@ -165,11 +176,9 @@ void Game1vs1::play()
             if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 310 && posNow.y <= 310 + 66) {
                 window.draw(proposeDrawNowSprite);
 
-                if (eventNow.type == Event::MouseButtonPressed) {
-                    if (eventNow.key.code == (int) Mouse::Left) {
+                if (event == MENU_CLICK) {
                         //Game1v1Go = true;
                         //window.close();
-                    }
                 }
             } else
                 window.draw(proposeDrawSprite);
@@ -178,21 +187,44 @@ void Game1vs1::play()
             window.draw(proposeDrawSprite);
 
 
+        //BUTON DE RESIGN////////////////////////////////////////////////////////////////////////
+
+
+
         if(!isMoving) {
             if (posNow.x >= 526 && posNow.x <= 526 + 126 && posNow.y >= 400 && posNow.y <= 400 + 66) {
                 window.draw(resignNowSprite);
+                if (event == MENU_CLICK) {
+                    std::cout<<"DA";
 
-                if (eventNow.type == Event::MouseButtonPressed) {
-                    if (eventNow.key.code == (int) Mouse::Left) {
-                        //Game1v1Go = true;
-                        //window.close();
-                    }
+                    if(game->getPlayerToMove() == WHITE) whiteWantsResign = true;
+
+                    else blackWantsResign = true;
                 }
+
             } else
                 window.draw(resignSprite);
         }
         else
             window.draw(resignSprite);
+
+
+        if(whiteWantsResign == true || blackWantsResign == true)
+        {
+            window.draw(YesNoButtonSprite);
+
+            if(whiteWantsResign == true && game->getPlayerToMove() == BLACK)
+            {
+
+            }
+
+            if(blackWantsResign == true && game->getPlayerToMove() == WHITE)
+            {
+
+            }
+        }
+
+
 
         // new move has been made
         if (noCurrMoves != game->get_no_moves()) {

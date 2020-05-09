@@ -2,7 +2,6 @@
 
 GameFront::GameFront(const std::string& gameModeName) {
 
-
     window.create(sf::VideoMode(674, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
     game = new Game();
 
@@ -137,6 +136,7 @@ EventType GameFront::checkClick() {
         if (event.type == sf::Event::MouseButtonPressed) {
             if ((int)event.key.code == (int)sf::Mouse::Left) 
                 if (boardBox.isInside(mousePos.x, mousePos.y)) return BOARD_CLICK;
+                else if(mousePos.x >= 504 && mousePos.x <= 504 + 170 && mousePos.y >= 0 && mousePos.y <= 504) return MENU_CLICK;
         }
     }
     return NOTHING;

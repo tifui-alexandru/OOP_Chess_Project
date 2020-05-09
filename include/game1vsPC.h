@@ -5,6 +5,21 @@
 class Game1vsPC : virtual public GameFront {
 private:
     PieceColour humanPlayer;
+
+    sf::Texture buttonsMenuImg, promoteMenuImg, endGameButtonImg, endGameButtonNowImg;
+    sf::Texture getHintButtonImg, getHintButtonNowImg;
+
+    sf::Sprite buttonsMenuSprite, promoteMenuSprite, endGameButtonSprite, endGameButtonNowSprite;
+    sf::Sprite getHintButtonSprite, getHintButtonNowSprite;
+
+    void printTime();
+
+    sf::Clock clock;
+
+    sf::Text text;
+
+    sf::Font font;
+
 public:
     Game1vsPC(const PieceColour &humanCol = WHITE);
     void play();

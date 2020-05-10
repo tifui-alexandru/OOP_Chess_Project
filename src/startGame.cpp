@@ -16,18 +16,22 @@ void startGame::runStart()
     if(!map1Buff.loadFromFile("../sounds/map1.wav"));
     if(!map2Buff.loadFromFile("../sounds/map2.wav"));
 
+    map1Sound.setBuffer(map1Buff);
+    map2Sound.setBuffer(map2Buff);
+
     bool sound = true;
+
+    map1Sound.setLoop(true);
+    map2Sound.setLoop(true);
+
+    map1Sound.play();
+
 
     bool menuModeGo = false;
     bool menuGameGo = true;
     bool menuAboutGo = false;
     bool Game1v1Go = false;
     bool Game1vPcGo = false;
-
-    map1Sound.setLoop(true);
-    map2Sound.setLoop(true);
-
-    map1Sound.play();
 
     do{
         if(menuGameGo == true)
@@ -74,16 +78,28 @@ void startGame::runStart()
 
         if(Game1v1Go == true)
         {
+            map1Sound.pause();
+            map2Sound.play();
+
             Game1vs1 t3;
             t3.play();
+            map2Sound.stop();
+            map1Sound.play();
+
             Game1v1Go = false;
             menuModeGo = true;
         }
 
         if(Game1vPcGo == true)
         {
+            map1Sound.pause();
+            map2Sound.play();
+
             Game1vsPC t5;
             t5.play();
+            map2Sound.stop();
+            map1Sound.play();
+
             Game1vPcGo = false;
             menuModeGo = true;
         }

@@ -4,22 +4,25 @@
 #include "SFML/Audio.hpp"
 using namespace sf;
 
-//#include "include/startGame.h"
+#include "include/startGame.h"
 
 int main()
 {
-    //startGame t;
+    // startGame t;
 
-    //t.runStart();
+    // t.runStart();
 
     sf::SoundBuffer map1Buff;
     sf::Sound map1Sound;
 
-    if(!map1Buff.loadFromFile("sounds/map1.wav"));
+    if(!map1Buff.loadFromFile("../sounds/map2.wav"));
 
     map1Sound.setBuffer(map1Buff);
 
 
     map1Sound.play();
+
+while(true);
+
     return 0;
 }

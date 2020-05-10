@@ -30,6 +30,7 @@ protected:
     std::vector<sf::Sprite> movingPieceSprites;
     sf::Sprite emptyBoardSprite, highlightSprite, chessPieceSprite[2];
     bool validMove[BOARD_SIZE][BOARD_SIZE];
+    bool hintMove[BOARD_SIZE][BOARD_SIZE];
     bool isMoving;
     Square clickedSquare, secondClickedSquare;
 

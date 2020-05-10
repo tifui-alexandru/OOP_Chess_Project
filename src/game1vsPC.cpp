@@ -104,7 +104,7 @@ void Game1vsPC::play()
 
         window.draw(buttonsMenuSprite);
 
-        //printTime();
+        printTime();
 
         if(!isMoving) {
             if (endButton.isInside(posNow.x, posNow.y)) {
@@ -128,8 +128,8 @@ void Game1vsPC::play()
                     PieceType newPiece = PAWN;
                     std::pair <Square, Square> hint = getStockfishMove(currBoardPosition, newPiece);
 
-                    std::memset(validMove, false, sizeof(validMove));
-                    validMove[hint.first.x][hint.first.y] = validMove[hint.second.x][hint.second.y] = true;
+                    std::memset(hintMove, false, sizeof(hintMove));
+                    hintMove[hint.first.x][hint.first.y] = hintMove[hint.second.x][hint.second.y] = true;
                 }
             } else
                 window.draw(getHintButtonSprite);

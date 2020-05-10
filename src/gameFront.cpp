@@ -66,7 +66,7 @@ GameFront::GameFront(const std::string& gameModeName) {
 
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j)
-            validMove[i][j] = false;
+            validMove[i][j] = hintMove[i][j] = false;
     isMoving = false;
 }
 
@@ -97,7 +97,7 @@ void GameFront::printBoard() {
 
     for (int i = 0; i < BOARD_SIZE; ++i)
         for (int j = 0; j < BOARD_SIZE; ++j)
-            if (validMove[i][j]) {
+            if (validMove[i][j] or hintMove[i][j]) {
                 sf::Sprite copy = highlightSprite;
                 Square temp = Square(boardBox.topLeft.first, boardBox.topLeft.second) + Square(squareSize, squareSize) * Square(i, j).reverse();
                 copy.setPosition((float)temp.y, (float)temp.x);
@@ -153,7 +153,7 @@ void GameFront::squareClicked() {
         isMoving = false;
         for (int i = 0; i < BOARD_SIZE; ++i)
             for (int j = 0; j < BOARD_SIZE; ++j)
-                validMove[i][j] = false;
+                validMove[i][j] = hintMove[i][j] = false;
         if (promotion) {
             printBoard();
             window.display();

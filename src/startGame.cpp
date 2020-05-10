@@ -1,4 +1,5 @@
 #include "../include/startGame.h"
+#include "SFML/Audio.hpp"
 
 void startGame::runStart()
 {
@@ -6,12 +7,27 @@ void startGame::runStart()
     menuMode t2;
     menuAbout t4;
 
+    sf::SoundBuffer map1Buff;
+    sf::SoundBuffer map2Buff;
+
+    sf::Sound map1Sound;
+    sf::Sound map2Sound;
+
+    if(!map1Buff.loadFromFile("../sounds/map1.wav"));
+    if(!map2Buff.loadFromFile("../sounds/map2.wav"));
+
+    bool sound = true;
 
     bool menuModeGo = false;
     bool menuGameGo = true;
     bool menuAboutGo = false;
     bool Game1v1Go = false;
     bool Game1vPcGo = false;
+
+    map1Sound.setLoop(true);
+    map2Sound.setLoop(true);
+
+    map1Sound.play();
 
     do{
         if(menuGameGo == true)
@@ -86,4 +102,5 @@ void startGame::runStart()
 
 
      }while(menuModeGo == true || menuGameGo == true || menuAboutGo == true || Game1v1Go == true);
+
 }

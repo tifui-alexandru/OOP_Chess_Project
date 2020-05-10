@@ -69,6 +69,7 @@ void startGame::runStart()
             Game1vsPC t5;
             t5.play();
             Game1vPcGo = false;
+            menuModeGo = true;
         }
 
         if(menuAboutGo == true)

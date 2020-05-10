@@ -221,19 +221,19 @@ void Game1vsPC::play()
 
             if(status == RESIGNATION)
             {
-                showEnd final(2);
+                showEnd final(4);
                 final.showRun();
             }
 
             if(status == CHECKMATE && game->getPlayerToMove() == BLACK)
             {
-                showEnd final(3);
+                showEnd final(5);
                 final.showRun();
             }
 
             if(status == CHECKMATE && game->getPlayerToMove() == WHITE)
             {
-                showEnd final(2);
+                showEnd final(4);
                 final.showRun();
             }
 

@@ -41,6 +41,15 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     acceptDrawImg.loadFromFile("../images/accept_draw_button.png");
     acceptDrawSprite.setTexture(acceptDrawImg);
+    acceptDrawSprite.setPosition(526, 310);
+
+    acceptDrawNowImg.loadFromFile("../images/accept_draw_buttonNow.png");
+    acceptDrawNowSprite.setTexture(acceptDrawNowImg);
+    acceptDrawNowSprite.setPosition(526, 310);
+
+    drawProposedImg.loadFromFile("../images/draw_proposed.png");
+    drawProposedSprite.setTexture(drawProposedImg);
+    drawProposedSprite.setPosition(526, 310);
 
     resignImg.loadFromFile("../images/resign_button.png");
     resignSprite.setTexture(resignImg);
@@ -169,6 +178,9 @@ void Game1vs1::play()
     bool whiteResigned = false;
     bool blackResigned = false;
 
+    bool drawEnd = false;
+    int whenDraw = -2;
+
     while(window.isOpen())
     {
         atMove = game->getPlayerToMove();
@@ -190,7 +202,36 @@ void Game1vs1::play()
         if(atMove == WHITE) window.draw(atMoveWhiteSprite); //alb la mutare
         else window.draw(atMoveBlackSprite); //negru la mutare
 
+        //BUTON DE DRAW//////////////////////////////////////////////////////////////////////////
+
         if(!isMoving) {
+
+            if (drawButton.isInside(posNow.x, posNow.y)) {
+                if (whenDraw == game->get_no_moves() - 1) {
+                    window.draw(acceptDrawNowSprite);
+
+                    if (event != NOTHING) {
+                        drawEnd = true;
+                    }
+                } else {
+                    window.draw(proposeDrawNowSprite);
+                    if (event != NOTHING) whenDraw = game->get_no_moves();
+                }
+            }
+            else{
+                if(whenDraw == game->get_no_moves() - 1) window.draw(acceptDrawSprite);
+                else window.draw(proposeDrawSprite);
+            }
+        }
+        else{
+            if(whenDraw == game->get_no_moves() - 1) window.draw(acceptDrawSprite);
+            else window.draw(proposeDrawSprite);
+        }
+
+        if(whenDraw == game->get_no_moves()) window.draw(drawProposedSprite);
+
+
+        /*if(!isMoving) {
             if (drawButton.isInside(posNow.x, posNow.y)) {
                 window.draw(proposeDrawNowSprite);
 
@@ -202,7 +243,7 @@ void Game1vs1::play()
                 window.draw(proposeDrawSprite);
         }
         else
-            window.draw(proposeDrawSprite);
+            window.draw(proposeDrawSprite);*/
 
 
         //BUTON DE RESIGN////////////////////////////////////////////////////////////////////////
@@ -313,6 +354,8 @@ void Game1vs1::play()
 
         auto status = game->get_status();
 
+        if (drawEnd == true) game->set_resign();
+
         if (status != UNFINISHED && showed == false)
         {
             window.clear();
@@ -320,6 +363,13 @@ void Game1vs1::play()
             window.draw(EndedSprite);
             window.display();
             showed = true;
+
+            if(status == RESIGNATION && drawEnd == true)
+            {
+                showEnd final(1);
+                final.showRun();
+            }
+
             if((status == CHECKMATE && game->getPlayerToMove() == BLACK) || blackResigned == true)
             {
                 showEnd final(3);

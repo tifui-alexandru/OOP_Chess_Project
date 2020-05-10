@@ -24,6 +24,20 @@ showEnd::showEnd(/*GameStatus status*/int status) {
         endS.setTexture(endT);
     }
 
+    //cand pierd eu
+
+    if(status == 4) {
+        endT.loadFromFile("../images/you_lost.png");
+        endS.setTexture(endT);
+    }
+
+    //cand bat eu
+
+    if(status == 5){
+        endT.loadFromFile("..images/you_won.png");
+        endS.setTexture(endT);
+    }
+
     size = endT.getSize();
 }
 

@@ -9,6 +9,10 @@ EventType Game1vs1::checkMenuClick(const int& x, const int& y) {
 
 Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 {
+    EndedImg.loadFromFile("../images/Ended.png");
+    EndedSprite.setTexture(EndedImg);
+    EndedSprite.setPosition(504, 0);
+
     YesNoButtonImg.loadFromFile("../images/YesNoButton.png");
     YesNoButtonSprite.setTexture(YesNoButtonImg);
     YesNoButtonSprite.setPosition(526, 400);
@@ -313,6 +317,7 @@ void Game1vs1::play()
         {
             window.clear();
             printBoard();
+            window.draw(EndedSprite);
             window.display();
             showed = true;
             if((status == CHECKMATE && game->getPlayerToMove() == BLACK) || blackResigned == true)

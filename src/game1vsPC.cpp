@@ -13,9 +13,25 @@ EventType Game1vsPC::checkMenuClick(const int& x, const int& y) {
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC"), humanPlayer(humanCol)
 {
+    EndedMenuImg.loadFromFile("../images/Ended.png");
+    EndedMenuSprite.setTexture(EndedMenuImg);
+    EndedMenuSprite.setPosition(504, 0);
+
     endGameButtonImg.loadFromFile("../images/endGameButton.png");
     endGameButtonSprite.setTexture(endGameButtonImg);
     endGameButtonSprite.setPosition(526, 350);
+
+    EndedImg.loadFromFile("../images/YesNoBig.png");
+    EndedSprite.setTexture(EndedImg);
+    EndedSprite.setPosition(526, 350);
+
+    NoEndedImg.loadFromFile("../images/NoBig.png");
+    NoEndedSprite.setTexture(NoEndedImg);
+    NoEndedSprite.setPosition(526, 350);
+
+    YesEndedImg.loadFromFile("../images/YesBig.png");
+    YesEndedSprite.setTexture(YesEndedImg);
+    YesEndedSprite.setPosition(526, 350);
 
     endGameButtonNowImg.loadFromFile("../images/endGameButtonNow.png");
     endGameButtonNowSprite.setTexture(endGameButtonNowImg);
@@ -78,6 +94,9 @@ void Game1vsPC::printTime()
 void Game1vsPC::play()
 {
     bool showed = false; //daca am aratat finalul
+    bool wantResign = false;
+    bool resigned = false;
+    int whenResign = -1;
     int noCurrMoves = 0;
     PieceColour playerMoving = WHITE;
     std::string currBoardPosition;
@@ -106,19 +125,57 @@ void Game1vsPC::play()
 
         printTime();
 
-        if(!isMoving) {
-            if (endButton.isInside(posNow.x, posNow.y)) {
+
+        //ENDED BUTTON //////////////////////////////////////////////////////////////////////////////////
+        if(!isMoving)
+        {
+            if (endButton.isInside(posNow.x, posNow.y))
+            {
+
                 window.draw(endGameButtonNowSprite);
 
-                /*if (event == MENU_CLICK) {
-                    //Game1v1Go = true;
-                    //window.close();
-                }*/
-            } else
+                if (event != NOTHING) {
+                    if (game->getPlayerToMove() == WHITE) {
+                        if (wantResign == true && whenResign == game->get_no_moves()) {
+                            if (acceptEndButton.isInside(posNow.x, posNow.y)) {
+                                resigned = true;
+                                game->set_resign();
+                            } else {
+                                wantResign = false;
+                            }
+                        } else {
+                            wantResign = true;
+                            whenResign = game->get_no_moves();
+                        }
+                    }
+                }
+                if(wantResign == true && whenResign == game->get_no_moves())
+                {
+                    window.draw(EndedSprite);
+                    if (acceptEndButton.isInside(posNow.x, posNow.y)) window.draw(YesEndedSprite);
+                    else window.draw(NoEndedSprite);
+                }
+
+                if(wantResign == true && whenResign != game->get_no_moves()) wantResign = false;
+
+            }
+            else
+            {
                 window.draw(endGameButtonSprite);
+
+                if(wantResign == true && whenResign == game->get_no_moves())
+                {
+                    window.draw(EndedSprite);
+                }
+
+                if(wantResign == true && whenResign != game->get_no_moves()) wantResign = false;
+
+            }
         }
         else
             window.draw(endGameButtonSprite);
+
+        //////////////////////////////////////////////////////////////////////////////////////
 
         if(!isMoving) {
             if (hintButton.isInside(posNow.x, posNow.y)) {
@@ -158,8 +215,16 @@ void Game1vsPC::play()
         {
             window.clear();
             printBoard();
+            window.draw(EndedMenuSprite);
             window.display();
             showed = true;
+
+            if(status == RESIGNATION)
+            {
+                showEnd final(2);
+                final.showRun();
+            }
+
             if(status == CHECKMATE && game->getPlayerToMove() == BLACK)
             {
                 showEnd final(3);

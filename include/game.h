@@ -11,7 +11,7 @@ private:
         std::vector<Piece*> capturedPieces; ///Pieces captured by this player
         int pawnValue;
         PieceColour colour;
-        explicit Player(PieceColour colour) : colour(colour), pawnValue(39) {}
+        explicit Player(PieceColour colour) : pawnValue(39), colour(colour) {}
 
         ~Player() {
             capturedPieces.clear();

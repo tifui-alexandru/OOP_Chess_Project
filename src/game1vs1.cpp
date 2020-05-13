@@ -80,7 +80,7 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     atMove = WHITE;
 
-    if(!font.loadFromFile("../images/sans.ttf"));
+    font.loadFromFile("../images/sans.ttf");
 
     textWhite.setFont(font);
     textBlack.setFont(font);
@@ -112,7 +112,7 @@ void Game1vs1::printTime()
     sf::Time elapsed = clock.getElapsedTime();
     float secondsElapsed = elapsed.asSeconds();
 
-    if(auto status = game->get_status() != UNFINISHED) secondsElapsed = ant;
+    if(game->get_status() != UNFINISHED) secondsElapsed = ant;
 
     if(atMove == WHITE)
     {
@@ -169,7 +169,6 @@ void Game1vs1::printTime()
 
 void Game1vs1::play()
 {
-    int noCurrMoves = 0;
     bool showed = false; //daca am aratat finalul
     bool whiteWantsResign = false;
     bool blackWantsResign = false;
@@ -338,15 +337,6 @@ void Game1vs1::play()
         }
         else
             window.draw(resignSprite);
-
-
-        // new move has been made
-        if (noCurrMoves != game->get_no_moves()) {
-            Move* mv = game->get_last_move();
-
-            // display move in Algrebraic notation -- here
-
-        }
 
         //aici daca am mutare{ clock.reset(); ant = 0; }
 

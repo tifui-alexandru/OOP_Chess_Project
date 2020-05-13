@@ -22,19 +22,20 @@ typedef std::vector<std::vector<Piece*> > BoardType;
 
 class Piece {
 protected:
-    Square position; // 0 indexed
     PieceColour colour;
-    PieceType type;
+    Square position; // 0 indexed
     int value; // value in pawns
     // pawn -> 1 pawn
     // bishop -> 3 pawns
     // knight -> 3 pawns
     // rook -> 5 pawns
     // queen -> 9 pawns
+    PieceType type;
     int no_moves;
 
 public:
     Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp, int no_moves = 0);
+    virtual ~Piece() {}
 
     virtual Piece* Clone() = 0;
     virtual std::vector <Square> get_possible_moves(const BoardType &board) = 0;

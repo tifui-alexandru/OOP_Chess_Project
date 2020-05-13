@@ -60,10 +60,6 @@ void showEnd::showRun()
             }
         }
 
-        sf::Vector2i pos = sf::Mouse::getPosition(window);
-
-        //get the position every time to know where the mouse is
-
         window.clear();
         //refresh
 

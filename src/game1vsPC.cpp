@@ -53,7 +53,7 @@ Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC
     buttonsMenuSprite.setTexture(buttonsMenuImg);
     buttonsMenuSprite.setPosition(504, 0);
 
-    if(!font.loadFromFile("../images/sans.ttf"));
+    font.loadFromFile("../images/sans.ttf");
 
     text.setFont(font);
 
@@ -95,7 +95,6 @@ void Game1vsPC::play()
 {
     bool showed = false; //daca am aratat finalul
     bool wantResign = false;
-    bool resigned = false;
     int whenResign = -1;
     int noCurrMoves = 0;
     PieceColour playerMoving = WHITE;
@@ -138,7 +137,6 @@ void Game1vsPC::play()
                     if (game->getPlayerToMove() == WHITE) {
                         if (wantResign == true && whenResign == game->get_no_moves()) {
                             if (acceptEndButton.isInside(posNow.x, posNow.y)) {
-                                resigned = true;
                                 game->set_resign();
                             } else {
                                 wantResign = false;

@@ -13,13 +13,11 @@ void startGame::runStart()
     sf::Sound map1Sound;
     sf::Sound map2Sound;
 
-    if(!map1Buff.loadFromFile("../sounds/map1.wav"));
-    if(!map2Buff.loadFromFile("../sounds/map2.wav"));
+    map1Buff.loadFromFile("../sounds/map1.wav");
+    map2Buff.loadFromFile("../sounds/map2.wav");
 
     map1Sound.setBuffer(map1Buff);
     map2Sound.setBuffer(map2Buff);
-
-    bool sound = true;
 
     map1Sound.setLoop(true);
     map2Sound.setLoop(true);

@@ -5,6 +5,13 @@ Move::Move(const Square &from, const Square &to, Board *curr_board, Board *next_
     to_piece = curr_board->get_piece(to);
 }
 
+Move::~Move() {
+    delete from_piece;
+    delete to_piece;
+    delete curr_board;
+    delete next_board;
+}
+
 const std::unordered_map <int, std::string> Move::AlgebraicPiece = {
     {KING, "K"},
     {QUEEN, "Q"},

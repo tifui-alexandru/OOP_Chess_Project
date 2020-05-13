@@ -31,6 +31,10 @@ Board::Board(const Board *obj) {
             if (auto piece = obj->get_piece({i, j})) board[i][j] = piece->Clone();
 }
 
+Board::~Board() {
+    board.clear();
+}
+
 void Board::change_position(Piece* newPiece, Square pos) {
     board[pos.x][pos.y] = newPiece;
     if (newPiece) newPiece->set_position(pos);

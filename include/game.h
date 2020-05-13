@@ -12,6 +12,10 @@ private:
         int pawnValue;
         PieceColour colour;
         explicit Player(PieceColour colour) : colour(colour), pawnValue(39) {}
+
+        ~Player() {
+            capturedPieces.clear();
+        }
     };
     Player *playerToMove, *playerToWait;
     int nrMovesFor50Rule;
@@ -22,6 +26,7 @@ private:
     bool repetition();
 public:
     Game();
+    ~Game();
     Board* get_board(int time = -1);
     GameStatus make_move(Square from, Square to);
     void promote(Square pos, PieceType piece);

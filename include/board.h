@@ -27,6 +27,7 @@ public:
     //! Set the initial state of the board.
     Board();
     Board(const Board *obj);
+    ~Board();
     std::vector<Square> get_valid_moves(Square pos, PieceColour colour);
 
     Piece* get_piece(Square pos) const;

@@ -42,6 +42,7 @@ protected:
     void squareClicked();
 public:
     GameFront(const std::string& gameModeName);
+    ~GameFront();
 };
 
 #endif //GAMEFRONT_H

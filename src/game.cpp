@@ -11,6 +11,13 @@ Game::Game() {
     gameBoards.push_back(new Board);
 }
 
+Game::~Game() {
+    delete playerToMove;
+    delete playerToWait;
+    gameBoards.clear();
+    gameMoves.clear();
+}
+
 Board* Game::get_board(int time) {
     // assert(time >= -1 && time < (int)gameBoards.size());
     if(time == -1) return gameBoards.back();

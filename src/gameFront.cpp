@@ -70,6 +70,10 @@ GameFront::GameFront(const std::string& gameModeName) {
     isMoving = false;
 }
 
+GameFront::~GameFront() {
+    delete game;
+}
+
 sf::Sprite GameFront::getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving) {
     int id = 6 * (int)colour + (int)piece;
     if (moving) return movingPieceSprites[id];

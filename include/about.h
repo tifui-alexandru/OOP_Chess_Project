@@ -17,7 +17,5 @@ public:
 
     menuAbout();
 
-    ~menuAbout();
-
     void menuRun();
 };

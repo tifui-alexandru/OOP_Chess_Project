@@ -24,8 +24,6 @@ menuAbout::menuAbout()
     size = tusu1.getSize();
 }
 
-menuAbout::~menuAbout(){}
-
 void menuAbout::menuRun()
 {
     RenderWindow window(sf::VideoMode(700, 622), "MENU", sf::Style::Titlebar | sf::Style::Close);

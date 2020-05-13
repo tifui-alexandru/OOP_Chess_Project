@@ -38,6 +38,8 @@ public:
     void change_position(Piece* newPiece, Square pos);
     bool insufficient_material(const PieceColour &colour);
     GameStatus get_status(const PieceColour &colourToMove, const PieceColour &colourToWait);
+
+    bool operator == (const Board& other);
 };
 
 #endif //BOARD_H

@@ -131,3 +131,14 @@ GameStatus Board::get_status(const PieceColour &colourToMove, const PieceColour 
     if (insufficient_material(colourToMove) && insufficient_material(colourToWait)) return INSUFFICIENT_MATERIAL;
     return UNFINISHED;
 }
+
+bool Board::operator == (const Board &other) {
+    for (int i = 0; i < BOARD_SIZE; ++i)
+        for (int j = 0; j < BOARD_SIZE; ++j) {
+            auto piece1 = other.board[i][j];
+            auto piece2 = board[i][j];
+            if ((piece1 == nullptr && piece2 == nullptr) or (piece1 != nullptr && piece2 != nullptr && piece1->get_type() == piece2->get_type() && piece1->get_colour() == piece2->get_colour())) continue;
+            return false;
+        }
+    return true;
+}

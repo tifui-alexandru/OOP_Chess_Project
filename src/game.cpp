@@ -36,16 +36,7 @@ bool Game::repetition() {
     int cntBoard = 0;
     auto currBoard = gameBoards.back();
     for (auto board : gameBoards) {
-        int equal = 1;
-        for (int i = 0; i < BOARD_SIZE; ++i)
-            for (int j = 0; j < BOARD_SIZE; ++j) {
-                auto piece1 = currBoard->get_piece({i, j});
-                auto piece2 = board->get_piece({i, j});
-                if ((piece1 == nullptr && piece2 == nullptr) or (piece1 != nullptr && piece2 != nullptr && piece1->get_type() == piece2->get_type() && piece1->get_colour() == piece2->get_colour())) continue;
-                equal = 0;
-                break;
-            }
-        cntBoard += equal;
+        if (*currBoard == *board) cntBoard++;
     }
     return cntBoard >= 3;
 }

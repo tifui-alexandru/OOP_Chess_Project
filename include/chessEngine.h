@@ -3,6 +3,7 @@
 
 #if defined (__WIN32)
 #include "utils.h"
+#include "pieces.h"
 #include <windows.h>
 #include <stdio.h>
 #include <iostream>

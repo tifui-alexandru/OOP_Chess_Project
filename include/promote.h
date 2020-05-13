@@ -19,8 +19,6 @@ public:
 
     Promote();
 
-    ~Promote();
-
     PieceType getPiece();
 };
 

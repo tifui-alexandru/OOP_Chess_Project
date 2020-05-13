@@ -10,8 +10,6 @@ Promote::Promote()
     size = promoteT.getSize();
 }
 
-Promote::~Promote(){}
-
 void Promote::promoteRun()
 {
     RenderWindow window(sf::VideoMode(226, 70), "Promotion", sf::Style::Titlebar | sf::Style::Close);

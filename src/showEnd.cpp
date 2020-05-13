@@ -41,8 +41,6 @@ showEnd::showEnd(/*GameStatus status*/int status) {
     size = endT.getSize();
 }
 
-showEnd::~showEnd(){}
-
 void showEnd::showRun()
 {
     sf::RenderWindow window(sf::VideoMode(296, 124), "THE END", sf::Style::Titlebar | sf::Style::Close);

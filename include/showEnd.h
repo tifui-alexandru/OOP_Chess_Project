@@ -13,8 +13,6 @@ public:
     showEnd(int status);
     //showEnd(GameStatus);
 
-    ~showEnd();
-
     void showRun();
 };
 

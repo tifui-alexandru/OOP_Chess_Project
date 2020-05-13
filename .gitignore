@@ -4,7 +4,6 @@ build/buffer.txt
 build/CHESS.out
 build/script.py
 build/stockfish
-include/chessEngine.h
 build/CHESS.out
 stockfish.exe
 build/CHESS.out

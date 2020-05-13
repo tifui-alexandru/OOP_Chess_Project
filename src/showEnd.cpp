@@ -34,7 +34,7 @@ showEnd::showEnd(/*GameStatus status*/int status) {
     //cand bat eu
 
     if(status == 5){
-        endT.loadFromFile("..images/you_won.png");
+        endT.loadFromFile("../images/you_won.png");
         endS.setTexture(endT);
     }
 

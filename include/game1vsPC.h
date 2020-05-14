@@ -6,10 +6,10 @@ class Game1vsPC : virtual public GameFront {
 private:
     PieceColour humanPlayer;
 
-    const ButtonBox endButton = {526, 350, 526 + 126, 350 + 92};
-    const ButtonBox acceptEndButton = {526, 350, 526 + 126 / 2, 350 + 92};
-    const ButtonBox declineEndButton = {526, 350, 526 + 126 / 2 + 1, 350 + 92};
-    const ButtonBox hintButton = {526, 250, 526 + 126, 250 + 66};
+    const ButtonBox <size_t> endButton = {526, 350, 526 + 126, 350 + 92};
+    const ButtonBox <size_t> acceptEndButton = {526, 350, 526 + 126 / 2, 350 + 92};
+    const ButtonBox <size_t> declineEndButton = {526, 350, 526 + 126 / 2 + 1, 350 + 92};
+    const ButtonBox <size_t> hintButton = {526, 250, 526 + 126, 250 + 66};
 
     sf::Texture buttonsMenuImg, promoteMenuImg, endGameButtonImg, endGameButtonNowImg;
     sf::Texture getHintButtonImg, getHintButtonNowImg, EndedImg;

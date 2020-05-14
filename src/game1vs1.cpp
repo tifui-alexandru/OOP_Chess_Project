@@ -9,61 +9,61 @@ EventType Game1vs1::checkMenuClick(const int& x, const int& y) {
 
 Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 {
-    EndedImg.loadFromFile("../images/Ended.png");
+    if (!EndedImg.loadFromFile("../images/Ended.png")) throw std::runtime_error("Failed to load image");
     EndedSprite.setTexture(EndedImg);
     EndedSprite.setPosition(504, 0);
 
-    YesNoButtonImg.loadFromFile("../images/YesNoButton.png");
+    if (!YesNoButtonImg.loadFromFile("../images/YesNoButton.png")) throw std::runtime_error("Failed to load image");
     YesNoButtonSprite.setTexture(YesNoButtonImg);
     YesNoButtonSprite.setPosition(526, 400);
 
-    promoteMenuImg.loadFromFile("../images/promotionMenu.png");
+    if (!promoteMenuImg.loadFromFile("../images/promotionMenu.png")) throw std::runtime_error("Failed to load image");
     promoteMenuSprite.setTexture(promoteMenuImg);
     promoteMenuSprite.setPosition(504, 0);
 
-    buttonsMenuImg.loadFromFile("../images/buttons_menu.png");
+    if (!buttonsMenuImg.loadFromFile("../images/buttons_menu.png")) throw std::runtime_error("Failed to load image");
     buttonsMenuSprite.setTexture(buttonsMenuImg);
     buttonsMenuSprite.setPosition(504, 0);
 
-    atMoveBlackImg.loadFromFile("../images/black_at_move.png");
+    if (!atMoveBlackImg.loadFromFile("../images/black_at_move.png")) throw std::runtime_error("Failed to load image");
     atMoveBlackSprite.setTexture(atMoveBlackImg);
 
-    atMoveWhiteImg.loadFromFile("../images/white_at_move.png");
+    if (!atMoveWhiteImg.loadFromFile("../images/white_at_move.png")) throw std::runtime_error("Failed to load image");
     atMoveWhiteSprite.setTexture(atMoveWhiteImg);
 
-    proposeDrawImg.loadFromFile("../images/propose_draw_button.png");
+    if (!proposeDrawImg.loadFromFile("../images/propose_draw_button.png")) throw std::runtime_error("Failed to load image");
     proposeDrawSprite.setTexture(proposeDrawImg);
     proposeDrawSprite.setPosition(526, 310);
 
-    proposeDrawNowImg.loadFromFile("../images/propose_draw_buttonNow.png");
+    if (!proposeDrawNowImg.loadFromFile("../images/propose_draw_buttonNow.png")) throw std::runtime_error("Failed to load image");
     proposeDrawNowSprite.setTexture(proposeDrawNowImg);
     proposeDrawNowSprite.setPosition(526, 310);
 
-    acceptDrawImg.loadFromFile("../images/accept_draw_button.png");
+    if (!acceptDrawImg.loadFromFile("../images/accept_draw_button.png")) throw std::runtime_error("Failed to load image");
     acceptDrawSprite.setTexture(acceptDrawImg);
     acceptDrawSprite.setPosition(526, 310);
 
-    acceptDrawNowImg.loadFromFile("../images/accept_draw_buttonNow.png");
+    if (!acceptDrawNowImg.loadFromFile("../images/accept_draw_buttonNow.png")) throw std::runtime_error("Failed to load image");
     acceptDrawNowSprite.setTexture(acceptDrawNowImg);
     acceptDrawNowSprite.setPosition(526, 310);
 
-    drawProposedImg.loadFromFile("../images/draw_proposed.png");
+    if (!drawProposedImg.loadFromFile("../images/draw_proposed.png")) throw std::runtime_error("Failed to load image");
     drawProposedSprite.setTexture(drawProposedImg);
     drawProposedSprite.setPosition(526, 310);
 
-    resignImg.loadFromFile("../images/resign_button.png");
+    if (!resignImg.loadFromFile("../images/resign_button.png")) throw std::runtime_error("Failed to load image");
     resignSprite.setTexture(resignImg);
     resignSprite.setPosition(526, 400);
 
-    resignNowImg.loadFromFile("../images/resign_buttonNowStrong.png");
+    if (!resignNowImg.loadFromFile("../images/resign_buttonNowStrong.png")) throw std::runtime_error("Failed to load image");
     resignNowSprite.setTexture(resignNowImg);
     resignNowSprite.setPosition(526, 400);
 
-    YesButtonImg.loadFromFile("../images/YesButton.png");
+    if (!YesButtonImg.loadFromFile("../images/YesButton.png")) throw std::runtime_error("Failed to load image");
     YesButtonSprite.setTexture(YesButtonImg);
     YesButtonSprite.setPosition(526, 400);
 
-    NoButtonImg.loadFromFile("../images/NoButton.png");
+    if (!NoButtonImg.loadFromFile("../images/NoButton.png")) throw std::runtime_error("Failed to load image");
     NoButtonSprite.setTexture(NoButtonImg);
     NoButtonSprite.setPosition(526, 400);
 
@@ -80,7 +80,7 @@ Game1vs1::Game1vs1() : GameFront("GameMode: 1 VS 1")
 
     atMove = WHITE;
 
-    font.loadFromFile("../images/sans.ttf");
+    if (!font.loadFromFile("../images/sans.ttf")) throw std::runtime_error("Failed to load image");
 
     textWhite.setFont(font);
     textBlack.setFont(font);
@@ -196,7 +196,7 @@ void Game1vs1::play()
 
         window.draw(buttonsMenuSprite);
 
-        //printTime();
+        printTime();
 
         if(atMove == WHITE) window.draw(atMoveWhiteSprite); //alb la mutare
         else window.draw(atMoveBlackSprite); //negru la mutare

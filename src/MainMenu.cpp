@@ -12,19 +12,19 @@ menuGame::menuGame()
 
     menuAboutGo = false;
 
-    tusu1.loadFromFile("../images/menu_img.jpg");
+    if (!tusu1.loadFromFile("../images/menu_img.jpg")) throw std::runtime_error("Failed to load image");
     susu1.setTexture(tusu1);
 
-    tusu2.loadFromFile("../images/play1.png");
+    if (!tusu2.loadFromFile("../images/play1.png")) throw std::runtime_error("Failed to load image");
     susu2.setTexture(tusu2);
 
-    tusu3.loadFromFile("../images/play2.png");
+    if (!tusu3.loadFromFile("../images/play2.png")) throw std::runtime_error("Failed to load image");
     susu3.setTexture(tusu3);
 
-    tusu4.loadFromFile("../images/about1.png");
+    if (!tusu4.loadFromFile("../images/about1.png")) throw std::runtime_error("Failed to load image");
     susu4.setTexture(tusu4);
 
-    tusu5.loadFromFile("../images/about2.png");
+    if (!tusu5.loadFromFile("../images/about2.png")) throw std::runtime_error("Failed to load image");
     susu5.setTexture(tusu5);
 
     size = tusu1.getSize();

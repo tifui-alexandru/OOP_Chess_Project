@@ -13,25 +13,25 @@ menuMode::menuMode()
 
     menuGameGo = false;
 
-    tusu1.loadFromFile("../images/menu_modes.jpg");
+    if (!tusu1.loadFromFile("../images/menu_modes.jpg")) throw std::runtime_error("Failed to load image");
     susu1.setTexture(tusu1);
 
-    tusu2.loadFromFile("../images/game1v1.png");
+    if (!tusu2.loadFromFile("../images/game1v1.png")) throw std::runtime_error("Failed to load image");
     susu2.setTexture(tusu2);
 
-    tusu3.loadFromFile("../images/fight.png");
+    if (!tusu3.loadFromFile("../images/fight.png")) throw std::runtime_error("Failed to load image");
     susu3.setTexture(tusu3);
 
-    tusu4.loadFromFile("../images/gamecomp.png");
+    if (!tusu4.loadFromFile("../images/gamecomp.png")) throw std::runtime_error("Failed to load image");
     susu4.setTexture(tusu4);
 
-    tusu5.loadFromFile("../images/fight.png");
+    if (!tusu5.loadFromFile("../images/fight.png")) throw std::runtime_error("Failed to load image");
     susu5.setTexture(tusu5);
 
-    tusu6.loadFromFile("../images/back1.png");
+    if (!tusu6.loadFromFile("../images/back1.png")) throw std::runtime_error("Failed to load image");
     susu6.setTexture(tusu6);
 
-    tusu7.loadFromFile("../images/back2.png");
+    if (!tusu7.loadFromFile("../images/back2.png")) throw std::runtime_error("Failed to load image");
     susu7.setTexture(tusu7);
 
     size = tusu1.getSize();

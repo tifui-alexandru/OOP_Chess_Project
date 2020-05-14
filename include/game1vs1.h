@@ -4,12 +4,12 @@
 
 class Game1vs1 : virtual public GameFront {
 
-    const ButtonBox resignButton = {526, 400, 526 + 126, 400 + 66};
-    const ButtonBox drawButton = {526, 310, 526 + 126, 310 + 66};
-    const ButtonBox acceptResign = {526, 400, 526 + 126 / 2, 400 + 66};
-    const ButtonBox declineResign = {526 + 126 / 2 + 1, 400, 526 + 166, 400 + 66};
-    const ButtonBox acceptDraw = {526, 310, 526 + 126 / 2, 310 + 66};
-    const ButtonBox declineDraw = {526 + 126 / 2 + 1, 310, 526 + 166, 310 + 66};
+    const ButtonBox <size_t> resignButton = {526, 400, 526 + 126, 400 + 66};
+    const ButtonBox <size_t> drawButton = {526, 310, 526 + 126, 310 + 66};
+    const ButtonBox <size_t> acceptResign = {526, 400, 526 + 126 / 2, 400 + 66};
+    const ButtonBox <size_t> declineResign = {526 + 126 / 2 + 1, 400, 526 + 166, 400 + 66};
+    const ButtonBox <size_t> acceptDraw = {526, 310, 526 + 126 / 2, 310 + 66};
+    const ButtonBox <size_t> declineDraw = {526 + 126 / 2 + 1, 310, 526 + 166, 310 + 66};
 
     sf::Texture atMoveBlackImg, atMoveWhiteImg, proposeDrawImg, proposeDrawNowImg;
     sf::Texture acceptDrawImg, resignImg, resignNowImg, buttonsMenuImg, promoteMenuImg;

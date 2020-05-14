@@ -41,15 +41,16 @@ inline Square my_notation_pos(const std::string s) {
     return Square(s[1] - '0' - 1, s[0] - 'a');
 }
 
+template <typename T>
 class ButtonBox {
 public:
-    std::pair <int, int> topLeft, bottomRight;
-    ButtonBox(const int &x1 = 0, const int &y1 = 0, const int &x2 = 0, const int &y2 = 0) {
+    std::pair <T, T> topLeft, bottomRight;
+    ButtonBox(const T &x1 = 0, const T &y1 = 0, const T &x2 = 0, const T &y2 = 0) {
         topLeft = std::make_pair(x1, y1);
         bottomRight = std::make_pair(x2, y2);
     }
 
-    inline bool isInside(const int &x, const int &y) const {
+    inline bool isInside(const T &x, const T &y) const {
         return (topLeft.first <=x and x <= bottomRight.first and topLeft.second <= y and y <= bottomRight.second);
     }
 };

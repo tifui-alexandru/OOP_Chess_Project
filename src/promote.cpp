@@ -2,7 +2,7 @@
 
 Promote::Promote() 
 {
-    promoteT.loadFromFile("../images/choose_piece.png");
+    if (!promoteT.loadFromFile("../images/choose_piece.png")) throw std::runtime_error("Failed to load image");
     promoteS.setTexture(promoteT);
 
     chosenType = PAWN;

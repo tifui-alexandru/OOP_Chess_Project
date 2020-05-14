@@ -13,47 +13,47 @@ EventType Game1vsPC::checkMenuClick(const int& x, const int& y) {
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC"), humanPlayer(humanCol)
 {
-    EndedMenuImg.loadFromFile("../images/Ended.png");
+    if (!EndedMenuImg.loadFromFile("../images/Ended.png")) throw std::runtime_error("Failed to load image");
     EndedMenuSprite.setTexture(EndedMenuImg);
     EndedMenuSprite.setPosition(504, 0);
 
-    endGameButtonImg.loadFromFile("../images/endGameButton.png");
+    if (!endGameButtonImg.loadFromFile("../images/endGameButton.png")) throw std::runtime_error("Failed to load image");
     endGameButtonSprite.setTexture(endGameButtonImg);
     endGameButtonSprite.setPosition(526, 350);
 
-    EndedImg.loadFromFile("../images/YesNoBig.png");
+    if (!EndedImg.loadFromFile("../images/YesNoBig.png")) throw std::runtime_error("Failed to load image");
     EndedSprite.setTexture(EndedImg);
     EndedSprite.setPosition(526, 350);
 
-    NoEndedImg.loadFromFile("../images/NoBig.png");
+    if (!NoEndedImg.loadFromFile("../images/NoBig.png")) throw std::runtime_error("Failed to load image");
     NoEndedSprite.setTexture(NoEndedImg);
     NoEndedSprite.setPosition(526, 350);
 
-    YesEndedImg.loadFromFile("../images/YesBig.png");
+    if (!YesEndedImg.loadFromFile("../images/YesBig.png")) throw std::runtime_error("Failed to load image");
     YesEndedSprite.setTexture(YesEndedImg);
     YesEndedSprite.setPosition(526, 350);
 
-    endGameButtonNowImg.loadFromFile("../images/endGameButtonNow.png");
+    if (!endGameButtonNowImg.loadFromFile("../images/endGameButtonNow.png")) throw std::runtime_error("Failed to load image");
     endGameButtonNowSprite.setTexture(endGameButtonNowImg);
     endGameButtonNowSprite.setPosition(526, 350);
 
-    getHintButtonImg.loadFromFile("../images/get_hint_button.png");
+    if (!getHintButtonImg.loadFromFile("../images/get_hint_button.png")) throw std::runtime_error("Failed to load image");
     getHintButtonSprite.setTexture(getHintButtonImg);
     getHintButtonSprite.setPosition(526, 250);
 
-    getHintButtonNowImg.loadFromFile("../images/get_hint_buttonNow.png");
+    if (!getHintButtonNowImg.loadFromFile("../images/get_hint_buttonNow.png")) throw std::runtime_error("Failed to load image");
     getHintButtonNowSprite.setTexture(getHintButtonNowImg);
     getHintButtonNowSprite.setPosition(526, 250);
 
-    promoteMenuImg.loadFromFile("../images/promotionMenu.png");
+    if (!promoteMenuImg.loadFromFile("../images/promotionMenu.png")) throw std::runtime_error("Failed to load image");
     promoteMenuSprite.setTexture(promoteMenuImg);
     promoteMenuSprite.setPosition(504, 0);
 
-    buttonsMenuImg.loadFromFile("../images/buttons_menu.png");
+    if (!buttonsMenuImg.loadFromFile("../images/buttons_menu.png")) throw std::runtime_error("Failed to load image");
     buttonsMenuSprite.setTexture(buttonsMenuImg);
     buttonsMenuSprite.setPosition(504, 0);
 
-    font.loadFromFile("../images/sans.ttf");
+    if (!font.loadFromFile("../images/sans.ttf")) throw std::runtime_error("Failed to load image");
 
     text.setFont(font);
 

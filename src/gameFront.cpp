@@ -5,11 +5,11 @@ GameFront::GameFront(const std::string& gameModeName) {
     window.create(sf::VideoMode(674, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
     game = new Game();
 
-    piecesImg.loadFromFile("../images/pieces.png");
-    movingPiecesImg.loadFromFile("../images/movingPieces.png");
-    emptyBoardImg.loadFromFile("../images/board.png");
-    highlightImg.loadFromFile("../images/highlight.png");
-    kingSah.loadFromFile("../images/sah.png");
+    if (!piecesImg.loadFromFile("../images/pieces.png")) throw std::runtime_error("Failed to load image");
+    if (!movingPiecesImg.loadFromFile("../images/movingPieces.png")) throw std::runtime_error("Failed to load image");
+    if (!emptyBoardImg.loadFromFile("../images/board.png")) throw std::runtime_error("Failed to load image");
+    if (!highlightImg.loadFromFile("../images/highlight.png")) throw std::runtime_error("Failed to load image");
+    if (!kingSah.loadFromFile("../images/sah.png")) throw std::runtime_error("Failed to load image");
 
     emptyBoardSprite.setTexture(emptyBoardImg);
     highlightSprite.setTexture(highlightImg);

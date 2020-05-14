@@ -20,8 +20,8 @@ enum EventType {
 class GameFront {
 protected:
     const int squareSize = 56;
-    const ButtonBox boardBox = {28, 28, 28 + 8 * 56, 28 + 8 * 56};
-    const ButtonBox menuBox = {504, 0, 504 + 170, 504};
+    const ButtonBox <size_t> boardBox = {28, 28, 28 + 8 * 56, 28 + 8 * 56};
+    const ButtonBox <size_t> menuBox = {504, 0, 504 + 170, 504};
 
     sf::Texture piecesImg, movingPiecesImg, emptyBoardImg, highlightImg, kingSah;
     sf::RenderWindow window;

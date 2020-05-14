@@ -32,6 +32,9 @@ Board::Board(const Board *obj) {
 }
 
 Board::~Board() {
+    for (auto& it : board)
+        for(auto& itt: it)
+            delete itt;
     board.clear();
 }
 

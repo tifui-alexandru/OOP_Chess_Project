@@ -14,6 +14,10 @@ Game::Game() {
 Game::~Game() {
     delete playerToMove;
     delete playerToWait;
+    for(auto& it : gameBoards)
+        delete it;
+    for(auto& it : gameMoves)
+        delete it;
     gameBoards.clear();
     gameMoves.clear();
 }
@@ -30,15 +34,6 @@ void Game::promote(Square pos, PieceType piece) {
     else if (piece == ROOK) gameBoards.back()->change_position(new Rook(oldPiece->get_colour(), pos), pos);
     else if (piece == KNIGHT) gameBoards.back()->change_position(new Knight(oldPiece->get_colour(), pos), pos);
     else if (piece == BISHOP) gameBoards.back()->change_position(new Bishop(oldPiece->get_colour(), pos), pos);
-}
-
-bool Game::repetition() {
-    int cntBoard = 0;
-    auto currBoard = gameBoards.back();
-    for (auto board : gameBoards) {
-        if (*currBoard == *board) cntBoard++;
-    }
-    return cntBoard >= 3;
 }
 
 GameStatus Game::make_move(Square from, Square to) {
@@ -84,15 +79,21 @@ GameStatus Game::make_move(Square from, Square to) {
     gameBoards.push_back(currBoard);
 
     std::swap(playerToMove, playerToWait);
-    if (nrMovesFor50Rule == 50) return MOVE50RULE;
-    if (repetition()) return REPETITION;
-    return currBoard->get_status(playerToMove->colour, playerToWait->colour);
+    return get_status();
 }
 
 GameStatus Game::get_status() {
     if (resign) return RESIGNATION;
     if (nrMovesFor50Rule == 50) return MOVE50RULE;
-    if (repetition()) return REPETITION;
+    auto func = [&]() -> bool {
+        int cntBoard = 0;
+        auto currBoard = gameBoards.back();
+        for (auto board : gameBoards) {
+            if (*currBoard == *board) cntBoard++;
+        }
+        return cntBoard >= 3;
+    }; 
+    if (func()) return REPETITION;
     return get_board()->get_status(playerToMove->colour, playerToWait->colour);
 }
 

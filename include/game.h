@@ -14,6 +14,8 @@ private:
         explicit Player(PieceColour colour) : pawnValue(39), colour(colour) {}
 
         ~Player() {
+            for (auto& it : capturedPieces)
+                delete it;
             capturedPieces.clear();
         }
     };
@@ -23,7 +25,6 @@ private:
     std::vector<Board*> gameBoards;
     std::vector<Move*> gameMoves;
 
-    bool repetition();
 public:
     Game();
     ~Game();

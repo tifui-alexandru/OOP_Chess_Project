@@ -14,7 +14,6 @@ private:
 
 public:
     Move(const Square &from, const Square &to, Board *curr_bord, Board *next_board, const PieceColour &col);
-    ~Move();
     std::string toAlgebraicNotation();
     std::string toLongAlgebraicNotation();
 };

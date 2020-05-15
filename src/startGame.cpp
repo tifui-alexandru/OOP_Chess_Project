@@ -1,6 +1,18 @@
 #include "../include/startGame.h"
 #include "SFML/Audio.hpp"
 
+startGame * startGame::instance_ = nullptr;
+
+startGame::startGame() = default;
+
+startGame &startGame::GetInstance() {
+    if (instance_ == nullptr)
+        instance_ = new startGame();
+
+    return *instance_;
+}
+
+
 void startGame::runStart()
 {
     menuGame t1;

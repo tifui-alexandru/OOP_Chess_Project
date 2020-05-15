@@ -11,9 +11,13 @@
 
 class startGame
 {
-public:
+    startGame();
 
-    void runStart();
+    startGame & operator= (const startGame & ) = delete;
+    static startGame * instance_;
+public:
+    static startGame & GetInstance();
+    static void runStart();
 };
 
 

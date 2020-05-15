@@ -3,6 +3,6 @@
 int main()
 {
     auto newGame = startGame::GetInstance();
-    newGame.runStart();
+    newGame->runStart();
     return 0;
 }

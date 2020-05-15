@@ -5,11 +5,11 @@ startGame * startGame::instance_ = nullptr;
 
 startGame::startGame() = default;
 
-startGame &startGame::GetInstance() {
+startGame *startGame::GetInstance() {
     if (instance_ == nullptr)
         instance_ = new startGame();
 
-    return *instance_;
+    return instance_;
 }
 
 

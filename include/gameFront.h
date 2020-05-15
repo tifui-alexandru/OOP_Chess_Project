@@ -25,7 +25,7 @@ protected:
 
     sf::Texture piecesImg, movingPiecesImg, emptyBoardImg, highlightImg, kingSah;
     sf::RenderWindow window;
-    Game* game;
+    std::unique_ptr<Game> game;
     std::vector<sf::Sprite> pieceSprites;
     std::vector<sf::Sprite> movingPieceSprites;
     sf::Sprite emptyBoardSprite, highlightSprite, chessPieceSprite[2];

@@ -3,7 +3,7 @@
 GameFront::GameFront(const std::string& gameModeName) {
 
     window.create(sf::VideoMode(674, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
-    game = new Game();
+    game = std::make_unique<Game>();
 
     if (!piecesImg.loadFromFile("../images/pieces.png")) throw std::runtime_error("Failed to load image");
     if (!movingPiecesImg.loadFromFile("../images/movingPieces.png")) throw std::runtime_error("Failed to load image");
@@ -71,7 +71,6 @@ GameFront::GameFront(const std::string& gameModeName) {
 }
 
 GameFront::~GameFront() {
-    delete game;
 }
 
 sf::Sprite GameFront::getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving) {

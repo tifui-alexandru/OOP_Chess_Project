@@ -16,7 +16,7 @@ class startGame
     startGame & operator= (const startGame & ) = delete;
     static startGame * instance_;
 public:
-    static startGame & GetInstance();
+    static startGame * GetInstance();
     static void runStart();
 };
 

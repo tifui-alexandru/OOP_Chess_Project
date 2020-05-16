@@ -15,7 +15,7 @@ startGame *startGame::GetInstance() {
 
 void startGame::runStart()
 {
-    menuGame t1;
+
     menuMode t2;
     menuAbout t4;
 
@@ -36,6 +36,11 @@ void startGame::runStart()
 
     map1Sound.play();
 
+    bool volumeWorking = true;
+
+    float volumePower = 100.0;
+
+    menuGame t1(map1Sound, map2Sound, volumeWorking, volumePower);
 
     bool menuModeGo = false;
     bool menuGameGo = true;

@@ -196,7 +196,7 @@ void Game1vs1::play()
 
         window.draw(buttonsMenuSprite);
 
-        printTime();
+        //printTime();
 
         if(atMove == WHITE) window.draw(atMoveWhiteSprite); //alb la mutare
         else window.draw(atMoveBlackSprite); //negru la mutare

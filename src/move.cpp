@@ -106,3 +106,7 @@ std::string Move::toLongAlgebraicNotation() {
     }
     return from.chess_notation_pos() + to.chess_notation_pos() + promotionPiece;
 }
+
+bool Move::operator==(const Move &other) {
+    return (col == other.col && *from_piece == *other.from_piece && *to_piece == *other.to_piece);
+}

@@ -41,6 +41,7 @@ public:
 
     inline int get_no_moves() const {return (int)gameMoves.size();}
     inline Move* get_last_move() const {return gameMoves.back();}
+    bool operator == (const Game& other);
 };
 
 #endif

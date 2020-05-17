@@ -1,6 +1,6 @@
 #ifndef CHESS_PROXYMENUABOUT_H
 #define CHESS_PROXYMENUABOUT_H
-#pragma once
+//#pragma once
 #include <SFML/Graphics.hpp>
 using namespace sf;
 

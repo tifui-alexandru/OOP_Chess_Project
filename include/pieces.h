@@ -40,6 +40,7 @@ public:
     virtual Piece* Clone() = 0;
     virtual std::vector <Square> get_possible_moves(const BoardType &board) = 0;
 
+    static Piece* createPiece(const PieceType &piece, const PieceColour &col, const Square &pos);
     inline PieceColour get_colour() const {return colour;}
     inline PieceType get_type() const {return type;}
     inline int get_value() const {return value;}
@@ -48,6 +49,8 @@ public:
     inline void inc_no_moves() {++no_moves;}
 
     inline bool moved() const{return static_cast<bool>(no_moves);}
+
+    bool operator == (const Piece &other);
 };
 
 class King : virtual public Piece {

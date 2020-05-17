@@ -3,7 +3,8 @@
 GameFront::GameFront(const std::string& gameModeName) {
 
     window.create(sf::VideoMode(674, 504), gameModeName, sf::Style::Titlebar | sf::Style::Close);
-    game = std::make_unique<Game>();
+    //game = std::make_unique<Game>();
+    game = new Game();
 
     if (!piecesImg.loadFromFile("../images/pieces.png")) throw std::runtime_error("Failed to load image");
     if (!movingPiecesImg.loadFromFile("../images/movingPieces.png")) throw std::runtime_error("Failed to load image");

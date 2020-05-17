@@ -7,6 +7,20 @@ static const Square directions[8] = {{1, 0}, {-1, 0}, {0, -1}, {0, 1}, {1, -1}, 
 
 Piece::Piece(const PieceColour &col, const Square &pos, const int &val, const PieceType &tp, int no_moves) : colour(col), position(pos), value(val), type(tp), no_moves(no_moves) {}
 
+Piece* Piece::createPiece(const PieceType &piece, const PieceColour &col, const Square &pos) {
+    if (piece == PAWN) return new Pawn(col, pos);
+    if (piece == ROOK) return new Rook(col, pos);
+    if (piece == KNIGHT) return new Knight(col, pos);
+    if (piece == BISHOP) return new Bishop(col, pos);
+    if (piece == QUEEN) return new Queen(col, pos);
+    if (piece == KING) return new King(col, pos);
+    return nullptr;
+}
+
+bool Piece::operator==(const Piece &other) {
+    return (colour == other.colour && type == other.type && position == other.position);
+}
+
 King::King(const PieceColour &col, const Square &pos) : Piece(col, pos, 0, KING) {}
 Queen::Queen(const PieceColour &col, const Square &pos) : Piece(col, pos, 9, QUEEN) {}
 Rook::Rook(const PieceColour &col, const Square &pos) : Piece(col, pos, 5, ROOK) {}

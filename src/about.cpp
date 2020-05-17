@@ -28,10 +28,9 @@ menuAbout::menuAbout()
 
 void menuAbout::menuRun()
 {
+    RenderWindow window(sf::VideoMode(700, 622), "MENU", sf::Style::Titlebar | sf::Style::Close);
     ImageX img1("../images/ab_b1.png", "../images/ab_b2.png", 55, 120);
     ImageX img2("../images/ab_f1.png", "../images/ab_f2.png", 490, 120);
-
-    RenderWindow window(sf::VideoMode(700, 622), "MENU", sf::Style::Titlebar | sf::Style::Close);
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable

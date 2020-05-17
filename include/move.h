@@ -18,6 +18,7 @@ public:
     std::string toLongAlgebraicNotation();
 
     bool operator == (const Move& other);
+    bool operator != (const Move& other) {return !(*this == other);}
 };
 
 #endif 

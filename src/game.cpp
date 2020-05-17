@@ -109,6 +109,6 @@ void Game::set_resign()
 bool Game::operator==(const Game &other) {
     if (gameMoves.size() != other.gameMoves.size()) return false;
     for (int i = 0; i < gameMoves.size(); ++i)
-        if (!(*gameMoves[i] == *other.gameMoves[i])) return false;
+        if (*gameMoves[i] != *other.gameMoves[i]) return false;
     return true;
 }

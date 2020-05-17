@@ -32,6 +32,10 @@ struct Square {
         return x == other.x && y == other.y;
     }
 
+    bool operator != (const Square &other) const {
+        return !(*this == other);
+    }
+
     inline Square reverse() const {
         return {7 - x, y};
     }

@@ -72,6 +72,7 @@ GameFront::GameFront(const std::string& gameModeName) {
 }
 
 GameFront::~GameFront() {
+    delete game;
 }
 
 sf::Sprite GameFront::getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving) {

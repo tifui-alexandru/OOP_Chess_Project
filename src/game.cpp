@@ -34,6 +34,7 @@ void Game::promote(Square pos, PieceType piece) {
     else if (piece == ROOK) gameBoards.back()->change_position(new Rook(oldPiece->get_colour(), pos), pos);
     else if (piece == KNIGHT) gameBoards.back()->change_position(new Knight(oldPiece->get_colour(), pos), pos);
     else if (piece == BISHOP) gameBoards.back()->change_position(new Bishop(oldPiece->get_colour(), pos), pos);
+    delete oldPiece;
 }
 
 GameStatus Game::make_move(Square from, Square to) {
@@ -108,7 +109,7 @@ void Game::set_resign()
 
 bool Game::operator==(const Game &other) {
     if (gameMoves.size() != other.gameMoves.size()) return false;
-    for (int i = 0; i < gameMoves.size(); ++i)
+    for (int i = 0; i < (int)gameMoves.size(); ++i)
         if (!(*gameMoves[i] == *other.gameMoves[i])) return false;
     return true;
 }

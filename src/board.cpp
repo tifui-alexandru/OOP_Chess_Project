@@ -145,3 +145,10 @@ bool Board::operator == (const Board &other) {
         }
     return true;
 }
+
+Board::Board(Board &&obj) noexcept {
+    board = obj.board;
+    for (int i = 0; i < obj.board.size(); ++i)
+        for (auto &p : obj.board[i])
+            p = nullptr;
+}

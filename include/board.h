@@ -39,6 +39,8 @@ public:
     bool insufficient_material(const PieceColour &colour);
     GameStatus get_status(const PieceColour &colourToMove, const PieceColour &colourToWait);
 
+    Board (Board&& obj) noexcept;
+
     bool operator == (const Board& other);
     bool operator != (const Board& other) {return !(*this == other);}
 };

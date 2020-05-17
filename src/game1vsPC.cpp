@@ -120,7 +120,7 @@ void Game1vsPC::play()
 
         window.draw(buttonsMenuSprite);
 
-        //printTime();
+        printTime();
 
 
         //ENDED BUTTON //////////////////////////////////////////////////////////////////////////////////

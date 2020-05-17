@@ -1,6 +1,0 @@
-#ifndef _recource_rc
-#define _recource_rc
-
-MAINICON ICON "images/logo.ico"
-
-#endif // _recource_rc

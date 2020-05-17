@@ -40,6 +40,7 @@ public:
     GameStatus get_status(const PieceColour &colourToMove, const PieceColour &colourToWait);
 
     bool operator == (const Board& other);
+    bool operator != (const Board& other) {return !(*this == other);}
 };
 
 #endif //BOARD_H

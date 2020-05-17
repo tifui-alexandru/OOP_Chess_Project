@@ -51,6 +51,7 @@ public:
     inline bool moved() const{return static_cast<bool>(no_moves);}
 
     bool operator == (const Piece &other);
+    bool operator != (const Piece& other) {return !(*this == other);}
 };
 
 class King : virtual public Piece {

@@ -1,9 +1,8 @@
 #include <SFML/Graphics.hpp>
-using namespace sf;
 #include <SFML/Audio.hpp>
 #include "../include/MainMenu.h"
 
-menuGame::menuGame(Sound& map1Primit, Sound& map2Primit, bool volumPrimit, float& volumePower)
+menuGame::menuGame(sf::Sound& map1Primit, sf::Sound& map2Primit, bool volumPrimit, float& volumePower)
 {
     map1 = &map1Primit;
     map2 = &map2Primit;
@@ -18,37 +17,37 @@ menuGame::menuGame(Sound& map1Primit, Sound& map2Primit, bool volumPrimit, float
 
     volumeWorking = volumPrimit;
 
-    if (!tusu1.loadFromFile("../images/menu_img.jpg")) throw std::runtime_error("Failed to load image");
+    if (!tusu1.loadFromFile("../images/menu_img.jpg")) throw Exception("Failed to load image");
     susu1.setTexture(tusu1);
 
-    if (!tusu2.loadFromFile("../images/play1.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu2.loadFromFile("../images/play1.png")) throw Exception("Failed to load image");
     susu2.setTexture(tusu2);
     susu2.setPosition(257.5, 100);
 
-    if (!tusu3.loadFromFile("../images/play2.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu3.loadFromFile("../images/play2.png")) throw Exception("Failed to load image");
     susu3.setTexture(tusu3);
     susu3.setPosition(257.5, 100);
 
-    if (!tusu4.loadFromFile("../images/about1.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu4.loadFromFile("../images/about1.png")) throw Exception("Failed to load image");
     susu4.setTexture(tusu4);
     susu4.setPosition(180, 380);
 
-    if (!tusu5.loadFromFile("../images/about2.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu5.loadFromFile("../images/about2.png")) throw Exception("Failed to load image");
     susu5.setTexture(tusu5);
     susu5.setPosition(180, 380);
 
-    if (!volumeOnImg.loadFromFile("../images/soundOn.png")) throw std::runtime_error("Failed to load image");
+    if (!volumeOnImg.loadFromFile("../images/soundOn.png")) throw Exception("Failed to load image");
     volumeOnSprite.setTexture(volumeOnImg);
     volumeOnSprite.setPosition(500, 470);
 
-    if (!volumeOffImg.loadFromFile("../images/soundOff.png")) throw std::runtime_error("Failed to load image");
+    if (!volumeOffImg.loadFromFile("../images/soundOff.png")) throw Exception("Failed to load image");
     volumeOffSprite.setTexture(volumeOffImg);
     volumeOffSprite.setPosition(500, 470);
 
-    if (!volumeBarImg.loadFromFile("../images/sound.png")) throw std::runtime_error("Failed to load image");
+    if (!volumeBarImg.loadFromFile("../images/sound.png")) throw Exception("Failed to load image");
     volumeBarSprite.setTexture(volumeBarImg);
 
-    if(!songPatternImg.loadFromFile("../images/songPattern.jpg")) throw std::runtime_error("Failed to load image");
+    if(!songPatternImg.loadFromFile("../images/songPattern.jpg")) throw Exception("Failed to load image");
     songPatternSprite.setTexture(songPatternImg);
 
     volumeBarSprite.setPosition(500 + 51, 470);
@@ -60,7 +59,7 @@ menuGame::~menuGame(){}
 
 void menuGame::menuRun()
 {
-    RenderWindow window(sf::VideoMode(680, 544), "MENU", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(680, 544), "MENU", sf::Style::Titlebar | sf::Style::Close);
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable
@@ -107,7 +106,7 @@ void menuGame::menuRun()
 
         }*/
 
-        Vector2i pos = Mouse::getPosition(window);
+        sf::Vector2i pos = sf::Mouse::getPosition(window);
 
         window.clear();
         //refresh
@@ -120,9 +119,9 @@ void menuGame::menuRun()
         {
             window.draw(susu3);
 
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if((int)event.key.code ==(int)Mouse::Left)
+                if((int)event.key.code ==(int)sf::Mouse::Left)
                 {
                     menuModeGo = true;
                     window.close();
@@ -138,9 +137,9 @@ void menuGame::menuRun()
         {
             window.draw(susu5);
 
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if((int)event.key.code ==(int)Mouse::Left)
+                if((int)event.key.code ==(int)sf::Mouse::Left)
                 {
                     menuAboutGo = true;
                     window.close();
@@ -167,9 +166,9 @@ void menuGame::menuRun()
 
         if(pos.x >= 551 && pos.x<= 551 + 103 && pos.y >= 470 && pos.y <= 470 + 53)
         {
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if((int)event.key.code ==(int)Mouse::Left)
+                if((int)event.key.code ==(int)sf::Mouse::Left)
                 {
                     rectV.setSize(sf::Vector2f (pos.x - 551, 53));
                     map1->setVolume((pos.x-551.0) / 103.0 * 100.0);

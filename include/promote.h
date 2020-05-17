@@ -3,14 +3,13 @@
 
 #include <SFML/Graphics.hpp>
 #include "pieces.h"
-using namespace sf;
 
 class Promote
 {
-    Texture promoteT;
-    Sprite promoteS;
+    sf::Texture promoteT;
+    sf::Sprite promoteS;
 
-    Vector2u size;
+    sf::Vector2u size;
 
     PieceType chosenType;
 

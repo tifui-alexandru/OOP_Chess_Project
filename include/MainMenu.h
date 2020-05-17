@@ -1,12 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-using namespace sf;
+#include "utils.h"
 
 class menuGame
 {
 public:
-    Sound* map1;
-    Sound* map2;
+    sf::Sound* map1;
+    sf::Sound* map2;
 
     bool terminate;
 
@@ -16,18 +16,18 @@ public:
 
     float* volumeP;
 
-    Texture tusu1, tusu2, tusu3, tusu4, tusu5, volumeOnImg, volumeOffImg, volumeBarImg;
-    Texture songPatternImg;
+    sf::Texture tusu1, tusu2, tusu3, tusu4, tusu5, volumeOnImg, volumeOffImg, volumeBarImg;
+    sf::Texture songPatternImg;
 
-    Sprite susu1, susu2, susu3, susu4, susu5, volumeOnSprite, volumeOffSprite, volumeBarSprite;
-    Sprite songPatternSprite;
+    sf::Sprite susu1, susu2, susu3, susu4, susu5, volumeOnSprite, volumeOffSprite, volumeBarSprite;
+    sf::Sprite songPatternSprite;
 
-    Vector2u size;
+    sf::Vector2u size;
 
 public:
     bool volumeWorking;
 
-    menuGame(Sound&, Sound&, bool, float&);
+    menuGame(sf::Sound&, sf::Sound&, bool, float&);
 
     ~menuGame();
 

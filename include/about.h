@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
-using namespace sf;
 
 #include "proxyMenuAbout.h"
+#include "utils.h"
 
 class menuAbout
 {
@@ -10,10 +10,10 @@ public:
 
     bool menuGameGo;
 
-    Texture tusu1, tusu2, tusu3, tusu4, tusu5;
-    Sprite susu1, susu2, susu3, susu4, susu5;
+    sf::Texture tusu1, tusu2, tusu3, tusu4, tusu5;
+    sf::Sprite susu1, susu2, susu3, susu4, susu5;
 
-    Vector2u size;
+    sf::Vector2u size;
 
 public:
 

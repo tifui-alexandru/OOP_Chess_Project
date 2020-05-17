@@ -1,8 +1,6 @@
 #include "../include/game1vsPC.h"
 #include "../include/chessEngine.h"
 #include <string>
-#include <cstdlib>
-#include <iostream>
 #include <cstring>
 
 EventType Game1vsPC::checkMenuClick(const int& x, const int& y) {
@@ -13,47 +11,47 @@ EventType Game1vsPC::checkMenuClick(const int& x, const int& y) {
 
 Game1vsPC::Game1vsPC(const PieceColour &humanCol) : GameFront("GameMode: 1 VS PC"), humanPlayer(humanCol)
 {
-    if (!EndedMenuImg.loadFromFile("../images/Ended.png")) throw std::runtime_error("Failed to load image");
+    if (!EndedMenuImg.loadFromFile("../images/Ended.png")) throw Exception("Failed to load image");
     EndedMenuSprite.setTexture(EndedMenuImg);
     EndedMenuSprite.setPosition(504, 0);
 
-    if (!endGameButtonImg.loadFromFile("../images/endGameButton.png")) throw std::runtime_error("Failed to load image");
+    if (!endGameButtonImg.loadFromFile("../images/endGameButton.png")) throw Exception("Failed to load image");
     endGameButtonSprite.setTexture(endGameButtonImg);
     endGameButtonSprite.setPosition(526, 350);
 
-    if (!EndedImg.loadFromFile("../images/YesNoBig.png")) throw std::runtime_error("Failed to load image");
+    if (!EndedImg.loadFromFile("../images/YesNoBig.png")) throw Exception("Failed to load image");
     EndedSprite.setTexture(EndedImg);
     EndedSprite.setPosition(526, 350);
 
-    if (!NoEndedImg.loadFromFile("../images/NoBig.png")) throw std::runtime_error("Failed to load image");
+    if (!NoEndedImg.loadFromFile("../images/NoBig.png")) throw Exception("Failed to load image");
     NoEndedSprite.setTexture(NoEndedImg);
     NoEndedSprite.setPosition(526, 350);
 
-    if (!YesEndedImg.loadFromFile("../images/YesBig.png")) throw std::runtime_error("Failed to load image");
+    if (!YesEndedImg.loadFromFile("../images/YesBig.png")) throw Exception("Failed to load image");
     YesEndedSprite.setTexture(YesEndedImg);
     YesEndedSprite.setPosition(526, 350);
 
-    if (!endGameButtonNowImg.loadFromFile("../images/endGameButtonNow.png")) throw std::runtime_error("Failed to load image");
+    if (!endGameButtonNowImg.loadFromFile("../images/endGameButtonNow.png")) throw Exception("Failed to load image");
     endGameButtonNowSprite.setTexture(endGameButtonNowImg);
     endGameButtonNowSprite.setPosition(526, 350);
 
-    if (!getHintButtonImg.loadFromFile("../images/get_hint_button.png")) throw std::runtime_error("Failed to load image");
+    if (!getHintButtonImg.loadFromFile("../images/get_hint_button.png")) throw Exception("Failed to load image");
     getHintButtonSprite.setTexture(getHintButtonImg);
     getHintButtonSprite.setPosition(526, 250);
 
-    if (!getHintButtonNowImg.loadFromFile("../images/get_hint_buttonNow.png")) throw std::runtime_error("Failed to load image");
+    if (!getHintButtonNowImg.loadFromFile("../images/get_hint_buttonNow.png")) throw Exception("Failed to load image");
     getHintButtonNowSprite.setTexture(getHintButtonNowImg);
     getHintButtonNowSprite.setPosition(526, 250);
 
-    if (!promoteMenuImg.loadFromFile("../images/promotionMenu.png")) throw std::runtime_error("Failed to load image");
+    if (!promoteMenuImg.loadFromFile("../images/promotionMenu.png")) throw Exception("Failed to load image");
     promoteMenuSprite.setTexture(promoteMenuImg);
     promoteMenuSprite.setPosition(504, 0);
 
-    if (!buttonsMenuImg.loadFromFile("../images/buttons_menu.png")) throw std::runtime_error("Failed to load image");
+    if (!buttonsMenuImg.loadFromFile("../images/buttons_menu.png")) throw Exception("Failed to load image");
     buttonsMenuSprite.setTexture(buttonsMenuImg);
     buttonsMenuSprite.setPosition(504, 0);
 
-    if (!font.loadFromFile("../images/sans.ttf")) throw std::runtime_error("Failed to load image");
+    if (!font.loadFromFile("../images/sans.ttf")) throw Exception("Failed to load image");
 
     text.setFont(font);
 
@@ -105,7 +103,7 @@ void Game1vsPC::play()
         window.clear();
 
         window.draw(promoteMenuSprite);
-        Vector2i posNow = Mouse::getPosition(window);
+        sf::Vector2i posNow = sf::Mouse::getPosition(window);
         EventType event = checkClick();
 
         if (playerMoving == humanPlayer) {

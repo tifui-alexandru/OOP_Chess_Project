@@ -25,8 +25,8 @@ void startGame::runStart()
     sf::Sound map1Sound;
     sf::Sound map2Sound;
 
-    if (!map1Buff.loadFromFile("../sounds/map1.wav")) throw std::runtime_error("Sound file must be in .wav format");
-    if (!map2Buff.loadFromFile("../sounds/map2.wav")) throw std::runtime_error("Sound file must be in .wav format");
+    if (!map1Buff.loadFromFile("../sounds/map1.wav")) throw Exception("Sound file must be in .wav format");
+    if (!map2Buff.loadFromFile("../sounds/map2.wav")) throw Exception("Sound file must be in .wav format");
 
     map1Sound.setBuffer(map1Buff);
     map2Sound.setBuffer(map2Buff);

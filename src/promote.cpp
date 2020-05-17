@@ -2,7 +2,7 @@
 
 Promote::Promote() 
 {
-    if (!promoteT.loadFromFile("../images/choose_piece.png")) throw std::runtime_error("Failed to load image");
+    if (!promoteT.loadFromFile("../images/choose_piece.png")) throw Exception("Failed to load image");
     promoteS.setTexture(promoteT);
 
     chosenType = PAWN;
@@ -12,7 +12,7 @@ Promote::Promote()
 
 void Promote::promoteRun()
 {
-    RenderWindow window(sf::VideoMode(226, 70), "Promotion", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(226, 70), "Promotion", sf::Style::Titlebar | sf::Style::Close);
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable
@@ -31,7 +31,7 @@ void Promote::promoteRun()
             }
         }
 
-        Vector2i pos = Mouse::getPosition(window);
+        sf::Vector2i pos = sf::Mouse::getPosition(window);
 
         //get the position every time to know where the mouse is
 
@@ -41,8 +41,8 @@ void Promote::promoteRun()
         window.draw(promoteS);
 
         //oriunde apesi, ti se inchise fereastra
-        if (event.type == Event::MouseButtonPressed) {
-            if (event.key.code == (int) Mouse::Left) {
+        if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.key.code == (int) sf::Mouse::Left) {
                 if(pos.x >= 0 && pos.x <= 226 / 4)
                 {
                     chosenType = ROOK; 

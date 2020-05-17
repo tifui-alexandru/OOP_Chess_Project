@@ -6,29 +6,15 @@ menuAbout::menuAbout()
 
     menuGameGo = false;
 
-    if (!tusu1.loadFromFile("../images/about.jpg")) throw std::runtime_error("Failed to load image");
+    if (!tusu1.loadFromFile("../images/about.jpg")) throw Exception("Failed to load image");
     susu1.setTexture(tusu1);
-
-    /*if (!tusu2.loadFromFile("../images/ab_b1.png")) throw std::runtime_error("Failed to load image");
-    susu2.setTexture(tusu2);
-
-    if (!tusu3.loadFromFile("../images/ab_b2.png")) throw std::runtime_error("Failed to load image");
-    susu3.setTexture(tusu3);
-
-    if (!tusu4.loadFromFile("../images/ab_f1.png")) throw std::runtime_error("Failed to load image");
-    susu4.setTexture(tusu4);
-
-    if (!tusu5.loadFromFile("../images/ab_f2.png")) throw std::runtime_error("Failed to load image");
-    susu5.setTexture(tusu5);*/
-
-
 
     size = tusu1.getSize();
 }
 
 void menuAbout::menuRun()
 {
-    RenderWindow window(sf::VideoMode(700, 622), "MENU", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(700, 622), "MENU", sf::Style::Titlebar | sf::Style::Close);
     ImageX img1("../images/ab_b1.png", "../images/ab_b2.png", 55, 120);
     ImageX img2("../images/ab_f1.png", "../images/ab_f2.png", 490, 120);
     // VideoMode - > window size
@@ -52,7 +38,7 @@ void menuAbout::menuRun()
             }
         }
 
-        Vector2i pos = Mouse::getPosition(window);
+        sf::Vector2i pos = sf::Mouse::getPosition(window);
 
         //get the position every time to know where the mouse is
 
@@ -75,9 +61,9 @@ void menuAbout::menuRun()
         {
             window.draw(img1.drawOff());
 
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if(event.key.code == (int)Mouse::Left)
+                if(event.key.code == (int)sf::Mouse::Left)
                 {
                     menuGameGo = true;
                     window.close();
@@ -92,9 +78,9 @@ void menuAbout::menuRun()
         {
             window.draw(img2.drawOff());
 
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if((int)event.key.code == (int)Mouse::Left)
+                if((int)event.key.code == (int)sf::Mouse::Left)
                 {
                     menuGameGo = true;
                     window.close();

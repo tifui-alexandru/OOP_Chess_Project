@@ -1,6 +1,4 @@
 #include <SFML/Graphics.hpp>
-using namespace sf;
-
 #include "../include/GameMenu.h"
 
 menuMode::menuMode()
@@ -13,25 +11,25 @@ menuMode::menuMode()
 
     menuGameGo = false;
 
-    if (!tusu1.loadFromFile("../images/menu_modes.jpg")) throw std::runtime_error("Failed to load image");
+    if (!tusu1.loadFromFile("../images/menu_modes.jpg")) throw Exception("Failed to load image");
     susu1.setTexture(tusu1);
 
-    if (!tusu2.loadFromFile("../images/game1v1.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu2.loadFromFile("../images/game1v1.png")) throw Exception("Failed to load image");
     susu2.setTexture(tusu2);
 
-    if (!tusu3.loadFromFile("../images/fight.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu3.loadFromFile("../images/fight.png")) throw Exception("Failed to load image");
     susu3.setTexture(tusu3);
 
-    if (!tusu4.loadFromFile("../images/gamecomp.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu4.loadFromFile("../images/gamecomp.png")) throw Exception("Failed to load image");
     susu4.setTexture(tusu4);
 
-    if (!tusu5.loadFromFile("../images/fight.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu5.loadFromFile("../images/fight.png")) throw Exception("Failed to load image");
     susu5.setTexture(tusu5);
 
-    if (!tusu6.loadFromFile("../images/back1.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu6.loadFromFile("../images/back1.png")) throw Exception("Failed to load image");
     susu6.setTexture(tusu6);
 
-    if (!tusu7.loadFromFile("../images/back2.png")) throw std::runtime_error("Failed to load image");
+    if (!tusu7.loadFromFile("../images/back2.png")) throw Exception("Failed to load image");
     susu7.setTexture(tusu7);
 
     size = tusu1.getSize();
@@ -41,7 +39,7 @@ menuMode::~menuMode(){}
 
 void menuMode::menuRun()
 {
-    RenderWindow window(sf::VideoMode(720, 640), "MENU", sf::Style::Titlebar | sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(720, 640), "MENU", sf::Style::Titlebar | sf::Style::Close);
     // VideoMode - > window size
     // "MENU" -> window title
     // style -> can not be resizable
@@ -63,7 +61,7 @@ void menuMode::menuRun()
             }
         }
 
-        Vector2i pos = Mouse::getPosition(window);
+        sf::Vector2i pos = sf::Mouse::getPosition(window);
 
         //get the position every time to know where the mouse is
 
@@ -89,9 +87,9 @@ void menuMode::menuRun()
         {
             window.draw(susu3);
 
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if(event.key.code == (int)Mouse::Left)
+                if(event.key.code == (int)sf::Mouse::Left)
                 {
                     Game1v1Go = true;
                     window.close();
@@ -106,9 +104,9 @@ void menuMode::menuRun()
         {
             window.draw(susu5);
 
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if(event.key.code == (int)Mouse::Left)
+                if(event.key.code == (int)sf::Mouse::Left)
                 {
                     Game1vPcGo = true;
                     window.close();
@@ -123,9 +121,9 @@ void menuMode::menuRun()
         {
             window.draw(susu7);
 
-            if(event.type == Event::MouseButtonPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if(event.key.code == (int)Mouse::Left)
+                if(event.key.code == (int)sf::Mouse::Left)
                 {
                     menuGameGo = true;
                     window.close();

@@ -3,6 +3,10 @@
 int main()
 {
     auto newGame = startGame::GetInstance();
-    newGame->runStart();
+    try{
+        newGame->runStart();
+    } catch(Exception &e) {
+        std::cerr << e.what();
+    }
     return 0;
 }

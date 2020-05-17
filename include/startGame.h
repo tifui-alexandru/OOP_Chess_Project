@@ -6,7 +6,6 @@
 #include "game1vs1.h"
 #include "about.h"
 #include "game1vsPC.h"
-//#include "showEnd.h"
 
 
 class startGame

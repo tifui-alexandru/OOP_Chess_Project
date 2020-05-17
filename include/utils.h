@@ -2,6 +2,8 @@
 #define UTILS_H
 
 #include <string>
+#include <exception>
+#include <iostream>
 
 const int BOARD_SIZE = 8;
 
@@ -56,6 +58,17 @@ public:
 
     inline bool isInside(const T &x, const T &y) const {
         return (topLeft.first <=x and x <= bottomRight.first and topLeft.second <= y and y <= bottomRight.second);
+    }
+};
+
+class Exception : public std::exception {
+private:
+    std::string error;
+public:
+    Exception(std::string errorType) : error(errorType) {}
+    ~Exception() throw() {}
+    virtual const char *what() throw() {
+        return this->error.c_str();
     }
 };
 

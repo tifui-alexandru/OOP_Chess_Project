@@ -18,14 +18,12 @@ private:
     sf::Sprite buttonsMenuSprite, promoteMenuSprite, endGameButtonSprite, endGameButtonNowSprite;
     sf::Sprite getHintButtonSprite, getHintButtonNowSprite, EndedSprite;
     sf::Sprite NoEndedSprite, YesEndedSprite, EndedMenuSprite;
-
-    void printTime();
     sf::Clock clock;
     sf::Text text;
     sf::Font font;
 
     EventType checkMenuClick(const int& x, const int& y);
-
+    void printTime();
 public:
     Game1vsPC(const PieceColour &humanCol = WHITE);
     void play();

@@ -1,5 +1,6 @@
 #include "../include/startGame.h"
 #include "SFML/Audio.hpp"
+#include "../include/gameMode.h"
 
 startGame * startGame::instance_ = nullptr;
 
@@ -47,6 +48,8 @@ void startGame::runStart()
     bool menuAboutGo = false;
     bool Game1v1Go = false;
     bool Game1vPcGo = false;
+
+    std::unique_ptr<GameMode> newGame = std::make_unique<GameMode>();
 
     do{
         if(menuGameGo == true)
@@ -96,8 +99,8 @@ void startGame::runStart()
             map1Sound.pause();
             map2Sound.play();
 
-            Game1vs1 t3;
-            t3.play();
+            newGame->setStrategy(GameMode::_1VS1);
+            newGame->play();
             map2Sound.stop();
             map1Sound.play();
 
@@ -110,8 +113,8 @@ void startGame::runStart()
             map1Sound.pause();
             map2Sound.play();
 
-            Game1vsPC t5;
-            t5.play();
+            newGame->setStrategy(GameMode::_1VSPC);
+            newGame->play();
             map2Sound.stop();
             map1Sound.play();
 

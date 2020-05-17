@@ -39,10 +39,12 @@ protected:
     sf::Sprite getPieceSprite(const PieceType &piece, const PieceColour &colour, bool moving);
     Square getSquare(sf::Vector2i posCursor);
     EventType checkClick();
-    virtual EventType checkMenuClick(const int& x, const int& y) = 0;
     void squareClicked();
+    virtual EventType checkMenuClick(const int& x, const int& y) = 0;
+    virtual void printTime() = 0;
 public:
     GameFront(const std::string& gameModeName);
+    virtual void play() = 0;
     ~GameFront();
 };
 

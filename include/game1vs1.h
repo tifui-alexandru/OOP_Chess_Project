@@ -38,11 +38,11 @@ class Game1vs1 : virtual public GameFront {
     sf::Font font;
 
     EventType checkMenuClick(const int& x, const int& y);
+    void printTime();
 
 public:
     Game1vs1();
     void play();
-    void printTime();
 };
 
 #endif // !GAME1VS1_H
